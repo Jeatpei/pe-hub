@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>體育教學專案：每日教學工作台與全學年資料庫</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #080c14;
+      color: #f8fafc;
+    }
+    .tab-active {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    @media print {
+      aside, header, .no-print { display: none !important; }
+      main, #viewport, #tab-workbench { 
+        overflow: visible !important; 
+        height: auto !important;
+        background: white !important;
+        color: black !important;
+      }
+    }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 no-print">
+    <div>
+      <!-- Brand Logo Header -->
+      <div class="p-5 border-b border-slate-800 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+          <i data-lucide="trophy" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="font-black text-lg text-white tracking-wide">體育教學專案</h1>
+          <p class="text-xs font-bold text-sky-400">每日工作台 ＆ 備課中樞</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="p-3 space-y-1">
+        <button onclick="switchTab('workbench')" id="nav-workbench" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-300 hover:bg-slate-800/80 transition-all tab-active border-l-4">
+          <i data-lucide="layout-dashboard" class="w-5 h-5 text-sky-400"></i>
+          <span>每日日報與反思工作台</span>
+        </button>
+        <button onclick="switchTab('wizard')" id="nav-wizard" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-400 hover:bg-slate-800/80 transition-all border-l-4 border-transparent">
+          <i data-lucide="wand-2" class="w-5 h-5 text-amber-400"></i>
+          <span>1分鐘智慧備課精靈</span>
+        </button>
+        <button onclick="switchTab('modules')" id="nav-modules" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-400 hover:bg-slate-800/80 transition-all border-l-4 border-transparent">
+          <i data-lucide="layers" class="w-5 h-5 text-emerald-400"></i>
+          <span>六大即戰力教案庫</span>
+        </button>
+        <button onclick="switchTab('outdoor')" id="nav-outdoor" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-400 hover:bg-slate-800/80 transition-all border-l-4 border-transparent">
+          <i data-lucide="sun" class="w-5 h-5 text-orange-400"></i>
+          <span>戶外專項運動專區</span>
+        </button>
+        <button onclick="switchTab('indoor')" id="nav-indoor" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-400 hover:bg-slate-800/80 transition-all border-l-4 border-transparent">
+          <i data-lucide="cloud-rain" class="w-5 h-5 text-sky-400"></i>
+          <span>室內微型活動專區</span>
+        </button>
+        <button onclick="switchTab('curriculum')" id="nav-curriculum" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-400 hover:bg-slate-800/80 transition-all border-l-4 border-transparent">
+          <i data-lucide="calendar-range" class="w-5 h-5 text-blue-400"></i>
+          <span>40週全學年課程地圖</span>
+        </button>
+        <button onclick="switchTab('questions')" id="nav-questions" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-400 hover:bg-slate-800/80 transition-all border-l-4 border-transparent">
+          <i data-lucide="help-circle" class="w-5 h-5 text-purple-400"></i>
+          <span>100題跨領域題庫</span>
+        </button>
+        <button onclick="switchTab('resources')" id="nav-resources" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm text-slate-400 hover:bg-slate-800/80 transition-all border-l-4 border-transparent">
+          <i data-lucide="folder-git-2" class="w-5 h-5 text-teal-400"></i>
+          <span>雲端資源直達</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Quick Whistle Soundboard -->
+    <div class="p-4 border-t border-slate-800 bg-slate-950/70 space-y-2.5">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+        <span class="flex items-center gap-1.5"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-sky-400"></i> 課堂電子哨音</span>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5">
+        <button onclick="playWhistle('short')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-slate-200 border border-slate-700 active:scale-95 transition-all">短哨嗶</button>
+        <button onclick="playWhistle('double')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-amber-300 border border-slate-700 active:scale-95 transition-all">雙哨嗶嗶</button>
+        <button onclick="playWhistle('long')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-rose-300 border border-slate-700 active:scale-95 transition-all">長哨嗶—</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 flex flex-col overflow-hidden bg-slate-950">
+    <!-- Top Header Navigation Bar -->
+    <header class="h-16 border-b border-slate-800 bg-slate-900/60 backdrop-blur px-8 flex items-center justify-between no-print">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-black uppercase tracking-wider bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">每日工作台</span>
+        <h2 id="top-title" class="text-lg font-black text-white">每日日報與教學反思工作台 (Daily Workbench)</h2>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://drive.google.com/drive/folders/1EYPCeqL4qURqKmn0z4xaSaysuqHQgeY0" target="_blank" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-xs font-bold text-emerald-300 border border-emerald-500/30 transition-all">
+          <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+          <span>開啟「每日教學資源」雲端資料夾</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Scrollable Content Viewport -->
+    <div class="flex-1 overflow-y-auto p-8 space-y-8" id="viewport">
+
+      <!-- ================= TAB 1: DAILY WORKBENCH (DEFAULT) ================= -->
+      <section id="tab-workbench" class="space-y-6">
+        <!-- Top Status Banner -->
+        <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 border border-blue-500/40 rounded-3xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl">
+          <div>
+            <div class="flex items-center gap-2.5">
+              <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-black text-xs uppercase">Today's Class Mission</span>
+              <span class="text-xs font-bold text-sky-400">115 學年度 第 1 週 始業準備週</span>
+            </div>
+            <h3 class="text-2xl font-black text-white mt-2">今日教學排課日報 ＆ 課後反思工作台</h3>
+            <p class="text-xs text-slate-300 mt-1">天候判定：多雲舒適 (降雨10% • 26~32°C) ➔ 全日操場實施【四大陣地敏捷隊形大作戰】</p>
+          </div>
+
+          <div class="flex items-center gap-3 shrink-0">
+            <a href="https://drive.google.com/file/d/1f9X8qMUFT-GEfgYBhVEok8R5R7DmKS-Z/view?usp=drivesdk" target="_blank" class="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-black flex items-center gap-2 shadow-lg shadow-blue-500/20">
+              <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+              <span>投影大螢幕遊戲</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2-Columns Layout: Left Today's Plan, Right Post-Class Reflection & Score Reminder -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Left Column (7/12): Live Daily Dispatch Content -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 font-black text-white text-base">
+                  <i data-lucide="calendar" class="w-5 h-5 text-sky-400"></i>
+                  <span>今日授課時間軸 (40分鐘統一進度)</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold">三年級：307、306、302、303</span>
+              </div>
+
+              <div class="space-y-3">
+                <div class="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800 text-xs space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-black text-sky-300">00~07分 • 裝備安檢與常規建立</span>
+                    <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">常規</span>
+                  </div>
+                  <p class="text-slate-300">兩聲短哨 3 分鐘排好四列橫隊，兩兩互檢「鞋帶雙結」與口袋清空。</p>
+                </div>
+
+                <div class="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800 text-xs space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-black text-emerald-300">07~15分 • 哨音雷達動態熱身</span>
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">熱身</span>
+                  </div>
+                  <p class="text-slate-300">慢跑聽哨音：短哨1聲(定格單腳站立)、短哨2聲(4人抱團)、長哨(高抬腿衝刺)。</p>
+                </div>
+
+                <div class="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800 text-xs space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-black text-amber-300">15~28分 • 核心活動：四大陣地敏捷隊形大作戰</span>
+                    <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">核心競賽</span>
+                  </div>
+                  <p class="text-slate-300">中央動態開合跳 ➔ 突發陣地令 5 秒衝入陣地全員牽手舉高蹲下 ➔ 最快最安靜組得 10 點能量。</p>
+                </div>
+
+                <div class="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800 text-xs space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-black text-purple-300">28~35分 • 大螢幕神獸能量注入結算</span>
+                    <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold">數位對決</span>
+                  </div>
+                  <p class="text-slate-300">啟動【全能體育王-4組】神獸進化模式，各組排頭拍擊螢幕注入陣地能量。</p>
+                </div>
+
+                <div class="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800 text-xs space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-black text-rose-300">35~40分 • 緩和收操與常規檢核</span>
+                    <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold">收操</span>
+                  </div>
+                  <p class="text-slate-300">深呼吸伸展、角標器材歸位、列隊擊掌致敬與登錄當週成績。</p>
+                </div>
+              </div>
+
+              <!-- 5 Questions Box -->
+              <div class="pt-3 border-t border-slate-800">
+                <div class="text-xs font-black text-amber-400 mb-2">🎯 今日 5 題跨領域對抗題庫 (點擊一鍵複製)：</div>
+                <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-[11px] text-slate-300 font-mono space-y-1 select-all cursor-pointer" onclick="navigator.clipboard.writeText(this.innerText); alert('已複製題庫！');">
+                  <div>1. 生活常規：運動前鞋帶應該怎麼綁最安全？(打雙結)</div>
+                  <div>2. 健康體育：衝刺過終點線時應該如何減速？(直線減速)</div>
+                  <div>3. 自然科學：流汗最主要的功能是什麼？(幫助散熱降溫)</div>
+                  <div>4. 數學運算：全班分成4組每組7人共幾人？(28人)</div>
+                  <div>5. 語文成語：形容動作步伐一致的成語是？(整齊劃一)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (5/12): Post-Class Teacher Reflection & Score Check -->
+          <div class="lg:col-span-5 space-y-5">
+            <!-- Reflection Form -->
+            <div class="bg-slate-900/90 border border-emerald-500/40 rounded-3xl p-6 space-y-4 shadow-xl">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 font-black text-white text-base">
+                  <i data-lucide="edit-3" class="w-5 h-5 text-emerald-400"></i>
+                  <span>課後教學反思與建議輸入</span>
+                </div>
+                <span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">即時歸檔</span>
+              </div>
+
+              <div class="space-y-3 text-xs">
+                <div>
+                  <label class="font-bold text-slate-300 block mb-1">🌟 今日課堂亮點 / 學生優異表現：</label>
+                  <textarea id="refHighlight" rows="2" placeholder="例：307班四列橫隊集合僅花2分半；302班鞋帶雙結全員達成..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500"></textarea>
+                </div>
+
+                <div>
+                  <label class="font-bold text-slate-300 block mb-1">⚠️ 發現之教學卡點 / 需加強動作：</label>
+                  <textarea id="refBottleneck" rows="2" placeholder="例：衝刺回陣地時少數學生容易低頭看地，需提醒抬頭看前方；部分學生急停未屈膝..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500"></textarea>
+                </div>
+
+                <div>
+                  <label class="font-bold text-slate-300 block mb-1">💡 教學者調整建議 / 下次改進方向：</label>
+                  <textarea id="refSuggestion" rows="2" placeholder="例：下週第2週敏捷反應課，陣地加大5公尺距離；增加防撞緩衝煞車線提示..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500"></textarea>
+                </div>
+
+                <div class="pt-2 flex flex-col gap-2">
+                  <button onclick="saveAndExportDailyDoc()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs rounded-xl shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer transition-all">
+                    <i data-lucide="file-plus" class="w-4 h-4"></i>
+                    <span>💾 儲存並建立 Google 文件日報歸檔</span>
+                  </button>
+                  <button onclick="copyFullReflectionDoc()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl border border-slate-700 flex items-center justify-center gap-2 transition-all">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span>📋 複製完整日報與反思文字</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weekly Score Entry Reminder & Checklist Widget -->
+            <div class="bg-slate-900/90 border border-amber-500/40 rounded-3xl p-6 space-y-4 shadow-xl">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 font-black text-white text-base">
+                  <i data-lucide="bell-ring" class="w-5 h-5 text-amber-400"></i>
+                  <span>每週成績登錄防呆提醒</span>
+                </div>
+                <a href="https://docs.google.com/spreadsheets/d/17VsLWuAJp8BybO5LNRGpXr8hjMPqJZUhgHCafxBl-gE/edit" target="_blank" class="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1">
+                  <span>開啟評量表</span>
+                  <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+              </div>
+
+              <div class="text-xs text-slate-300">
+                <p class="mb-2 text-slate-400">本週各班體育成績登記勾選（點擊切換狀態）：</p>
+                <div class="grid grid-cols-5 gap-2" id="scoreChecklist">
+                  <!-- Populated by JS -->
+                </div>
+                <div class="mt-3 p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-[11px] text-amber-300 flex items-center gap-2">
+                  <i data-lucide="alert-triangle" class="w-4 h-4 shrink-0"></i>
+                  <span>每週五若有未登記班級，AI 助手將於週報中自動發出提醒！</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: 1-MINUTE LESSON WIZARD ================= -->
+      <section id="tab-wizard" class="space-y-6 hidden">
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-950/50 to-slate-900 border border-amber-500/40 rounded-3xl p-8 space-y-6 shadow-2xl">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <span class="px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-xs uppercase tracking-wider">Smart Lesson Generator</span>
+              <h3 class="text-2xl font-black text-white mt-3 mb-1">⚡ 1分鐘智慧備課精靈 (一鍵客製完整教案)</h3>
+              <p class="text-xs text-slate-300">勾選今天的天候、場地、年級與目標器材，AI 立即智能組裝 40 分鐘完整教案、教學話術、防錯提醒與遊戲直達連結！</p>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs text-slate-300 shrink-0">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+              <span>已整合 68 項活動與 7 大球類</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3.5">
+            <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl space-y-2">
+              <label class="text-xs font-black text-sky-400 flex items-center gap-1.5"><i data-lucide="cloud-sun" class="w-4 h-4"></i> 1. 天候與場地</label>
+              <select id="wizVenue" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs font-bold text-white outline-none focus:border-sky-500">
+                <option value="rain_classroom">🌧️ 雨天普通教室 (微型低噪音)</option>
+                <option value="sunny_outdoor">☀️ 晴天操場/球場 (大空間闖關)</option>
+                <option value="indoor_hall">⛅ 穿堂/風雨操場 (中等空間)</option>
+                <option value="gymnasium">🏢 體育館/活動中心 (分站對決)</option>
+              </select>
+            </div>
+
+            <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl space-y-2">
+              <label class="text-xs font-black text-emerald-400 flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4"></i> 2. 授課年級</label>
+              <select id="wizGrade" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs font-bold text-white outline-none focus:border-emerald-500">
+                <option value="g12">🧒 低年級 (1-2年級 • 趣味感知)</option>
+                <option value="g34" selected>👦 中年級 (3-4年級 • 敏捷合作)</option>
+                <option value="g56">🧑 高年級 (5-6年級 • 戰術核心)</option>
+              </select>
+            </div>
+
+            <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl space-y-2">
+              <label class="text-xs font-black text-amber-400 flex items-center gap-1.5"><i data-lucide="target" class="w-4 h-4"></i> 3. 核心鍛鍊目標</label>
+              <select id="wizTarget" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs font-bold text-white outline-none focus:border-amber-500">
+                <option value="handball_ball">🤾 戶外專項球類 (手球/籃球/足球)</option>
+                <option value="core">🔥 下肢爆發力與核心肌耐力</option>
+                <option value="reflex">🚦 大腦神經反應與抗干擾</option>
+                <option value="sniper">🎯 手眼協調與精細拋物線</option>
+                <option value="lung">💨 呼吸肺活量與體幹支撐</option>
+                <option value="team">🤝 團隊默契與倍數連動</option>
+                <option value="quiz">🏰 跨領域學科攻城大會考</option>
+              </select>
+            </div>
+
+            <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl space-y-2">
+              <label class="text-xs font-black text-purple-400 flex items-center gap-1.5"><i data-lucide="package" class="w-4 h-4"></i> 4. 現有教具器材</label>
+              <select id="wizProps" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs font-bold text-white outline-none focus:border-purple-500">
+                <option value="desk_items">課本、水壺、西卡紙</option>
+                <option value="stationery">橡皮擦、原子筆、紙球</option>
+                <option value="balloon_rope">氣球、毽子、跳繩</option>
+                <option value="balls">手球、足球、籃球、角標</option>
+                <option value="no_props">徒手零器材 (完全免道具)</option>
+              </select>
+            </div>
+
+            <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl space-y-2">
+              <label class="text-xs font-black text-rose-400 flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4"></i> 5. 授課時間長度</label>
+              <select id="wizDuration" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs font-bold text-white outline-none focus:border-rose-500">
+                <option value="40" selected>40 分鐘 (標準完整體育課)</option>
+                <option value="20">20 分鐘 (晨光體能 / 微課程)</option>
+                <option value="10">10 分鐘 (下課前動態小結)</option>
+              </select>
+            </div>
+          </div>
+
+          <button onclick="generateCustomLesson()" class="w-full py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-slate-950 font-black text-base rounded-2xl shadow-xl shadow-amber-500/20 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <i data-lucide="sparkles" class="w-5 h-5 fill-current"></i>
+            <span>⚡ 一秒生成專屬教案組合 (包含時間軸、話術、安全與遊戲連結)</span>
+          </button>
+        </div>
+
+        <div id="generatedPlanBox" class="hidden bg-slate-900 border border-slate-800 rounded-3xl p-8 space-y-6 shadow-2xl"></div>
+      </section>
+
+      <!-- ================= TAB 3: 6 MODULAR PACKS ================= -->
+      <section id="tab-modules" class="space-y-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-2xl font-black text-white">六大即戰力教學模組庫 (Modular Lesson Packs)</h3>
+            <p class="text-xs text-slate-400">專為體育教師設計的模組化教案包，開課前 1 分鐘挑選，即開即用，大幅減輕備課負擔。</p>
+          </div>
+          <a href="https://docs.google.com/document/d/1emBllym4a9a8DlETJpiqLKhuAxnE9Fw4S5T_HGzz-MQ/edit" target="_blank" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold flex items-center gap-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>開啟 Google Doc 模組手冊</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="modulesContainer"></div>
+      </section>
+
+      <!-- ================= TAB 4: OUTDOOR SPORTS ZONE ================= -->
+      <section id="tab-outdoor" class="space-y-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-2xl font-black text-white">☀️ 戶外專項運動項目教學專區</h3>
+            <p class="text-xs text-slate-400">收錄手球、籃球、足球、樂樂棒球、田徑跑跳、拔河與民俗體育之完整規則、技能訓練與分段教案。</p>
+          </div>
+          <a href="https://docs.google.com/document/d/1I-ubuRRnIqNBmXSiz6w_hLlojEy9p5Ao5fIg-D9j2iw/edit" target="_blank" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white rounded-xl text-xs font-bold flex items-center gap-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>開啟體育分類寶典 Doc</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="outdoorSportsGrid"></div>
+      </section>
+
+      <!-- ================= TAB 5: INDOOR ACTIVITIES ZONE ================= -->
+      <section id="tab-indoor" class="space-y-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-2xl font-black text-white">🌧️ 室內微型體育活動專區 (68 項活動)</h3>
+            <p class="text-xs text-slate-400">普通教室座位與走道微型挑戰，分為桌上精細、座位核心、呼吸氣流、神經反應、團隊連動五大分類。</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="actSearch" placeholder="搜尋活動、教具、動作..." oninput="filterActivities()" class="bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-xs font-bold text-white outline-none focus:border-blue-500 w-60">
+            </div>
+            <select id="actCatFilter" onchange="filterActivities()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-bold text-sky-400 outline-none">
+              <option value="all">全部分類</option>
+              <option value="桌上精細手眼控制">桌上精細手眼控制</option>
+              <option value="座位走道核心體能">座位走道核心體能</option>
+              <option value="呼吸肌與氣流動力">呼吸肌與氣流動力</option>
+              <option value="大腦神經反應抗干擾">大腦神經反應抗干擾</option>
+              <option value="團隊連動與倍數合作">團隊連動與倍數合作</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="activitiesGrid"></div>
+      </section>
+
+      <!-- ================= TAB 6: 40-WEEK CURRICULUM ================= -->
+      <section id="tab-curriculum" class="space-y-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-2xl font-black text-white">40 週全學年課程地圖矩陣 (上/下學期)</h3>
+            <p class="text-xs text-slate-400">雙軌活動對照、數位工具搭配與核心素養對接</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <select id="semFilter" onchange="filterCurriculum()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-bold text-sky-400 outline-none">
+              <option value="all">全學年 (40週)</option>
+              <option value="上學期">上學期 (第1~20週)</option>
+              <option value="下學期">下學期 (第21~40週)</option>
+            </select>
+            <a href="https://docs.google.com/spreadsheets/d/19WKwUK2Nsat6aqxZWwg48RAt8grjt-iaXKwyzvqHf8o/edit" target="_blank" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold flex items-center gap-2">
+              <i data-lucide="table" class="w-4 h-4"></i>
+              <span>在 Google 試算表檢視</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-950 text-slate-400 uppercase font-black tracking-wider border-b border-slate-800">
+                <tr>
+                  <th class="p-4">週次</th>
+                  <th class="p-4">單元核心主題</th>
+                  <th class="p-4">戶外實施項目</th>
+                  <th class="p-4">室內雨天備案</th>
+                  <th class="p-4">推薦數位教具</th>
+                  <th class="p-4">核心素養指標</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60 font-medium" id="curriculumTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 7: 100 QUESTIONS ================= -->
+      <section id="tab-questions" class="space-y-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-2xl font-black text-white">100 題跨領域題庫檢視器</h3>
+            <p class="text-xs text-slate-400">涵蓋五大領域，支援攻塔戰與知識對決直接載入</p>
+          </div>
+          <select id="qCatFilter" onchange="filterQuestions()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-bold text-amber-400 outline-none">
+            <option value="all">全領域題庫</option>
+            <option value="健康與體育">健康與體育</option>
+            <option value="自然科學">自然科學</option>
+            <option value="數學運算">數學運算</option>
+            <option value="語文成語">語文成語</option>
+            <option value="生活與常規">生活與常規</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="questionsGrid"></div>
+      </section>
+
+      <!-- ================= TAB 8: RESOURCES HUB ================= -->
+      <section id="tab-resources" class="space-y-6 hidden">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-black text-white">雲端資源直達中心 (All Direct Links)</h3>
+          <span class="text-xs text-slate-400">點擊卡片直接開啟對應 Google Drive 檔案</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <a href="https://drive.google.com/drive/folders/1EYPCeqL4qURqKmn0z4xaSaysuqHQgeY0" target="_blank" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/50 p-5 rounded-2xl transition-all block group">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <i data-lucide="folder" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm group-hover:text-emerald-400 transition-colors">每日教學資源資料夾</h4>
+                <p class="text-[11px] text-slate-400">Google Drive 資料夾</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300">存放每日產出之 Google Doc 教學日報與反思歸檔文件。</p>
+          </a>
+
+          <a href="https://docs.google.com/document/d/1I-ubuRRnIqNBmXSiz6w_hLlojEy9p5Ao5fIg-D9j2iw/edit" target="_blank" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-orange-500/50 p-5 rounded-2xl transition-all block group">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm group-hover:text-orange-400 transition-colors">體育分類寶典 (戶外/室內)</h4>
+                <p class="text-[11px] text-slate-400">Google 文件 (Doc)</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300">手球、籃球、足球、棒球、田徑、拔河與五大室內微型活動全詳解。</p>
+          </a>
+
+          <a href="https://docs.google.com/document/d/1emBllym4a9a8DlETJpiqLKhuAxnE9Fw4S5T_HGzz-MQ/edit" target="_blank" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/50 p-5 rounded-2xl transition-all block group">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <i data-lucide="layers" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm group-hover:text-emerald-400 transition-colors">六大即戰力教案手冊</h4>
+                <p class="text-[11px] text-slate-400">Google 文件 (Doc)</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300">忍者無聲、特務神經、微型狙擊、氣流肺活量等六大 40 分鐘完整流程。</p>
+          </a>
+
+          <a href="https://docs.google.com/spreadsheets/d/19WKwUK2Nsat6aqxZWwg48RAt8grjt-iaXKwyzvqHf8o/edit" target="_blank" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-emerald-500/50 p-5 rounded-2xl transition-all block group">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <i data-lucide="table" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm group-hover:text-emerald-400 transition-colors">全學年40週計畫表</h4>
+                <p class="text-[11px] text-slate-400">Google 試算表 (Sheet)</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300">完整 40 週上/下學期教學進度表、晴雨活動雙軌對照與素養指標。</p>
+          </a>
+
+          <a href="https://docs.google.com/presentation/d/1-bRO1vUbhqrip5jDUJ-uiTZplk3pCljGUw7EW4RLs9s/edit" target="_blank" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-rose-500/50 p-5 rounded-2xl transition-all block group">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
+                <i data-lucide="presentation" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm group-hover:text-rose-400 transition-colors">手球規則與判罰指南</h4>
+                <p class="text-[11px] text-slate-400">Google 簡報 (PPT)</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300">手球場地、三秒三步進攻鐵律、防守與漸進式罰則完整簡報。</p>
+          </a>
+
+          <a href="https://docs.google.com/presentation/d/108sDzCHHJE85IcAnyULT7Rl8jSG0KAVTNCjt5y-wVJI/edit" target="_blank" class="bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-purple-500/50 p-5 rounded-2xl transition-all block group">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                <i data-lucide="presentation" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm group-hover:text-purple-400 transition-colors">常規與運動安全宣導簡報</h4>
+                <p class="text-[11px] text-slate-400">Google 簡報 (PPT)</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300">專供課堂向學生說明的 8 頁常規、戶外安全與運動家精神指南。</p>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    const activities = [{"id": 1, "cat": "座位走道核心體能", "name": "座位熱身", "props": "學生椅子", "desc": "空中腳踏車維持30秒、騰空寫數字 (零噪音喚醒核心)"}, {"id": 2, "cat": "問題回答競賽", "name": "記憶走廊", "props": "日常文具、桌面物品", "desc": "走道放物品記憶30秒，回講台報出得積分"}, {"id": 3, "cat": "座位走道核心體能", "name": "教室滑雪", "props": "西卡紙2張、手套、課本", "desc": "踩西卡紙手撐地慢速競速滑行 (大腿與核心耐力)"}, {"id": 4, "cat": "團隊連動與倍數合作", "name": "成語球類炸彈陣", "props": "貼字軟球", "desc": "雙手傳球停球時說出該字成語 (語文反應聯想)"}, {"id": 5, "cat": "桌上精細手眼控制", "name": "橡皮擦狙擊手", "props": "橡皮擦、計分靶紙", "desc": "手指彈射橡皮擦停在加分區 (精細動作力量控制)"}, {"id": 6, "cat": "團隊連動與倍數合作", "name": "靜默傳遞鏈", "props": "裝水寶特瓶", "desc": "雙腳夾水瓶後傳且全程安靜 (核心夾力與團體自律)"}, {"id": 7, "cat": "大腦神經反應抗干擾", "name": "手指體操", "props": "黑板、粉筆", "desc": "左手畫圓右手畫方 (左右腦協調分工)"}, {"id": 8, "cat": "桌上精細手眼控制", "name": "鐵鋁罐冰壺", "props": "鐵鋁罐、目標圈", "desc": "滾動鐵鋁罐接近桌端圓心 (手眼協調與力量掌握)"}, {"id": 9, "cat": "呼吸肌與氣流動力", "name": "紙球吹氣足球", "props": "紙門、紙球", "desc": "雙手撐桌僅用吹氣將紙球吹過底線 (肺活量與腹肌)"}, {"id": 10, "cat": "大腦神經反應抗干擾", "name": "座位反應熱身", "props": "無", "desc": "聽老師指令1摸右耳/2摸左耳/3擊掌 (聽覺敏捷反射)"}, {"id": 11, "cat": "座位走道核心體能", "name": "課本登山者", "props": "課本1本", "desc": "課本放腿上快速交替抬腿碰課本且著地無聲 (高心肺耐力)"}, {"id": 12, "cat": "座位走道核心體能", "name": "水壺避震器", "props": "寶特瓶", "desc": "雙腳併攏左右橫跨跳躍水壺 (下肢側向肌力與重心穩定)"}, {"id": 13, "cat": "大腦神經反應抗干擾", "name": "反向神經傳導", "props": "地面O/X線", "desc": "聽問題直接向左或向右跳躍答題 (認知跳躍反應)"}, {"id": 14, "cat": "座位走道核心體能", "name": "無聲剪刀腳", "props": "學生椅子", "desc": "雙手扶椅雙腳懸空左右交叉剪刀腳 (下腹部肌群鍛鍊)"}, {"id": 15, "cat": "座位走道核心體能", "name": "課本夾夾樂", "props": "課本1本", "desc": "坐椅前端腳踝夾課本伸直抬高10公分維持10秒 (下腹核心)"}, {"id": 16, "cat": "桌上精細手眼控制", "name": "筆筒投籃賽", "props": "水壺、紙球", "desc": "坐正用非慣用手將紙球投進水壺 (非慣用手協調)"}, {"id": 17, "cat": "大腦神經反應抗干擾", "name": "無聲是非題", "props": "無", "desc": "答案是做摸耳/非做插腰 (零噪音全員即時評量)"}, {"id": 18, "cat": "大腦神經反應抗干擾", "name": "橡皮擦天線", "props": "橡皮擦", "desc": "頭頂橡皮擦執行起立坐下摸鼻子指令 (體態姿態控制)"}, {"id": 19, "cat": "桌上精細手眼控制", "name": "水壺守護神", "props": "水壺、紙球/橡皮擦", "desc": "彈射擊中對方水壺，守方可用手扇風防守 (攻防對抗)"}, {"id": 20, "cat": "大腦神經反應抗干擾", "name": "慢動作推手", "props": "無", "desc": "站立雙手互推掌心讓對方腳步移動 (核心借力誘敵)"}, {"id": 21, "cat": "大腦神經反應抗干擾", "name": "快手搶拍王", "props": "橡皮擦", "desc": "老師喊口令最後搶奪中間橡皮擦 (近距離抓取反射)"}, {"id": 22, "cat": "桌上精細手眼控制", "name": "紙飛機定點降落", "props": "紙張、地面目標盆", "desc": "折紙飛機定點發射計算降落成功率 (力道控制)"}, {"id": 23, "cat": "呼吸肌與氣流動力", "name": "氣球不落地(扇子版)", "props": "課本、氣球", "desc": "用課本扇出的風維持氣球不落地 (上肢耐力追蹤)"}, {"id": 24, "cat": "呼吸肌與氣流動力", "name": "課本護城河", "props": "課本、揉皺紙團", "desc": "課本兩側吹氣將紙團吹過對方底線 (肺活量爆發)"}, {"id": 25, "cat": "桌上精細手眼控制", "name": "文具塔防賽", "props": "文具", "desc": "30秒內疊最高文具塔且屹立不搖 (精細平衡與抗壓)"}, {"id": 26, "cat": "大腦神經反應抗干擾", "name": "心靈感應123", "props": "無", "desc": "兩人同時比摸頭/耳/鼻看動作相同或相異 (心理預判默契)"}, {"id": 27, "cat": "座位走道核心體能", "name": "課本平衡障礙走", "props": "課本、障礙水壺", "desc": "頭頂課本繞行地面障礙水壺兩圈 (動態平衡步態)"}, {"id": 28, "cat": "桌上精細手眼控制", "name": "紙球定點擊標", "props": "水壺3個、紙球5顆", "desc": "用紙球擊倒不同距離計分水壺 (多目標投擲準度)"}, {"id": 29, "cat": "大腦神經反應抗干擾", "name": "極速反應是非線", "props": "走道中線", "desc": "聽老師混淆視聽指令快速跳向左右 (抗誘惑敏捷跳躍)"}, {"id": 30, "cat": "桌上精細手眼控制", "name": "橡皮擦漂移王", "props": "鐵罐/橡皮擦", "desc": "推動物品使其停留在桌緣懸空處 (微推力精準控制)"}, {"id": 31, "cat": "座位走道核心體能", "name": "水壺紅綠燈", "props": "水壺", "desc": "手平舉水壺綠燈踏步紅燈靜止 (等長肌力支撐煞車)"}, {"id": 32, "cat": "桌上精細手眼控制", "name": "橡皮擦精準停靠", "props": "橡皮擦", "desc": "彈射橡皮擦停入極小加分區 (高精度力量調控)"}, {"id": 33, "cat": "桌上精細手眼控制", "name": "原子筆保齡球", "props": "原子筆5支、橡皮擦", "desc": "橡皮擦彈射擊倒原子筆瓶 (彈射瞄準角度)"}, {"id": 34, "cat": "大腦神經反應抗干擾", "name": "記憶快閃物體位置", "props": "文具5樣", "desc": "展示10秒後蓋住寫出順序 (視覺工作記憶)"}, {"id": 35, "cat": "桌上精細手眼控制", "name": "原子筆翻轉挑戰", "props": "原子筆", "desc": "筆放桌邊手背向上彈起空中抓握 (手背彈跳手眼協調)"}, {"id": 36, "cat": "桌上精細手眼控制", "name": "原子筆直升機", "props": "原子筆", "desc": "指尖撥動筆旋轉指向目標加分區 (指尖圓周旋轉發力)"}, {"id": 37, "cat": "桌上精細手眼控制", "name": "橡皮擦指尖彈跳", "props": "橡皮擦", "desc": "手背放置橡皮擦拋起同手抓握 (手指單手敏捷)"}, {"id": 38, "cat": "大腦神經反應抗干擾", "name": "極速是非反應", "props": "無", "desc": "快速口頭心算題是站立非坐下 (心算體能二合一)"}, {"id": 39, "cat": "桌上精細手眼控制", "name": "迷你保齡球", "props": "原子筆、橡皮擦", "desc": "手指彈射擊倒原子筆 (手指精細瞄準)"}, {"id": 40, "cat": "呼吸肌與氣流動力", "name": "氣球空戰", "props": "氣球", "desc": "吹氣或指尖維持氣球滯空 (團體滯空合作)"}, {"id": 41, "cat": "團隊連動與倍數合作", "name": "筷子運球接力", "props": "筷子、乒乓球", "desc": "用筷子夾球傳遞給下一棒 (工具使用穩定度)"}, {"id": 42, "cat": "座位走道核心體能", "name": "核心平衡木", "props": "地面膠帶", "desc": "閉眼足跟接足尖走直線 (本體感覺動態平衡)"}, {"id": 43, "cat": "座位走道核心體能", "name": "肢體剪刀石頭布", "props": "終點線", "desc": "雙腳開合/前後跳躍出拳競速 (雙腳敏捷協調)"}, {"id": 44, "cat": "桌上精細手眼控制", "name": "硬幣旋轉戰", "props": "硬幣", "desc": "桌面旋轉硬幣比持續時間 (指力搓旋技巧)"}, {"id": 45, "cat": "座位走道核心體能", "name": "腳尖繪圖", "props": "無", "desc": "單腳站立空中用腳尖寫字 (單腳閉鏈支撐浮腿控制)"}, {"id": 46, "cat": "呼吸肌與氣流動力", "name": "衛生紙吹氣賽", "props": "衛生紙一張", "desc": "僅靠吹氣將衛生紙吹過終點 (持續深長呼氣)"}, {"id": 47, "cat": "大腦神經反應抗干擾", "name": "盲人方位感", "props": "眼罩/閉眼", "desc": "蒙眼聽音辨位指向聲源 (空間聽覺定位)"}, {"id": 48, "cat": "桌上精細手眼控制", "name": "原子筆點穴戰", "props": "原子筆2支", "desc": "雙方在桌上對峙，嘗試點擊對方放在桌面的手背圖案，鍛鍊手部極限閃躲敏捷。"}, {"id": 49, "cat": "桌上精細手眼控制", "name": "橡皮擦相撲", "props": "橡皮擦2塊", "desc": "輪流彈射橡皮擦撞擊對方，先落海者淘汰，考驗微小力道與角度計算。"}, {"id": 50, "cat": "桌上精細手眼控制", "name": "水壺指力負重", "props": "裝滿水之水壺", "desc": "僅用食指與中指夾住水壺頂部提起並計時，鍛鍊手指靜態抓握耐力。"}, {"id": 51, "cat": "桌上精細手眼控制", "name": "桌下暗影傳球", "props": "紙球或橡皮擦", "desc": "同排在桌下向後盲傳，球掉落或發出聲響即失分，速度與靜默的極致考驗。"}, {"id": 52, "cat": "桌上精細手眼控制", "name": "原子筆不倒翁", "props": "原子筆2支", "desc": "立起筆後輕彈桌面產生震動，誰的筆先倒下淘汰，考驗震動頻率掌控。"}, {"id": 53, "cat": "桌上精細手眼控制", "name": "水壺疊疊樂大賽", "props": "全組水壺", "desc": "1分鐘內全組合作垂直疊起水壺，挑戰教室最高塔紀錄，培養團隊協作。"}, {"id": 54, "cat": "桌上精細手眼控制", "name": "指尖地雷區", "props": "橡皮擦5塊", "desc": "雙手撐桌不坐下，僅用腳尖在桌下將5塊橡皮擦排成一列，鍛鍊腳尖精細控制。"}, {"id": 55, "cat": "桌上精細手眼控制", "name": "原子筆長槍對決", "props": "原子筆4支", "desc": "雙手各持一筆輕點對方肩膀，雙手並用考驗左右腦協調與閃躲速度。"}, {"id": 56, "cat": "座位走道核心體能", "name": "水壺阻力推推看", "props": "裝滿水之水壺", "desc": "兩人對坐手掌中間夾水壺同時用力互推且不倒下，鍛鍊胸肩肌肉與核心穩定。"}, {"id": 57, "cat": "座位走道核心體能", "name": "課本靜止力地景圖", "props": "課本2本", "desc": "雙腳併攏雙手各持課本向兩側平舉維持不動，考驗三角肌與肩胛穩定耐力。"}, {"id": 58, "cat": "座位走道核心體能", "name": "水壺繞膝8字接力", "props": "水壺1個", "desc": "坐姿在雙腿下方進行8字形穿梭傳遞不落地，30秒內比完成次數。"}, {"id": 59, "cat": "桌上精細手眼控制", "name": "橡皮擦精準彈跳", "props": "橡皮擦、課本、水壺", "desc": "彈射橡皮擦先撞擊課本反彈進水壺籃框，考驗反射角物理彈道預判。"}, {"id": 60, "cat": "座位走道核心體能", "name": "椅子上的攀登者", "props": "學生椅子", "desc": "雙手撐椅緣快速踏步且著地無聲，比節奏最穩與聲音最小者。"}, {"id": 61, "cat": "座位走道核心體能", "name": "終極木頭人姿態凍結", "props": "無", "desc": "聽指令做出高難度單腳觸碰姿勢後瞬間定格20秒，鍛鍊本體感覺平衡。"}, {"id": 62, "cat": "座位走道核心體能", "name": "水壺不倒翁單腳站立", "props": "水壺、椅子", "desc": "單腳站立另一腳勾椅手平舉水壺，撐過30秒得高分，鍛鍊下肢閉鏈支撐。"}, {"id": 63, "cat": "座位走道核心體能", "name": "無聲波比座椅版", "props": "學生椅子", "desc": "手撐椅緣雙腳向後伸直收回站立，完全不發出腳步摩擦聲，高心肺燃脂。"}, {"id": 64, "cat": "團隊連動與倍數合作", "name": "【人肉拉鍊】", "props": "學生外套1件", "desc": "全排走道牽手連線將外套從排頭鑽身傳到排尾，雙手不鬆開，人數越多分數倍數越高 (最高6倍)。"}, {"id": 65, "cat": "團隊連動與倍數合作", "name": "【連鎖無影凳】", "props": "無", "desc": "全排在走道背靠背半蹲，同時撐住的人數就是每秒得分倍數，一人放棄倍數下降。"}, {"id": 66, "cat": "團隊連動與倍數合作", "name": "【同心協力站】", "props": "無", "desc": "背靠背坐在地上雙手抱胸不撐地，靠彼此背部推力同時站起，4人合力站起獲50分滿分。"}, {"id": 67, "cat": "團隊連動與倍數合作", "name": "【打字機深蹲】", "props": "無", "desc": "老師報數喊數字對應深蹲，喊「全體」時全組動作整齊劃一，該次得分直接乘以全排人數。"}, {"id": 68, "cat": "團隊連動與倍數合作", "name": "【小鎮爭奪戰】", "props": "黑板20宮格、粉筆、水壺", "desc": "小組策略分工，討論誰做靜態支撐(發電機)誰做動態跳躍(輸出機)，佔領地盤賺金幣。"}];
+    const questions = [{"q": "跑步前應該做什麼來預防受傷？", "o1": "暖身操", "o2": "大吃一頓", "ans": 1, "cat": "健康與體育"}, {"q": "籃球比賽中，球員投進三分球可以得到幾分？", "o1": "2分", "o2": "3分", "ans": 2, "cat": "健康與體育"}, {"q": "躲避球比賽中，被球打中身體但沒有接住會怎樣？", "o1": "出局", "o2": "沒事", "ans": 1, "cat": "健康與體育"}, {"q": "游泳前一定要做什麼？", "o1": "暖身運動", "o2": "喝一大杯水", "ans": 1, "cat": "健康與體育"}, {"q": "吃完飯後適合立刻去跑步嗎？", "o1": "適合", "o2": "不適合", "ans": 2, "cat": "健康與體育"}, {"q": "騎腳踏車時，為了保護頭部應該戴什麼？", "o1": "安全帽", "o2": "鴨舌帽", "ans": 1, "cat": "健康與體育"}, {"q": "流汗後應該多補充什麼？", "o1": "水分", "o2": "可樂", "ans": 1, "cat": "健康與體育"}, {"q": "足球比賽中，除了守門員以外可以故意用手碰球嗎？", "o1": "可以", "o2": "不可以", "ans": 2, "cat": "健康與體育"}, {"q": "晚上睡覺時間不夠，隔天上課會怎樣？", "o1": "精神很好", "o2": "精神不好", "ans": 2, "cat": "健康與體育"}, {"q": "運動受傷流血時，第一步應該怎麼做？", "o1": "大哭大鬧", "o2": "找老師或護士", "ans": 2, "cat": "健康與體育"}, {"q": "哪一種食物對骨骼生長最有幫助？", "o1": "牛奶", "o2": "洋芋片", "ans": 1, "cat": "健康與體育"}, {"q": "棒球比賽中，打擊者被打成「三振」會怎樣？", "o1": "出局", "o2": "上壘", "ans": 1, "cat": "健康與體育"}, {"q": "哪一項運動是在水裡進行的？", "o1": "羽球", "o2": "游泳", "ans": 2, "cat": "健康與體育"}, {"q": "發現同學在操場跌倒受傷，應該怎麼辦？", "o1": "馬上報告老師", "o2": "假裝沒看到", "ans": 1, "cat": "健康與體育"}, {"q": "我們每天應該喝大約幾杯水（一杯約250cc）？", "o1": "6-8杯", "o2": "1-2杯", "ans": 1, "cat": "健康與體育"}, {"q": "保護眼睛，看電視或玩平板應該多久休息一次？", "o1": "30分鐘", "o2": "3小時", "ans": 1, "cat": "健康與體育"}, {"q": "哪一種姿勢是對的看書姿勢？", "o1": "趴在桌上看", "o2": "挺直腰背看", "ans": 2, "cat": "健康與體育"}, {"q": "遇到火災時，應該打哪一個電話號碼報案？", "o1": "119", "o2": "110", "ans": 1, "cat": "生活與常規"}, {"q": "下課去上廁所，上完廁所最重要的事情是什麼？", "o1": "洗手", "o2": "馬上跑出去玩", "ans": 1, "cat": "生活與常規"}, {"q": "拔河比賽時，哪一種做法是正確的？", "o1": "雙手緊握繩子", "o2": "單手隨便抓", "ans": 1, "cat": "健康與體育"}, {"q": "太陽是從哪一個方向升起的？", "o1": "東方", "o2": "西方", "ans": 1, "cat": "自然科學"}, {"q": "哪一種動物是用「肺」呼吸的？", "o1": "狗", "o2": "魚", "ans": 1, "cat": "自然科學"}, {"q": "毛毛蟲長大後會變成什麼？", "o1": "蝴蝶", "o2": "青蛙", "ans": 1, "cat": "自然科學"}, {"q": "冰塊融化會變成什麼？", "o1": "水", "o2": "水蒸氣", "ans": 1, "cat": "自然科學"}, {"q": "哪一種植物生長在沙漠裡，而且有很多刺？", "o1": "仙人掌", "o2": "玫瑰花", "ans": 1, "cat": "自然科學"}, {"q": "什麼動物被稱為「百獸之王」？", "o1": "獅子", "o2": "大象", "ans": 1, "cat": "自然科學"}, {"q": "地球上最大的海洋是哪一個？", "o1": "太平洋", "o2": "大西洋", "ans": 1, "cat": "自然科學"}, {"q": "蝌蚪長大後會變成什麼？", "o1": "青蛙", "o2": "烏龜", "ans": 1, "cat": "自然科學"}, {"q": "哪一個星球是我們居住的地方？", "o1": "火星", "o2": "地球", "ans": 2, "cat": "自然科學"}, {"q": "磁鐵會吸住哪一種材料做成的東西？", "o1": "鐵", "o2": "塑膠", "ans": 1, "cat": "自然科學"}, {"q": "白天天空最亮的星體是什麼？", "o1": "月亮", "o2": "太陽", "ans": 2, "cat": "自然科學"}, {"q": "哪一種動物會冬眠？", "o1": "熊", "o2": "狗", "ans": 1, "cat": "自然科學"}, {"q": "企鵝會不會飛？", "o1": "會", "o2": "不會", "ans": 2, "cat": "自然科學"}, {"q": "鳥類身上長滿了什麼？", "o1": "鱗片", "o2": "羽毛", "ans": 2, "cat": "自然科學"}, {"q": "樹葉在秋天通常會變成什麼顏色？", "o1": "黃色或紅色", "o2": "藍色或紫色", "ans": 1, "cat": "自然科學"}, {"q": "蜘蛛有幾隻腳？", "o1": "6隻", "o2": "8隻", "ans": 2, "cat": "自然科學"}, {"q": "牛奶是哪一種動物擠出來的？", "o1": "乳牛", "o2": "綿羊", "ans": 1, "cat": "自然科學"}, {"q": "哪一種昆蟲會採花蜜做蜂蜜？", "o1": "蒼蠅", "o2": "蜜蜂", "ans": 2, "cat": "自然科學"}, {"q": "彩虹通常在什麼時候出現？", "o1": "下雨後有太陽時", "o2": "晚上沒有月亮時", "ans": 1, "cat": "自然科學"}, {"q": "下列哪一種動物是草食性動物？", "o1": "老虎", "o2": "馬", "ans": 2, "cat": "自然科學"}, {"q": "一分鐘有幾秒？", "o1": "60秒", "o2": "100秒", "ans": 1, "cat": "數學運算"}, {"q": "一打鉛筆有幾支？", "o1": "10支", "o2": "12支", "ans": 2, "cat": "數學運算"}, {"q": "一個正方形有幾個邊？", "o1": "3個", "o2": "4個", "ans": 2, "cat": "數學運算"}, {"q": "九乘以九等於多少？", "o1": "81", "o2": "99", "ans": 1, "cat": "數學運算"}, {"q": "三角形有幾個角？", "o1": "3個", "o2": "4個", "ans": 1, "cat": "數學運算"}, {"q": "一天有幾個小時？", "o1": "12個小時", "o2": "24個小時", "ans": 2, "cat": "數學運算"}, {"q": "半小時是幾分鐘？", "o1": "30分鐘", "o2": "50分鐘", "ans": 1, "cat": "數學運算"}, {"q": "一公斤等於幾公克？", "o1": "100公克", "o2": "1000公克", "ans": 2, "cat": "數學運算"}, {"q": "哪個數字比九十九大一？", "o1": "一百", "o2": "九十八", "ans": 1, "cat": "數學運算"}, {"q": "一年有幾個月？", "o1": "10個月", "o2": "12個月", "ans": 2, "cat": "數學運算"}, {"q": "一個星期有幾天？", "o1": "7天", "o2": "5天", "ans": 1, "cat": "數學運算"}, {"q": "五十減掉十五等於多少？", "o1": "35", "o2": "45", "ans": 1, "cat": "數學運算"}, {"q": "有5個蘋果吃掉2個，還剩幾個？", "o1": "3個", "o2": "2個", "ans": 1, "cat": "數學運算"}, {"q": "偶數的最後一個數字不可能是哪一個？", "o1": "2", "o2": "3", "ans": 2, "cat": "數學運算"}, {"q": "哪一個形狀沒有角？", "o1": "圓形", "o2": "長方形", "ans": 1, "cat": "數學運算"}, {"q": "一公尺等於幾公分？", "o1": "100公分", "o2": "10公分", "ans": 1, "cat": "數學運算"}, {"q": "時鐘上短的指針代表什麼？", "o1": "時針", "o2": "分針", "ans": 1, "cat": "數學運算"}, {"q": "兩張一百元可以換幾張十元？", "o1": "20張", "o2": "10張", "ans": 1, "cat": "數學運算"}, {"q": "八加上七等於多少？", "o1": "15", "o2": "16", "ans": 1, "cat": "數學運算"}, {"q": "一半的圓叫做什麼？", "o1": "半圓形", "o2": "橢圓形", "ans": 1, "cat": "數學運算"}, {"q": "「一石二鳥」的意思是什麼？", "o1": "做一件事得到兩種好處", "o2": "用石頭打兩隻小鳥", "ans": 1, "cat": "語文成語"}, {"q": "注音符號共有幾個？", "o1": "37個", "o2": "26個", "ans": 1, "cat": "語文成語"}, {"q": "「五顏六色」是用來形容什麼？", "o1": "顏色很少", "o2": "顏色很多", "ans": 2, "cat": "語文成語"}, {"q": "「亡羊補牢」告訴我們什麼道理？", "o1": "羊死了就算了", "o2": "出錯後補救還來得及", "ans": 2, "cat": "語文成語"}, {"q": "下列哪一個字是名詞？", "o1": "蘋果", "o2": "跑", "ans": 1, "cat": "語文成語"}, {"q": "「對牛彈琴」的意思是？", "o1": "對不懂的人講大道理", "o2": "牛很喜歡聽音樂", "ans": 1, "cat": "語文成語"}, {"q": "「守株待兔」是稱讚別人聰明嗎？", "o1": "是", "o2": "不是", "ans": 2, "cat": "語文成語"}, {"q": "寫字時應該用哪一種筆最容易擦掉？", "o1": "鉛筆", "o2": "原子筆", "ans": 1, "cat": "生活與常規"}, {"q": "哪一個成語代表非常開心？", "o1": "心花怒放", "o2": "愁眉苦臉", "ans": 1, "cat": "語文成語"}, {"q": "圖書館裡應該保持怎樣的音量？", "o1": "大聲說話", "o2": "安靜無聲", "ans": 2, "cat": "生活與常規"}, {"q": "「井底之蛙」用來形容什麼樣的人？", "o1": "見識很少的人", "o2": "很會游泳的人", "ans": 1, "cat": "語文成語"}, {"q": "「畫蛇添足」是說做事情怎樣？", "o1": "多此一舉", "o2": "做得很好", "ans": 1, "cat": "語文成語"}, {"q": "「光陰似箭」是在形容什麼過得很快？", "o1": "時間", "o2": "弓箭", "ans": 1, "cat": "語文成語"}, {"q": "哪一個詞語的相反詞是「安靜」？", "o1": "吵鬧", "o2": "美麗", "ans": 1, "cat": "語文成語"}, {"q": "收到別人的禮物時應該說什麼？", "o1": "謝謝", "o2": "對不起", "ans": 1, "cat": "生活與常規"}, {"q": "下列哪一個字代表一年的最後一天？", "o1": "除夕", "o2": "初一", "ans": 1, "cat": "生活與常規"}, {"q": "形容一個人動作很慢，可以說他像什麼？", "o1": "烏龜", "o2": "獵豹", "ans": 1, "cat": "語文成語"}, {"q": "遇到不認識的字可以查什麼工具書？", "o1": "字典", "o2": "食譜", "ans": 1, "cat": "語文成語"}, {"q": "哪一個字是「快樂」的相似詞？", "o1": "高興", "o2": "生氣", "ans": 1, "cat": "語文成語"}, {"q": "「一馬當先」代表什麼意思？", "o1": "跑在最前面", "o2": "騎馬很帥", "ans": 1, "cat": "語文成語"}, {"q": "台灣的首都（最大的城市）在哪裡？", "o1": "台北市", "o2": "高雄市", "ans": 1, "cat": "生活與常規"}, {"q": "過馬路時應該看什麼顏色的燈才能走？", "o1": "綠燈", "o2": "紅燈", "ans": 1, "cat": "生活與常規"}, {"q": "中秋節通常會吃什麼代表團圓？", "o1": "月餅", "o2": "肉粽", "ans": 1, "cat": "生活與常規"}, {"q": "買東西時用來裝東西，最環保的方式是什麼？", "o1": "自備環保袋", "o2": "買塑膠袋", "ans": 1, "cat": "生活與常規"}, {"q": "搭乘手扶梯時，應該緊握什麼以策安全？", "o1": "扶手", "o2": "別人的手", "ans": 1, "cat": "生活與常規"}, {"q": "我們現在使用的通用貨幣（錢）叫什麼？", "o1": "新台幣", "o2": "美金", "ans": 1, "cat": "生活與常規"}, {"q": "發生地震時，第一時間應該怎麼保護自己？", "o1": "躲在堅固的桌子下", "o2": "趕快衝出教室", "ans": 1, "cat": "生活與常規"}, {"q": "哪一個節日會划龍舟？", "o1": "端午節", "o2": "兒童節", "ans": 1, "cat": "生活與常規"}, {"q": "台灣最高的山是哪一座？", "o1": "玉山", "o2": "阿里山", "ans": 1, "cat": "生活與常規"}, {"q": "垃圾分類中，廢紙應該丟在哪一類？", "o1": "資源回收", "o2": "一般垃圾", "ans": 1, "cat": "生活與常規"}, {"q": "搭公車或捷運時，看到老爺爺應該怎麼做？", "o1": "讓座給他", "o2": "假裝睡覺", "ans": 1, "cat": "生活與常規"}, {"q": "警察局的報案電話是幾號？", "o1": "110", "o2": "119", "ans": 1, "cat": "生活與常規"}, {"q": "洗完頭後，應該用什麼把頭髮吹乾？", "o1": "吹風機", "o2": "電風扇", "ans": 1, "cat": "生活與常規"}, {"q": "一年四季的順序是什麼？", "o1": "春夏秋冬", "o2": "冬夏春秋", "ans": 1, "cat": "生活與常規"}, {"q": "在公共場所迷路了，應該找誰幫忙？", "o1": "警察或服務人員", "o2": "隨便跟陌生人走", "ans": 1, "cat": "生活與常規"}, {"q": "農曆新年（過年）長輩通常會給什麼？", "o1": "壓歲錢（紅包）", "o2": "月餅", "ans": 1, "cat": "生活與常規"}, {"q": "當我們不小心做錯事時，應該說什麼？", "o1": "對不起", "o2": "沒關係", "ans": 1, "cat": "生活與常規"}, {"q": "哪一種交通工具是在鐵軌上行駛的？", "o1": "火車", "o2": "公車", "ans": 1, "cat": "生活與常規"}, {"q": "隨手關燈可以幫助什麼？", "o1": "節約能源", "o2": "讓房間變暗", "ans": 1, "cat": "生活與常規"}, {"q": "吃東西前最重要的衛生習慣是什麼？", "o1": "洗手", "o2": "刷牙", "ans": 1, "cat": "生活與常規"}];
+    const curriculum = [{"w": "上學期 第1週", "theme": "始業準備與常規建立", "out": "隊形排列、基本走跑與安全教育", "in_act": "座位熱身(活動1)、手指體操(活動7)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-A1 身體覺察與課堂秩序", "eval": "常規自律與鞋帶雙結檢核"}, {"w": "上學期 第2週", "theme": "敏捷反應與抗干擾訓練", "out": "折返跑與聽覺口令變向", "in_act": "反向神經傳導(活動13)、座位反應(活動10)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-A2 神經反射與抑制控制", "eval": "小組反應速度與得分統計"}, {"w": "上學期 第3週", "theme": "下肢肌力與跳躍平衡", "out": "單腳跳套圈三關闖關(戶外01)", "in_act": "水壺避震器(活動12)、課本夾夾樂(活動15)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-B1 下肢爆發力與平衡感", "eval": "跳躍次數與動作穩定度"}, {"w": "上學期 第4週", "theme": "手眼協調與精細瞄準", "out": "樂樂棒球定點投準(戶外03)", "in_act": "筆筒投籃賽(活動16)、紙球擊標(活動28)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-C1 非慣用手與拋物線力道", "eval": "投擲命中率積分"}, {"w": "上學期 第5週", "theme": "肺活量強化與核心支撐", "out": "耐力慢跑與深長呼吸調節", "in_act": "紙球吹氣足球(活動9)、課本護城河(活動24)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A1 心肺功能與腹部核心肌耐力", "eval": "呼氣持續力與團隊對抗賽"}, {"w": "上學期 第6週", "theme": "滾動力量與慣性控制", "out": "滾球九宮格挑戰(戶外02)", "in_act": "鐵鋁罐冰壺(活動8)、橡皮擦漂移王(活動30)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B2 距離評估與微推力控制", "eval": "停靠精準度得分"}, {"w": "上學期 第7週", "theme": "指力彈射與微力量調控", "out": "飛盤定點投擲進圈", "in_act": "橡皮擦狙擊手(活動5)、原子筆保齡球(活動33)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-A2 指尖精細動作與角度預判", "eval": "擊倒數量與加分區積分"}, {"w": "上學期 第8週", "theme": "團隊默契與靜默合作", "out": "兩人三腳與小組同步行走", "in_act": "靜默傳遞鏈(活動6)、筷子運球接力(活動41)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-C2 團隊溝通、默契與集體自律", "eval": "團隊失誤率與完成時間"}, {"w": "上學期 第9週", "theme": "上肢肌耐力與動態追蹤", "out": "氣球雙人拍擊移動", "in_act": "氣球不落地扇子版(活動23)、氣球空戰(活動40)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-A1 肩臂肌耐力與空中軌跡追蹤", "eval": "滯空秒數與組別排名"}, {"w": "上學期 第10週", "theme": "期中學習評量與闖關大賽", "out": "戶外手球與體能三關挑戰賽", "in_act": "雙城攻塔男女對抗賽", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C3 跨學科整合評量與體能實踐", "eval": "期中分組總積分評量"}, {"w": "上學期 第11週", "theme": "高心肺衝刺與核心耐力", "out": "階梯折返快步跑", "in_act": "課本登山者(活動11)、無聲剪刀腳(活動14)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-A1 高強度無聲快步與下腹肌力", "eval": "30秒衝刺次數記錄"}, {"w": "上學期 第12週", "theme": "本體感覺與空間定向", "out": "盲視定向步態與聽音辨位(活動47)", "in_act": "核心平衡木(活動42)、橡皮擦天線(活動18)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 閉眼平衡感與身體姿態控制", "eval": "直線步態偏移度檢核"}, {"w": "上學期 第13週", "theme": "阻力對抗與重心借力", "out": "拔河基礎步伐與重心下沉", "in_act": "慢動作推手(活動20)、水壺守護神(活動19)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A2 重心轉移力學與借力防守", "eval": "攻防對抗勝負記錄"}, {"w": "上學期 第14週", "theme": "敏捷協調與肢體出拳", "out": "九宮格跳躍剪刀石頭布", "in_act": "肢體剪刀石頭布(活動43)、是非跳躍線(活動29)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-A2 雙腳前後開合敏捷與即時決策", "eval": "連勝局數統計"}, {"w": "上學期 第15週", "theme": "旋轉發力與工具操作", "out": "呼拉圈搖晃與陀螺旋轉", "in_act": "硬幣旋轉戰(活動44)、原子筆直升機(活動36)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-C1 指尖搓旋力道與圓周發力", "eval": "旋轉持續時間記錄"}, {"w": "上學期 第16週", "theme": "單腳支撐與浮腿控制", "out": "踢毽子連續踢與圈內停球", "in_act": "腳尖空中繪圖(活動45)、踢毽子投圈(活動12)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 單腳閉鏈支撐與浮腿精細軌跡", "eval": "單腳支撐平衡秒數"}, {"w": "上學期 第17週", "theme": "低摩擦滑行與全身穩定", "out": "滑板車接力或手撐滑行體驗", "in_act": "教室滑雪(活動3)、文具塔防賽(活動25)", "tool": "全能體育王-4組 (極速賽車模式)", "core": "健體-E-A1 大腿前側滑行與體幹支撐", "eval": "滑行競速完成時間"}, {"w": "上學期 第18週", "theme": "力道調控與角動量翻轉", "out": "手球射門準度與定點投擲", "in_act": "丟裝水寶特瓶立桌面(活動14)、桌緣掀紙杯(活動13)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-B2 旋轉拋擲力道與重力角動量", "eval": "立起成功次數累計"}, {"w": "上學期 第19週", "theme": "綜合戰術演練與跨科複習", "out": "校園手球/籃球分站尋寶闖關", "in_act": "記憶快閃(活動34)、成語球類炸彈陣(活動4)", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C2 結合語文與數學之動態團隊戰術", "eval": "跨領域學科題庫得分"}, {"w": "上學期 第20週", "theme": "期末體育遊戲運動嘉年華", "out": "全學年手球/全能體育王總決賽", "in_act": "四大神獸終極爭霸戰", "tool": "全能體育王-4組 + 智勇雙全-2組 輪播", "core": "健體-E-C3 全學期體能成果與團隊榮譽", "eval": "學期總冠軍頒獎與證書"}, {"w": "下學期 第21週", "theme": "體能常模建立與目標設定", "out": "體適能檢測(立定跳遠/坐姿體前彎/仰臥起坐)", "in_act": "座位熱身(活動1)、無聲波比(活動63)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-A1 掌握自我體能數據與運動常模", "eval": "體適能檢測數據建檔"}, {"w": "下學期 第22週", "theme": "跳繩進階與雙人節奏", "out": "單人開合跳繩、雙人同跳大繩", "in_act": "同步空氣繩(活動4)、水壺避震器(活動12)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-B1 下肢節奏彈跳與手腕發力協調", "eval": "連續跳繩計次檢核"}, {"w": "下學期 第23週", "theme": "民俗毽子進階腳法", "out": "毽子外側拐踢、膝踢、雙人對踢", "in_act": "腳尖繪圖(活動45)、毽子投圈(活動12)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 踝膝多角度控制與動態接球", "eval": "連續踢毽不落地次數"}, {"w": "下學期 第24週", "theme": "墊上體操與核心滾翻", "out": "墊上前滾翻、後滾翻、側棒式支撐", "in_act": "核心平衡木(活動42)、課本夾夾樂(活動15)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-A1 軀幹核心抗旋轉與安全受身緩衝", "eval": "滾翻姿勢評定"}, {"w": "下學期 第25週", "theme": "手球快攻反擊戰術", "out": "手球二傳一切、快攻三步上籃射門", "in_act": "原子筆長槍對決(活動55)、快手搶拍王(活動21)", "tool": "智勇雙全-2組 (雙塔火砲攻城模式)", "core": "健體-E-C2 團隊空間跑位與快速攻防轉換", "eval": "快攻傳射成功率"}, {"w": "下學期 第26週", "theme": "籃球運球過人與擋拆", "out": "換手運球突破、三人八字傳球跑位", "in_act": "水壺繞膝8字接力(活動58)、筆筒投籃(活動16)", "tool": "全能體育王-4組 (極速賽車模式)", "core": "健體-E-C1 變速運球掌控與非慣用手傳接", "eval": "半場三對三攻防評量"}, {"w": "下學期 第27週", "theme": "足球弧線傳球與配合", "out": "腳背弧線傳球、二過一撞牆配合", "in_act": "紙球吹氣足球(活動9)、課本護城河(活動24)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A2 動態視野判讀與腳法精準度", "eval": "定點射門闖關積分"}, {"w": "下學期 第28週", "theme": "樂樂棒球壘上攻防戰術", "out": "擊球跑壘判斷、雙殺守備與轉傳", "in_act": "橡皮擦狙擊手(活動5)、原子筆保齡球(活動33)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-C2 守備轉傳默契與戰術決策執行", "eval": "實戰跑壘守備得分"}, {"w": "下學期 第29週", "theme": "團隊陣地佔領與策略分工", "out": "小鎮爭奪戰20宮格、發電機與輸出機配合", "in_act": "【小鎮爭奪戰】(活動68)、【人肉拉鍊】(活動64)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-C3 團隊資源分配與抗壓戰術實踐", "eval": "陣地佔領數量結算"}, {"w": "下學期 第30週", "theme": "期中運動技能檢定大會", "out": "專項手球/籃球/田徑技能綜合檢測", "in_act": "雙城攻塔男女對抗賽", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C3 跨學科期中動態會考與技能檢定", "eval": "期中總評量成績登錄"}, {"w": "下學期 第31週", "theme": "防衛跌倒緩衝與安全受身", "out": "受身倒地緩衝、身體自我保護反射", "in_act": "慢動作推手(活動20)、水壺守護神(活動19)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-A2 跌倒防護機制與危機本能反應", "eval": "跌倒受身動作檢核"}, {"w": "下學期 第32週", "theme": "高強度間歇與無聲體能", "out": "階梯折返衝刺跑、無聲開合跳", "in_act": "課本登山者(活動11)、無聲波比(活動63)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-A1 極限心肺耐力與無聲動作控制", "eval": "高強度間歇耐力記錄"}, {"w": "下學期 第33週", "theme": "非慣用側極限神經開發", "out": "非慣用手運球/投籃、非慣用腳盤球", "in_act": "手指體操(活動7)、橡皮擦指尖彈跳(活動37)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-A2 左右腦神經分工與非慣用側強化", "eval": "雙手協調測驗評量"}, {"w": "下學期 第34週", "theme": "盲視定向與特務引導", "out": "盲人引導跑、聽音辨位障礙走", "in_act": "特務學院密室逃脫、暗影傳球(活動51)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 聽覺空間定位與同儕高度信任", "eval": "盲視定向完成時間"}, {"w": "下學期 第35週", "theme": "節奏律動與同步跳躍", "out": "全排同步空氣長跳繩、律動步伐", "in_act": "【同步空氣繩】(活動4)、【肢體打結】(活動8)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-B2 身體聽覺節奏感知與動作同步性", "eval": "同步落地音檢核"}, {"w": "下學期 第36週", "theme": "大隊接力極限交接棒戰術", "out": "接力區助跑加速、盲接棒默契傳遞", "in_act": "兩人三腳接力、筷子運球(活動41)", "tool": "全能體育王-4組 (極速賽車模式)", "core": "健體-E-C2 團隊接力速度最大化與零失誤交接", "eval": "大隊接力計時賽"}, {"w": "下學期 第37週", "theme": "拔河運動重心拉力強化", "out": "拔河繩重心下沉、全排同步蹬腿反拉", "in_act": "水壺阻力推(活動56)、【連鎖無影凳】(活動65)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A2 團隊等長收縮拉力與蹬腿爆發力", "eval": "小組拔河對抗賽"}, {"w": "下學期 第38週", "theme": "全學年跨學科知識總決戰", "out": "校園定向尋寶闖關大賽", "in_act": "成語球類炸彈陣(活動4)、無聲是非題(活動17)", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C3 跨學科100題庫總複習與體能結合", "eval": "學科體能會考得分"}, {"w": "下學期 第39週", "theme": "全能體育王學年聯賽前哨戰", "out": "四大神獸陣地大亂鬥分組循環賽", "in_act": "室內外微型活動自選綜合闖關", "tool": "全能體育王-4組 + 智勇雙全-2組", "core": "健體-E-C2 綜合戰術運用與團隊默契展現", "eval": "前哨戰天梯積分"}, {"w": "下學期 第40週", "theme": "115學年度 體育嘉年華總決賽", "out": "全學年體育競技總決賽", "in_act": "四大神獸覺醒總冠軍終極頒獎", "tool": "全能體育王-4組 + 智勇雙全-2組 輪播", "core": "健體-E-C3 全學年體育學習成果展現與榮譽表揚", "eval": "學年總冠軍獎盃頒發"}];
+    const modules = [{"id": "A", "title": "【忍者無聲修煉】室內微型空間與下肢核心訓練模組", "tag": "雨天極速備案", "color": "from-emerald-600 to-teal-700", "border": "border-emerald-500/40", "badge": "bg-emerald-500/20 text-emerald-300", "scene": "雨天、體育館被佔用、普通教室內快速實施", "props": "學生椅子、課本(每人1本)、水壺、西卡紙(每組2張)", "goals": "著地無聲、下肢爆發力、體幹核心耐力、心肺燃脂", "steps": [{"time": "0~5分", "name": "座位熱身", "detail": "坐姿空中腳踏車30秒 + 雙腳懸空寫數字（零噪音喚醒核心）"}, {"time": "5~15分", "name": "課本登山者", "detail": "課本放腿上，高頻抬腿碰課本，腳尖無聲著地，30秒一組比快步聲最小"}, {"time": "15~25分", "name": "水壺避震器", "detail": "左右橫跨跳躍水壺，雙手扶桌緣維持重心，30秒比橫跳次數"}, {"time": "25~33分", "name": "教室滑雪競速", "detail": "雙腳踩西卡紙手撐地滑行，挑戰走道慢速肌耐力競速"}, {"time": "33~40分", "name": "數位結算收操", "detail": "啟動【全能體育王-4組】火箭升空模式，完成組別依序拍擊推進火箭，登錄積分"}], "game_url": "https://drive.google.com/file/d/1f9X8qMUFT-GEfgYBhVEok8R5R7DmKS-Z/view?usp=drivesdk", "game_name": "全能體育王-4組 (火箭升空模式)"}, {"id": "B", "title": "【特務神經網絡】身心覺察、大腦抗干擾與敏捷反射模組", "tag": "專注力與抑制控制", "color": "from-sky-600 to-blue-700", "border": "border-sky-500/40", "badge": "bg-sky-500/20 text-sky-300", "scene": "晨光體能、體育課前導神經喚醒、注意力與抑制控制訓練", "props": "黑板粉筆、橡皮擦/軟球、無額外大型器材", "goals": "Stroop 效應抑制控制、左右腦協調、聽視覺敏捷反射", "steps": [{"time": "0~5分", "name": "手指體操與反應", "detail": "黑板左手畫圓右手畫方；口令1摸右耳/2摸左耳/3擊掌"}, {"time": "5~15分", "name": "反向神經傳導", "detail": "地面劃O/X線，聽問題以跳躍方式選邊，做錯者淘汰回座"}, {"time": "15~25分", "name": "快手搶拍王", "detail": "桌面放橡皮擦，老師喊「頭、肩膀、腳、搶！」比抓取反射"}, {"time": "25~33分", "name": "史楚普極限對決", "detail": "大螢幕啟動【智勇雙全-2組】史楚普紅綠燈模式，進行色字抗干擾搶答"}, {"time": "33~40分", "name": "關節放鬆與結算", "detail": "放鬆頸部與手部關節，檢討專注自律表現並登錄積分"}], "game_url": "https://drive.google.com/file/d/1sTET8ZBF2L0leEiJ1pL8-VhJDpqeBu89/view?usp=drivesdk", "game_name": "智勇雙全-2組 (史楚普紅綠燈模式)"}, {"id": "C", "title": "【微型狙擊大師】手眼協調、指尖精細力道與拋物線投擲模組", "tag": "桌面精細動作", "color": "from-amber-600 to-orange-700", "border": "border-amber-500/40", "badge": "bg-amber-500/20 text-amber-300", "scene": "課桌桌面活動、雨天室內、班級精細協調競賽", "props": "橡皮擦、鐵鋁罐(蘆筍汁)、水壺、紙球、奇異筆5支", "goals": "手指小肌肉控制、拋物線軌跡調控、微推力控制", "steps": [{"time": "0~5分", "name": "手背彈跳抓握", "detail": "手背放置橡皮擦向上拋起同一隻手抓握，暖身手指敏捷"}, {"time": "5~15分", "name": "鐵鋁罐冰壺", "detail": "推動鐵罐接近桌緣懸空處，越接近邊緣分數越高"}, {"time": "15~25分", "name": "筆筒投籃與保齡球", "detail": "非慣用手紙球投進水壺，或用橡皮擦彈射擊倒奇異筆"}, {"time": "25~33分", "name": "丟水瓶立桌面", "detail": "拋擲旋轉裝水寶特瓶使其穩穩立起，考驗角動量穩定度"}, {"time": "33~40分", "name": "碎石奪寶結算", "detail": "啟動【全能體育王-4組】碎石奪寶模式，成功立瓶者拍擊螢幕敲碎寶石"}], "game_url": "https://drive.google.com/file/d/1f9X8qMUFT-GEfgYBhVEok8R5R7DmKS-Z/view?usp=drivesdk", "game_name": "全能體育王-4組 (碎石奪寶模式)"}, {"id": "D", "title": "【氣流動力與肺活量】體幹支撐、深長呼氣與空間滯空模組", "tag": "呼吸肌與核心支撐", "color": "from-cyan-600 to-blue-700", "border": "border-cyan-500/40", "badge": "bg-cyan-500/20 text-cyan-300", "scene": "教室雙人對坐區、呼吸調節訓練、體幹等長收縮", "props": "課本(每人1本)、氣球(每組1~2顆)、紙球、衛生紙", "goals": "呼吸肌耐力、腹肌等長支撐、動態視覺追蹤", "steps": [{"time": "0~5分", "name": "橫膈膜呼吸熱身", "detail": "橫膈膜深長呼吸調節法 + 頸肩靜態伸展"}, {"time": "5~15分", "name": "紙球吹氣足球", "detail": "雙手撐桌，僅靠深長吹氣將紙球吹過對手底線"}, {"time": "15~25分", "name": "氣球不落地扇子版", "detail": "兩人一組用課本當扇子維持氣球不落地，訓練上肢肌耐力"}, {"time": "25~33分", "name": "衛生紙滯空賽", "detail": "僅靠吹氣使衛生紙滯空過線，挑戰肺活量極限"}, {"time": "33~40分", "name": "動能拔河對決", "detail": "啟動【智勇雙全-2組】動能拔河模式，對決拉扯電漿光球"}], "game_url": "https://drive.google.com/file/d/1sTET8ZBF2L0leEiJ1pL8-VhJDpqeBu89/view?usp=drivesdk", "game_name": "智勇雙全-2組 (動能拔河模式)"}, {"id": "E", "title": "【機甲合體連動】團隊倍數機制、集體自律與默契合作模組", "tag": "團隊默契倍數", "color": "from-purple-600 to-indigo-700", "border": "border-purple-500/40", "badge": "bg-purple-500/20 text-purple-300", "scene": "班級凝聚力建立、走道集體活動、團隊運動會前導訓練", "props": "學生外套、水壺、課本、裝水寶特瓶", "goals": "同儕互助包容、團隊自律、強弱互補配合", "steps": [{"time": "0~5分", "name": "連鎖無影凳", "detail": "全排走道背靠背半蹲，撐住人數為每秒得分倍數"}, {"time": "5~15分", "name": "人肉拉鍊外套傳遞", "detail": "全排牽手連線將外套從排頭鑽身傳至排尾，雙手不鬆開(最高6倍得分)"}, {"time": "15~25分", "name": "同心協力站", "detail": "背靠背坐地雙手抱胸，靠背部推力同時起立(4人站起得50分)"}, {"time": "25~33分", "name": "靜默傳遞鏈", "detail": "雙腳夾寶特瓶後傳且全程零噪音，培養集體自律"}, {"time": "33~40分", "name": "狂暴破盾結算", "detail": "啟動【智勇雙全-2組】狂暴護盾模式，團隊合力完成連鎖動作後連擊破盾"}], "game_url": "https://drive.google.com/file/d/1sTET8ZBF2L0leEiJ1pL8-VhJDpqeBu89/view?usp=drivesdk", "game_name": "智勇雙全-2組 (狂暴護盾模式)"}, {"id": "F", "title": "【雙塔攻城大會考】跨領域學科融合與動態評量模組", "tag": "跨領域動態評量", "color": "from-rose-600 to-red-700", "border": "border-rose-500/40", "badge": "bg-rose-500/20 text-rose-300", "scene": "期中/期末考前複習週、跨領域主題週、班級知識體育嘉年華", "props": "電子白板、100題跨領域題庫 (語文/數學/自然/生活)", "goals": "跨領域學科複習、動態抗壓決策、文武雙全", "steps": [{"time": "0~5分", "name": "無聲是非題熱身", "detail": "是摸耳、非插腰全班即時表態與專注啟動"}, {"time": "5~15分", "name": "成語球類炸彈陣", "detail": "雙手傳球停球時說出該字成語，訓練語文反應聯想"}, {"time": "15~25分", "name": "極速心算體能題", "detail": "快速心算題（如24是偶數嗎？），正確站立、錯誤坐下"}, {"time": "25~35分", "name": "雙塔攻城問答決戰", "detail": "啟動【智勇雙全-2組】雙塔火砲攻城模式，答對直接發射巨砲轟炸城池"}, {"time": "35~40分", "name": "榮譽頒獎與登錄", "detail": "頒發「文武雙全榮譽星」，登錄學期總積分系統"}], "game_url": "https://drive.google.com/file/d/1sTET8ZBF2L0leEiJ1pL8-VhJDpqeBu89/view?usp=drivesdk", "game_name": "智勇雙全-2組 (雙塔攻城問答模式)"}];
+    const outdoorSports = [{"id": "handball", "name": "手球運動 (Handball)", "badge": "專項球類 / 攻防對抗", "color": "from-red-600 to-rose-700", "icon": "circle-dot", "venue": "手球場 (40m x 20m、6m球門區、9m自由球線、7m罰球線)", "equipment": "國小手球、球門、裁判哨、計分板", "core_rules": "• 進攻三的鐵律：持球不超過 3 秒、持球移動最多 3 步、禁止二次運球。<br>• 球門區為守門員專屬，進攻者可起跳騰空射門，但必須在落地前將球投出。<br>• 漸進式罰則：自由球 ➔ 7公尺罰球 ➔ 黃牌警告 ➔ 2分鐘罰出場 ➔ 紅牌取消資格。", "teaching_steps": ["【步驟 1】單手肩上傳球與雙手胸前迎球緩衝。", "【步驟 2】三步上籃起跳射門步法（左-右-左起跳 / 右-左-右起跳）。", "【步驟 3】防守步伐：軀幹正面阻擋，雙臂張開封阻傳球，嚴禁背後推拉。", "【步驟 4】分組 5v5 / 7v7 小型對抗賽，實踐換人與攻防切換。"], "ref_url": "https://docs.google.com/presentation/d/1-bRO1vUbhqrip5jDUJ-uiTZplk3pCljGUw7EW4RLs9s/edit", "ref_title": "手球比賽核心規則與判罰指南 (PPT)"}, {"id": "basketball", "name": "籃球運動 (Basketball)", "badge": "專項球類 / 運傳投", "color": "from-amber-600 to-orange-700", "icon": "circle", "venue": "籃球場、半場或全場", "equipment": "國小5號籃球、標誌角標、籃框", "core_rules": "• 運球前進，雙手抱球後僅能傳球或投籃（走步與兩次運球規則）。<br>• 投籃得分：罰球1分、一般投籃2分、三分線外3分。<br>• 圓柱體原則與防守犯規防範。", "teaching_steps": ["【步驟 1】球感建立：腰部繞球、胯下8字繞球、指尖撥球。", "【步驟 2】運球進階：低手護球運球、換手變向運球、行進間折返跑運球。", "【步驟 3】傳接球：胸前傳球、地板反彈傳球、三人八字傳球跑位。", "【步驟 4】BEEF 定點投籃原則與三關分站運球投籃闖關。"], "ref_url": "https://docs.google.com/spreadsheets/d/1SWXinEP5Ah9V34bbiyOUjKclr1jJTK7I7bHqA6Y1za8/edit", "ref_title": "體育課教學活動對照表"}, {"id": "soccer", "name": "足球運動 (Soccer / Football)", "badge": "專項球類 / 腳法控球", "color": "from-emerald-600 to-teal-700", "icon": "shield", "venue": "足球場、草地或操場空地", "equipment": "4號足球、五人制球門/球網、角標", "core_rules": "• 除守門員在禁區內，場區球員嚴禁用手觸球（手球違例）。<br>• 邊線球雙手過頂擲界外球。<br>• 身體接觸以爭搶球為原則，嚴禁推人、拉人或鏟人。", "teaching_steps": ["【步驟 1】球感建立：腳底踩球、腳內側左右撥球、腳背輕推帶球。", "【步驟 2】傳球技術：腳內側推傳（準確傳球）、腳背射門（力量射門）。", "【步驟 3】停球緩衝：腳底踩停球、腳內側迎球後撤卸力。", "【步驟 4】踢準闖關：將球踢中網子（1分）、踢中角標（3分）。"], "ref_url": "https://drive.google.com/file/d/1ikhK6kn0KHSPoJFUKjg2NtBxUJDfAOCH/view?usp=drivesdk", "ref_title": "基本動作練習2 (Docx)"}, {"id": "teeball", "name": "樂樂棒球 (Tee-ball / Baseball)", "badge": "打擊守備 / 跑壘競賽", "color": "from-sky-600 to-blue-700", "icon": "target", "venue": "棒壘球場、操場扇形安全區域", "equipment": "打擊座(T座)、PU安全球、黃色海綿球棒、安全壘包", "core_rules": "• 球置於打擊座上揮棒，嚴禁觸擊短打（必須超過5公尺有效線）。<br>• 守備不使用手套，以徒手雙手接球傳壘封殺。<br>• 跑壘不滑壘、不盜壘，踩壘即安全。", "teaching_steps": ["【步驟 1】握棒與打擊站姿：重心在後腳、雙眼盯球、水平揮擊貫穿。", "【步驟 2】傳接球：雙手胸前接球緩衝、過肩傳球準度練習。", "【步驟 3】跑壘觀念：擊球後甩棒於指定區，全力衝刺踩一壘。", "【步驟 4】九宮格投準與模擬比賽封殺練習。"], "ref_url": "https://drive.google.com/file/d/1Ro-MVWs3qY2rqyk5UcIPWcnNc5gkQQJ8/view?usp=drivesdk", "ref_title": "基本動作練習三關 (Docx)"}, {"id": "track_field", "name": "田徑與跑步接力 (Track & Field)", "badge": "基礎體能 / 速度耐力", "color": "from-purple-600 to-indigo-700", "icon": "zap", "venue": "200m / 400m 操場跑道、直線跑道", "equipment": "接力棒、起跑標線、三角錐、碼錶", "core_rules": "• 依跑道直線衝刺，衝過終點線直線減速，不橫切干擾他人。<br>• 大隊接力在接力區內完成傳接棒，掉棒由掉棒者拾起。<br>• 起跑聽口令與鳴槍/哨音，嚴禁偷跑搶跑。", "teaching_steps": ["【步驟 1】站立式起跑技巧：「各就位、預備、跑！」軀幹前傾發力。", "【步驟 2】短跑擺臂與步頻：前腳掌蹬地、大腿高抬、雙臂前後擺動。", "【步驟 3】接力傳接棒手法：上挑式傳棒（接棒者手掌向下虎口張開）。", "【步驟 4】分組 4x50m 或大隊接力模擬賽。"], "ref_url": "https://docs.google.com/spreadsheets/d/19WKwUK2Nsat6aqxZWwg48RAt8grjt-iaXKwyzvqHf8o/edit", "ref_title": "體育科任學期計畫1"}, {"id": "tug_of_war", "name": "拔河運動 (Tug-of-War)", "badge": "團隊力量 / 重心協同", "color": "from-rose-600 to-red-700", "icon": "link", "venue": "平整操場、拔河專用道", "equipment": "標準拔河繩、止滑手套、中線標記帶", "core_rules": "• 繩置於身體右側腋下與肋骨間，雙手掌心朝上握繩。<br>• 嚴禁將繩子纏繞於手腕、腰部或鎖喉，嚴禁突然鬆手。<br>• 繩中央紅帶拉過己方決勝線為勝。", "teaching_steps": ["【步驟 1】標準握繩與站姿：雙腳開立與肩同寬、腳跟著地、腳尖微翹。", "【步驟 2】身體後傾力學：軀幹向後傾斜約 45 度、重心下沉。", "【步驟 3】同步蹬腿節奏：「一、二、煞！」全隊聽口令同時蹬腿拉引。", "【步驟 4】實戰對抗與賽後列隊致敬。"], "ref_url": "https://drive.google.com/file/d/1sTET8ZBF2L0leEiJ1pL8-VhJDpqeBu89/view?usp=drivesdk", "ref_title": "智勇雙全-2組 (動能拔河模式)"}, {"id": "folk_sports", "name": "民俗踢毽與跳繩 (Folk Sports)", "badge": "民俗體育 / 靈活協調", "color": "from-blue-600 to-cyan-700", "icon": "sparkle", "venue": "操場平地、走廊風雨球場", "equipment": "羽毛毽子、個人跳繩、團體長跳繩", "core_rules": "• 毽子不落地連續踢擊算得分。<br>• 跳繩手腕搖繩、前腳掌著地緩衝，不全腳掌重擊地面。", "teaching_steps": ["【步驟 1】毽子內側盤踢：支撐腳微曲，踢球腳膝蓋外展用腳內側擊毽。", "【步驟 2】跳繩單人節奏：手肘貼近軀幹，用手腕發力搖繩，連續並腳跳。", "【步驟 3】雙人與團體長繩：兩人搖繩，組員依序切入、跳躍與切出。", "【步驟 4】踢毽子投圈闖關與連續跳繩計次挑戰。"], "ref_url": "https://drive.google.com/file/d/1m7OCvCFwxKAbPCBOwBKtCCL1cGEs3fDT/view?usp=drivesdk", "ref_title": "踢毽子氣球爆.html"}];
+
+    let audioCtx = null;
+    function playWhistle(type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.type = 'triangle';
+        if (type === 'short') {
+          osc.frequency.setValueAtTime(2600, now);
+          gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+          osc.start(now); osc.stop(now + 0.15);
+        } else if (type === 'double') {
+          osc.frequency.setValueAtTime(2600, now);
+          gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+          osc.start(now); osc.stop(now + 0.1);
+
+          const o2 = audioCtx.createOscillator();
+          const g2 = audioCtx.createGain();
+          o2.connect(g2); g2.connect(audioCtx.destination);
+          o2.type = 'triangle';
+          o2.frequency.setValueAtTime(2600, now + 0.18);
+          g2.gain.setValueAtTime(0.8, now + 0.18);
+          g2.gain.exponentialRampToValueAtTime(0.01, now + 0.28);
+          o2.start(now + 0.18); o2.stop(now + 0.28);
+        } else if (type === 'long') {
+          osc.frequency.setValueAtTime(2600, now);
+          gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+          osc.start(now); osc.stop(now + 0.6);
+        }
+      } catch (e) {}
+    }
+
+    function switchTab(tabId) {
+      const tabs = ['workbench', 'wizard', 'modules', 'outdoor', 'indoor', 'curriculum', 'questions', 'resources'];
+      const titles = {
+        workbench: '每日日報與教學反思工作台 (Daily Workbench)',
+        wizard: '1分鐘智慧備課精靈 (1-Minute Lesson Generator)',
+        modules: '六大即戰力教案庫 (Ready-to-Teach Modules)',
+        outdoor: '☀️ 戶外專項運動專區 (Outdoor Formal Sports)',
+        indoor: '🌧️ 室內微型活動專區 (Indoor Classroom PE)',
+        curriculum: '40 週全學年課程地圖 (40-Week Curriculum)',
+        questions: '100 題跨領域動態題庫 (Question Bank)',
+        resources: '雲端資源直達中心 (Cloud Directory)'
+      };
+
+      tabs.forEach(t => {
+        const el = document.getElementById(`tab-${t}`);
+        const nav = document.getElementById(`nav-${t}`);
+        if (t === tabId) {
+          if (el) el.classList.remove('hidden');
+          if (nav) {
+            nav.classList.add('tab-active');
+            nav.classList.remove('border-transparent', 'text-slate-400');
+            nav.classList.add('text-slate-300');
+          }
+        } else {
+          if (el) el.classList.add('hidden');
+          if (nav) {
+            nav.classList.remove('tab-active');
+            nav.classList.add('border-transparent', 'text-slate-400');
+            nav.classList.remove('text-slate-300');
+          }
+        }
+      });
+
+      document.getElementById('top-title').textContent = titles[tabId] || '智慧中樞';
+      lucide.createIcons();
+    }
+
+    // Score Checklist State
+    const classes = ['201', '207', '209', '302', '303', '304', '305', '306', '307', '308'];
+    const scoreStatus = {};
+    classes.forEach(c => scoreStatus[c] = false);
+
+    function renderScoreChecklist() {
+      const container = document.getElementById('scoreChecklist');
+      if (!container) return;
+      container.innerHTML = '';
+      classes.forEach(c => {
+        const btn = document.createElement('button');
+        const isDone = scoreStatus[c];
+        btn.className = `p-2 rounded-xl text-xs font-black border transition-all flex items-center justify-center gap-1 ${
+          isDone ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' : 'bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700'
+        }`;
+        btn.innerHTML = `${isDone ? '✅' : '⚪'} ${c}`;
+        btn.onclick = () => {
+          scoreStatus[c] = !scoreStatus[c];
+          renderScoreChecklist();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function copyFullReflectionDoc() {
+      const h = document.getElementById('refHighlight').value || '未填寫';
+      const b = document.getElementById('refBottleneck').value || '未填寫';
+      const s = document.getElementById('refSuggestion').value || '未填寫';
+      
+      const text = `【體育教學日報與反思記錄】\n日期：2026-08-26 (星期三) • 第1週\n授課班級：三年級 (307, 306, 302, 303)\n教學主題：始業準備與常規建立 (四大陣地敏捷隊形大作戰)\n\n一、 課堂亮點與學生表現：\n${h}\n\n二、 教學卡點與動作困難：\n${b}\n\n三、 教學者建議與下週改進：\n${s}`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('📋 已複製含反思建議之完整日報文字！');
+      });
+    }
+
+    function saveAndExportDailyDoc() {
+      const h = document.getElementById('refHighlight').value;
+      const s = document.getElementById('refSuggestion').value;
+      alert('💾 反思內容已儲存！您可以在對話中直接對 AI 助手說「請幫我將反思寫入今天的 Google 文件」，AI 將自動更新雲端文件！');
+    }
+
+    function renderCurriculum(list) {
+      const tbody = document.getElementById('curriculumTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      list.forEach((row, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = (idx % 2 === 0) ? 'bg-slate-900/40 hover:bg-slate-800/50' : 'bg-slate-900/80 hover:bg-slate-800/50';
+        tr.innerHTML = `
+          <td class="p-4 font-black text-sky-400">${row.w}</td>
+          <td class="p-4 font-bold text-white">${row.theme}</td>
+          <td class="p-4 text-slate-300">${row.out}</td>
+          <td class="p-4 text-slate-300">${row.in_act}</td>
+          <td class="p-4 text-amber-400 font-bold">${row.tool}</td>
+          <td class="p-4 text-slate-400">${row.core}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterCurriculum() {
+      const filter = document.getElementById('semFilter').value;
+      if (filter === 'all') renderCurriculum(curriculum);
+      else renderCurriculum(curriculum.filter(c => c.w.includes(filter)));
+    }
+
+    function renderOutdoorSports() {
+      const container = document.getElementById('outdoorSportsGrid');
+      if (!container) return;
+      container.innerHTML = '';
+      outdoorSports.forEach(s => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-900/90 border border-slate-800 hover:border-orange-500/40 rounded-3xl p-6 space-y-4 shadow-xl transition-all flex flex-col justify-between';
+        let stepsHtml = '';
+        s.teaching_steps.forEach(st => {
+          stepsHtml += `<li class="text-xs text-slate-300">${st}</li>`;
+        });
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-black px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30">${s.badge}</span>
+              <i data-lucide="${s.icon}" class="w-5 h-5 text-orange-400"></i>
+            </div>
+            <h4 class="text-xl font-black text-white mb-2">${s.name}</h4>
+            <div class="space-y-1.5 bg-slate-950/60 p-3.5 rounded-2xl border border-slate-800 text-xs text-slate-300 mb-3">
+              <div><span class="font-bold text-slate-400">📍 場地規格：</span>${s.venue}</div>
+              <div><span class="font-bold text-slate-400">📦 所需器材：</span>${s.equipment}</div>
+            </div>
+            <div class="space-y-2 border-t border-slate-800/80 pt-3">
+              <div class="text-xs font-bold text-orange-400">📜 核心規則與判罰：</div>
+              <div class="text-xs text-slate-300 leading-relaxed">${s.core_rules}</div>
+            </div>
+            <div class="space-y-2 border-t border-slate-800/80 pt-3">
+              <div class="text-xs font-bold text-sky-400">🎯 分段教學步驟 (4 階段)：</div>
+              <ul class="space-y-1 pl-4 list-disc">${stepsHtml}</ul>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-[11px] text-slate-400">參考教材：${s.ref_title}</span>
+            <a href="${s.ref_url}" target="_blank" class="px-3.5 py-1.5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-orange-500/20">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>開啟專屬教案</span>
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function renderModules() {
+      const container = document.getElementById('modulesContainer');
+      if (!container) return;
+      container.innerHTML = '';
+      modules.forEach(m => {
+        const card = document.createElement('div');
+        card.className = `bg-slate-900/90 border ${m.border} rounded-3xl p-6 space-y-4 hover:shadow-2xl transition-all relative overflow-hidden flex flex-col justify-between`;
+        let stepsHtml = '';
+        m.steps.forEach(s => {
+          stepsHtml += `
+            <div class="flex items-start gap-2.5 text-xs">
+              <span class="px-2 py-0.5 rounded-md bg-slate-800 text-sky-400 font-bold shrink-0">${s.time}</span>
+              <div>
+                <span class="font-bold text-white">${s.name}：</span>
+                <span class="text-slate-300">${s.detail}</span>
+              </div>
+            </div>
+          `;
+        });
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-black px-3 py-1 rounded-full ${m.badge}">${m.tag}</span>
+              <span class="text-xs font-black text-slate-500">模組 ${m.id}</span>
+            </div>
+            <h4 class="text-lg font-black text-white leading-tight mb-2">${m.title}</h4>
+            <div class="text-xs text-slate-400 space-y-1 mb-3 bg-slate-950/50 p-3 rounded-xl border border-slate-800">
+              <div><span class="font-bold text-slate-300">📌 適用情境：</span>${m.scene}</div>
+              <div><span class="font-bold text-slate-300">📦 所需器材：</span>${m.props}</div>
+            </div>
+            <div class="space-y-2 border-t border-slate-800/80 pt-3">
+              <div class="text-xs font-bold text-slate-400">40分鐘標準流程：</div>
+              <div class="space-y-2">${stepsHtml}</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-[11px] text-slate-400">推薦遊戲：${m.game_name}</span>
+            <a href="${m.game_url}" target="_blank" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-blue-500/20">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>一鍵啟動遊戲</span>
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function renderActivities(list) {
+      const container = document.getElementById('activitiesGrid');
+      if (!container) return;
+      container.innerHTML = '';
+      list.forEach(act => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-900/80 border border-slate-800 hover:border-slate-700 p-5 rounded-2xl space-y-3 transition-all';
+        let catColor = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+        if (act.cat === '桌上精細手眼控制') catColor = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+        if (act.cat === '座位走道核心體能') catColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+        if (act.cat === '呼吸肌與氣流動力') catColor = 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20';
+        if (act.cat === '大腦神經反應抗干擾') catColor = 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+        if (act.cat === '團隊連動與倍數合作') catColor = 'bg-rose-500/10 text-rose-400 border-rose-500/20';
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border ${catColor}">${act.cat}</span>
+            <span class="text-xs font-black text-slate-500">#${act.id}</span>
+          </div>
+          <h4 class="text-base font-black text-white">${act.name}</h4>
+          <div class="text-xs text-slate-400 flex items-center gap-1.5">
+            <i data-lucide="package" class="w-3.5 h-3.5 text-slate-500"></i>
+            <span class="font-bold text-slate-300">器材：</span>
+            <span>${act.props}</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed border-t border-slate-800/80 pt-2.5">${act.desc}</p>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function filterActivities() {
+      const query = document.getElementById('actSearch').value.toLowerCase().trim();
+      const cat = document.getElementById('actCatFilter').value;
+      const filtered = activities.filter(a => {
+        const matchCat = (cat === 'all' || a.cat === cat);
+        const matchQuery = (!query || a.name.toLowerCase().includes(query) || a.props.toLowerCase().includes(query) || a.desc.toLowerCase().includes(query));
+        return matchCat && matchQuery;
+      });
+      renderActivities(filtered);
+    }
+
+    function renderQuestions(list) {
+      const container = document.getElementById('questionsGrid');
+      if (!container) return;
+      container.innerHTML = '';
+      list.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-900/80 border border-slate-800 p-4 rounded-xl space-y-2.5';
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">${q.cat}</span>
+            <span class="text-xs font-black text-slate-500">Q${idx + 1}</span>
+          </div>
+          <p class="text-sm font-black text-white">${q.q}</p>
+          <div class="grid grid-cols-2 gap-2 text-xs pt-1">
+            <div class="p-2 rounded-lg ${q.ans === 1 ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40' : 'bg-slate-800 text-slate-400'}">
+              1. ${q.o1} ${q.ans === 1 ? '✅' : ''}
+            </div>
+            <div class="p-2 rounded-lg ${q.ans === 2 ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40' : 'bg-slate-800 text-slate-400'}">
+              2. ${q.o2} ${q.ans === 2 ? '✅' : ''}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function filterQuestions() {
+      const cat = document.getElementById('qCatFilter').value;
+      const filtered = (cat === 'all') ? questions : questions.filter(q => q.cat === cat);
+      renderQuestions(filtered);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderScoreChecklist();
+      renderModules();
+      renderOutdoorSports();
+      renderActivities(activities);
+      renderCurriculum(curriculum);
+      renderQuestions(questions);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
