@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>每週親師通訊小卡產生器 • 全能體育王</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+    body { font-family: 'Noto Sans TC', sans-serif; background-color: #080c14; color: #f8fafc; overflow: hidden; }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+  
+  <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 no-print z-30">
+    <div>
+      <a href="index.html" class="p-5 border-b border-slate-800 flex items-center gap-3 block hover:bg-slate-800/50 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+          <i data-lucide="trophy" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="font-black text-lg text-white tracking-wide">全能體育王</h1>
+          <p class="text-xs font-bold text-sky-400">模組化教學平台</p>
+        </div>
+      </a>
+
+      <nav class="p-2.5 space-y-1 overflow-y-auto max-h-[calc(100vh-230px)]">
+    
+        <a href="index.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span>📋 今日排課中樞</span>
+        </a>
+        
+        <a href="games-4team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="flame" class="w-4 h-4"></i>
+          <span>🐉 4組神獸爭霸 (遊戲)</span>
+        </a>
+        
+        <a href="games-2team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="swords" class="w-4 h-4"></i>
+          <span>⚔️ 2組雙塔攻防 (遊戲)</span>
+        </a>
+        
+        <a href="games-quiz.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+          <span>🎲 大螢幕出題機 (遊戲)</span>
+        </a>
+        
+        <a href="lesson-wizard.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="wand-2" class="w-4 h-4"></i>
+          <span>⚡ 1分鐘備課精靈</span>
+        </a>
+        
+        <a href="outdoor-sports.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="sun" class="w-4 h-4"></i>
+          <span>☀️ 戶外專項運動</span>
+        </a>
+        
+        <a href="indoor-activities.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="cloud-rain" class="w-4 h-4"></i>
+          <span>🌧️ 室內微型活動 (68項)</span>
+        </a>
+        
+        <a href="curriculum-40w.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="calendar-range" class="w-4 h-4"></i>
+          <span>📅 40週課程地圖</span>
+        </a>
+        
+        <a href="question-bank.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          <span>❓ 100題題庫</span>
+        </a>
+        
+        <a href="parent-notice.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all bg-blue-600/20 text-sky-300 border-l-4 border-blue-500 font-black shadow-inner">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>💌 親師通訊產生器</span>
+        </a>
+        
+        <a href="resources.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+          <span>📂 雲端資源直達</span>
+        </a>
+        
+      </nav>
+    </div>
+
+    <div class="p-3.5 border-t border-slate-800 bg-slate-950/70 space-y-2">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+        <span class="flex items-center gap-1.5"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-sky-400"></i> 電子哨音盤</span>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5">
+        <button onclick="playWhistle('short')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-slate-200 border border-slate-700 active:scale-95 transition-all">短哨嗶</button>
+        <button onclick="playWhistle('double')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-amber-300 border border-slate-700 active:scale-95 transition-all">雙哨嗶嗶</button>
+        <button onclick="playWhistle('long')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-rose-300 border border-slate-700 active:scale-95 transition-all">長哨嗶—</button>
+      </div>
+    </div>
+  </aside>
+    
+
+  <main class="flex-1 flex flex-col overflow-hidden bg-slate-950">
+    <header class="h-16 border-b border-slate-800 bg-slate-900/60 backdrop-blur px-8 flex items-center justify-between no-print z-20">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20">親師溝通</span>
+        <h2 class="text-lg font-black text-white">每週親師通訊小卡產生器 (Parent Newsletter)</h2>
+      </div>
+    </header>
+
+    <div class="flex-1 p-8 flex flex-col justify-center max-w-3xl mx-auto w-full">
+      <div class="bg-slate-900/90 border border-emerald-500/40 rounded-3xl p-8 space-y-6 shadow-2xl">
+        <div>
+          <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 font-black text-xs rounded-full">Parent Communication</span>
+          <h3 class="text-2xl font-black text-white mt-2">💌 每週親師通訊小卡產生器</h3>
+          <p class="text-xs text-slate-300">選擇班級與本週表現，1 秒自動生成 100 字生動活潑的運動動態小短文，方便直接貼入班級群組或聯絡簿！</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="space-y-1">
+            <label class="font-bold text-slate-300">選擇班級：</label>
+            <select id="pnClass" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white outline-none">
+              <option value="二年1班">二年1班 (201)</option>
+              <option value="二年7班">二年7班 (207)</option>
+              <option value="二年9班">二年9班 (209)</option>
+              <option value="三年2班">三年2班 (302)</option>
+              <option value="三年3班">三年3班 (303)</option>
+              <option value="三年4班">三年4班 (304)</option>
+              <option value="三年5班">三年5班 (305)</option>
+              <option value="三年6班">三年6班 (306)</option>
+              <option value="三年7班" selected>三年7班 (307)</option>
+              <option value="三年8班">三年8班 (308)</option>
+            </select>
+          </div>
+
+          <div class="space-y-1">
+            <label class="font-bold text-slate-300">本週神獸冠軍小隊：</label>
+            <select id="pnTeam" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-amber-300 outline-none">
+              <option value="🔴 朱雀隊">🔴 第 1 組 朱雀隊</option>
+              <option value="🔵 青龍隊" selected>🔵 第 2 組 青龍隊</option>
+              <option value="🟡 白虎隊">🟡 第 3 組 白虎隊</option>
+              <option value="🟢 玄武隊">🟢 第 4 組 玄武隊</option>
+            </select>
+          </div>
+
+          <div class="space-y-1 col-span-2">
+            <label class="font-bold text-slate-300">本週核心運動技能：</label>
+            <input type="text" id="pnSkill" value="手球單手傳接球 ＆ 四大陣地敏捷隊形" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white outline-none">
+          </div>
+        </div>
+
+        <button onclick="generateParentNotice()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm rounded-xl shadow-lg active:scale-95 transition-all">
+          ✨ 一秒生成親師通訊稿
+        </button>
+
+        <div id="parentNoticeOutputBox" class="hidden space-y-3">
+          <div class="p-4 bg-slate-950 border border-emerald-500/30 rounded-2xl text-xs text-slate-200 leading-relaxed font-sans select-all" id="parentNoticeText"></div>
+          <button onclick="copyParentNoticeText()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl border border-slate-700 flex items-center justify-center gap-2">
+            <i data-lucide="copy" class="w-4 h-4"></i><span>📋 複製親師小卡文字</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function generateParentNotice() {
+      const c = document.getElementById('pnClass').value;
+      const t = document.getElementById('pnTeam').value;
+      const s = document.getElementById('pnSkill').value;
+      const text = `【${c} 體育課每週運動動態】\n親愛的家長您好：\n本週體育課孩子們進行了「${s}」挑戰！孩子們全員落實了「鞋帶打雙結」自我安檢，並在團隊對決中展現了極高的集體自律與運動家精神。恭喜本週由 ${t} 榮獲全能體育王冠軍勳章！假日歡迎陪伴孩子到戶外運動，增進親子時光！🏃‍♂️✨`;
+
+      document.getElementById('parentNoticeText').innerText = text;
+      document.getElementById('parentNoticeOutputBox').classList.remove('hidden');
+    }
+
+    function copyParentNoticeText() {
+      const text = document.getElementById('parentNoticeText').innerText;
+      navigator.clipboard.writeText(text).then(() => alert('📋 已複製親師小卡文字！'));
+    }
+
+    window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
+  </script>
+</body>
+</html>

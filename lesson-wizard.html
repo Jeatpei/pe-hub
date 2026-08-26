@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>1分鐘智慧備課精靈 • 全能體育王</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+    body { font-family: 'Noto Sans TC', sans-serif; background-color: #080c14; color: #f8fafc; overflow: hidden; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    @media print {
+      aside, header, .no-print { display: none !important; }
+      main, #viewport, #generatedPlanBox { overflow: visible !important; height: auto !important; background: white !important; color: black !important; }
+    }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+  
+  <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 no-print z-30">
+    <div>
+      <a href="index.html" class="p-5 border-b border-slate-800 flex items-center gap-3 block hover:bg-slate-800/50 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+          <i data-lucide="trophy" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="font-black text-lg text-white tracking-wide">全能體育王</h1>
+          <p class="text-xs font-bold text-sky-400">模組化教學平台</p>
+        </div>
+      </a>
+
+      <nav class="p-2.5 space-y-1 overflow-y-auto max-h-[calc(100vh-230px)]">
+    
+        <a href="index.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span>📋 今日排課中樞</span>
+        </a>
+        
+        <a href="games-4team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="flame" class="w-4 h-4"></i>
+          <span>🐉 4組神獸爭霸 (遊戲)</span>
+        </a>
+        
+        <a href="games-2team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="swords" class="w-4 h-4"></i>
+          <span>⚔️ 2組雙塔攻防 (遊戲)</span>
+        </a>
+        
+        <a href="games-quiz.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+          <span>🎲 大螢幕出題機 (遊戲)</span>
+        </a>
+        
+        <a href="lesson-wizard.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all bg-blue-600/20 text-sky-300 border-l-4 border-blue-500 font-black shadow-inner">
+          <i data-lucide="wand-2" class="w-4 h-4"></i>
+          <span>⚡ 1分鐘備課精靈</span>
+        </a>
+        
+        <a href="outdoor-sports.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="sun" class="w-4 h-4"></i>
+          <span>☀️ 戶外專項運動</span>
+        </a>
+        
+        <a href="indoor-activities.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="cloud-rain" class="w-4 h-4"></i>
+          <span>🌧️ 室內微型活動 (68項)</span>
+        </a>
+        
+        <a href="curriculum-40w.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="calendar-range" class="w-4 h-4"></i>
+          <span>📅 40週課程地圖</span>
+        </a>
+        
+        <a href="question-bank.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          <span>❓ 100題題庫</span>
+        </a>
+        
+        <a href="parent-notice.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>💌 親師通訊產生器</span>
+        </a>
+        
+        <a href="resources.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+          <span>📂 雲端資源直達</span>
+        </a>
+        
+      </nav>
+    </div>
+
+    <div class="p-3.5 border-t border-slate-800 bg-slate-950/70 space-y-2">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+        <span class="flex items-center gap-1.5"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-sky-400"></i> 電子哨音盤</span>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5">
+        <button onclick="playWhistle('short')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-slate-200 border border-slate-700 active:scale-95 transition-all">短哨嗶</button>
+        <button onclick="playWhistle('double')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-amber-300 border border-slate-700 active:scale-95 transition-all">雙哨嗶嗶</button>
+        <button onclick="playWhistle('long')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-rose-300 border border-slate-700 active:scale-95 transition-all">長哨嗶—</button>
+      </div>
+    </div>
+  </aside>
+    
+
+  <main class="flex-1 flex flex-col overflow-hidden bg-slate-950">
+    <header class="h-16 border-b border-slate-800 bg-slate-900/60 backdrop-blur px-8 flex items-center justify-between no-print z-20">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-black uppercase tracking-wider bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full border border-amber-500/20">智能備課</span>
+        <h2 class="text-lg font-black text-white">1 分鐘智慧備課精靈 (Lesson Generator)</h2>
+      </div>
+    </header>
+
+    <div class="flex-1 overflow-y-auto p-6 space-y-6" id="viewport">
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950/50 to-slate-900 border border-amber-500/40 rounded-3xl p-6 space-y-5 shadow-2xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="px-3 py-1 rounded-full bg-amber-500 text-slate-950 font-black text-xs uppercase">Smart Lesson Engine</span>
+            <h3 class="text-2xl font-black text-white mt-2">⚡ 1分鐘智慧備課精靈</h3>
+            <p class="text-xs text-slate-300">勾選天候、年級、器材與鍛鍊目標，立即產生 40 分鐘精確時間軸、引導話術、防錯對照表與 A4 列印格式！</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl space-y-1.5">
+            <label class="text-xs font-black text-sky-400 flex items-center gap-1"><i data-lucide="cloud-sun" class="w-3.5 h-3.5"></i> 1. 天候與場地</label>
+            <select id="wizVenue" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs font-bold text-white outline-none">
+              <option value="rain_classroom">🌧️ 雨天普通教室 (微型低噪音)</option>
+              <option value="sunny_outdoor">☀️ 晴天操場/球場 (大空間闖關)</option>
+              <option value="indoor_hall">⛅ 穿堂/風雨操場 (中等空間)</option>
+            </select>
+          </div>
+
+          <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl space-y-1.5">
+            <label class="text-xs font-black text-emerald-400 flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5"></i> 2. 授課年級</label>
+            <select id="wizGrade" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs font-bold text-white outline-none">
+              <option value="g12">🧒 低年級 (1-2年級 • 趣味感知)</option>
+              <option value="g34" selected>👦 中年級 (3-4年級 • 敏捷合作)</option>
+              <option value="g56">🧑 高年級 (5-6年級 • 戰術核心)</option>
+            </select>
+          </div>
+
+          <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl space-y-1.5">
+            <label class="text-xs font-black text-amber-400 flex items-center gap-1"><i data-lucide="target" class="w-3.5 h-3.5"></i> 3. 核心鍛鍊目標</label>
+            <select id="wizTarget" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs font-bold text-white outline-none">
+              <option value="handball_ball">🤾 戶外專項球類 (手球/籃球/足球)</option>
+              <option value="core">🔥 下肢爆發力與核心肌耐力</option>
+              <option value="reflex">🚦 大腦神經反應與抗干擾</option>
+              <option value="sniper">🎯 手眼協調與精細拋物線</option>
+              <option value="lung">💨 呼吸肺活量與體幹支撐</option>
+              <option value="team">🤝 團隊默契與倍數連動</option>
+              <option value="quiz">🏰 跨領域學科攻城大會考</option>
+            </select>
+          </div>
+
+          <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl space-y-1.5">
+            <label class="text-xs font-black text-purple-400 flex items-center gap-1"><i data-lucide="package" class="w-3.5 h-3.5"></i> 4. 現有器材</label>
+            <select id="wizProps" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs font-bold text-white outline-none">
+              <option value="desk_items">課本、水壺、西卡紙</option>
+              <option value="stationery">橡皮擦、原子筆、紙球</option>
+              <option value="balls">手球、足球、籃球、角標</option>
+              <option value="no_props">徒手零器材 (免道具)</option>
+            </select>
+          </div>
+
+          <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl space-y-1.5">
+            <label class="text-xs font-black text-rose-400 flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 5. 授課時長</label>
+            <select id="wizDuration" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs font-bold text-white outline-none">
+              <option value="40" selected>40 分鐘 (完整課堂)</option>
+              <option value="20">20 分鐘 (晨光微課)</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="generateCustomLesson()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-slate-950 font-black text-sm rounded-2xl shadow-xl active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
+          <i data-lucide="sparkles" class="w-4 h-4 fill-current"></i>
+          <span>⚡ 一秒生成專屬 40 分鐘實戰教案</span>
+        </button>
+      </div>
+
+      <div id="generatedPlanBox" class="hidden bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-6 shadow-2xl"></div>
+    </div>
+  </main>
+
+  <script>
+    let audioCtx = null;
+    function playWhistle(type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.type = 'triangle';
+        if (type === 'short') {
+          osc.frequency.setValueAtTime(2600, now); gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15); osc.start(now); osc.stop(now + 0.15);
+        } else if (type === 'double') {
+          osc.frequency.setValueAtTime(2600, now); gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1); osc.start(now); osc.stop(now + 0.1);
+          const o2 = audioCtx.createOscillator(); const g2 = audioCtx.createGain();
+          o2.connect(g2); g2.connect(audioCtx.destination); o2.type = 'triangle';
+          o2.frequency.setValueAtTime(2600, now + 0.18); g2.gain.setValueAtTime(0.8, now + 0.18);
+          g2.gain.exponentialRampToValueAtTime(0.01, now + 0.28); o2.start(now + 0.18); o2.stop(now + 0.28);
+        } else if (type === 'long') {
+          osc.frequency.setValueAtTime(2600, now); gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6); osc.start(now); osc.stop(now + 0.6);
+        }
+      } catch (e) {}
+    }
+
+    function generateCustomLesson() {
+      const venue = document.getElementById('wizVenue').value;
+      const target = document.getElementById('wizTarget').value;
+
+      let planTitle = '';
+      let coachingCues = '';
+      let errorFixes = '';
+      let steps = [];
+
+      if (target === 'handball_ball' || venue === 'sunny_outdoor') {
+        planTitle = '【手球爭霸：三秒三步衝擊波與敏捷射門】';
+        coachingCues = '拿球數三秒、最多走三步、左腳踩右腳跨起跳射門！';
+        errorFixes = '衝刺射門踩入6米區（違例）➔ 線外單腳起跳，空中射門後才落地緩衝。';
+        steps = [
+          { time: '00~05分', phase: '慢跑動態熱身與肩關節旋轉', desc: '雙手引臂過肩拉伸，活化肩胛與腕關節。' },
+          { time: '05~15分', phase: '單手肩上傳球與三步上籃步伐', desc: '右撇子依序「左腳踏 ➔ 右腳跨 ➔ 左腳起跳射門」徒手分解練習。' },
+          { time: '15~28分', phase: '分組傳射闖關與 5v5 模擬賽', desc: '禁區外起跳射擊九宮格角標，實踐進攻三秒三步與正面防守。' },
+          { time: '28~35分', phase: '大螢幕火砲攻城結算', desc: '切換至【大螢幕競技廳】，得分組別拍擊發射重砲！' },
+          { time: '35~40分', phase: '肌肉伸展收操與常規致敬', desc: '下肢靜態拉伸、列隊向對手擊掌致敬。' }
+        ];
+      } else if (target === 'reflex') {
+        planTitle = '【特務神經：大腦抗干擾與敏捷反射】';
+        coachingCues = '眼睛看手心、耳朵聽指令、口令一出即時反應！';
+        errorFixes = '聽口令猶豫慢半拍 ➔ 降低動作幅度，以輕巧前腳掌隨時準備變向。';
+        steps = [
+          { time: '00~05分', phase: '黑板左右腦手指體操', desc: '左手畫圓右手畫方；口令1摸右耳/2摸左耳/3擊掌。' },
+          { time: '05~15分', phase: '反向神經傳導 O/X 線跳躍', desc: '地面畫線，聽問題以跳躍方式選邊，做錯者淘汰回座。' },
+          { time: '15~28分', phase: '快手搶拍王桌面對決', desc: '桌面置橡皮擦，聽老師喊「頭、肩膀、腳、搶！」比抓取反射。' },
+          { time: '28~35分', phase: '史楚普大螢幕色字對抗', desc: '啟動【大螢幕出題機】進行色字抗干擾搶答！' },
+          { time: '35~40分', phase: '手指手腕放鬆收操', desc: '靜態伸展手指與頸部關節，登錄表現積分。' }
+        ];
+      } else {
+        planTitle = '【忍者無聲：教室微空間高心肺潛行】';
+        coachingCues = '腳尖著地像貓咪彈簧，大腿抬高碰課本，著地零噪音！';
+        errorFixes = '跑步全腳掌重踏發出噪音 ➔ 腳後跟懸空，以前腳掌彈性點地。';
+        steps = [
+          { time: '00~05分', phase: '座位空中腳踏車', desc: '坐姿雙腳懸空踩踏30秒 + 騰空寫數字，喚醒核心肌群。' },
+          { time: '05~15分', phase: '課本登山者快步衝刺', desc: '課本放腿上，高頻抬腿碰課本，比快步聲最小。' },
+          { time: '15~28分', phase: '水壺避震跳與教室滑雪', desc: '左右橫跨水壺避震跳，手撐西卡紙走道滑行競速。' },
+          { time: '28~35分', phase: '大螢幕神獸能量拍擊', desc: '切換至【大螢幕神獸爭霸】注入能量讓神獸進化！' },
+          { time: '35~40分', phase: '深呼吸收操與常規檢核', desc: '大腿前側拉伸、器材歸位。' }
+        ];
+      }
+
+      const box = document.getElementById('generatedPlanBox');
+      box.classList.remove('hidden');
+
+      let stepsHtml = '';
+      steps.forEach(s => {
+        stepsHtml += `
+          <div class="flex items-start gap-3 p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800">
+            <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-black text-xs shrink-0">${s.time}</span>
+            <div>
+              <div class="font-black text-white text-sm">${s.phase}</div>
+              <div class="text-xs text-slate-300 mt-0.5">${s.desc}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      box.innerHTML = `
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-4 gap-3">
+          <div>
+            <span class="text-xs font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full uppercase">✨ AI 實戰教案生成成功</span>
+            <h4 class="text-2xl font-black text-white mt-1.5">${planTitle}</h4>
+          </div>
+          <div class="flex items-center gap-2 no-print">
+            <button onclick="copyGeneratedPlanText()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold border border-slate-700">📋 複製教案</button>
+            <button onclick="window.print()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold border border-slate-700">🖨️ A4列印</button>
+            <a href="games-4team.html" class="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-black">🎮 進入神獸遊戲廳</a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800">
+            <span class="font-black text-amber-400">🗣️ 教師引導口訣：</span>
+            <p class="text-slate-200 mt-1">${coachingCues}</p>
+          </div>
+          <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800">
+            <span class="font-black text-rose-400">⚠️ 常見錯誤修正：</span>
+            <p class="text-slate-200 mt-1">${errorFixes}</p>
+          </div>
+        </div>
+
+        <div class="space-y-2.5">
+          <div class="text-sm font-black text-white">40 分鐘精確時間軸流程：</div>
+          ${stepsHtml}
+        </div>
+      `;
+      lucide.createIcons();
+      box.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyGeneratedPlanText() {
+      const text = document.getElementById('generatedPlanBox').innerText;
+      navigator.clipboard.writeText(text).then(() => alert('📋 教案已成功複製至剪貼簿！'));
+    }
+
+    window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
+  </script>
+</body>
+</html>

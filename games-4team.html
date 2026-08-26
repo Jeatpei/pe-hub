@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>4組神獸爭霸戰 (大螢幕競技) • 全能體育王</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+    body { font-family: 'Noto Sans TC', sans-serif; background-color: #080c14; color: #f8fafc; overflow: hidden; }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+  
+  <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 no-print z-30">
+    <div>
+      <a href="index.html" class="p-5 border-b border-slate-800 flex items-center gap-3 block hover:bg-slate-800/50 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+          <i data-lucide="trophy" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="font-black text-lg text-white tracking-wide">全能體育王</h1>
+          <p class="text-xs font-bold text-sky-400">模組化教學平台</p>
+        </div>
+      </a>
+
+      <nav class="p-2.5 space-y-1 overflow-y-auto max-h-[calc(100vh-230px)]">
+    
+        <a href="index.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span>📋 今日排課中樞</span>
+        </a>
+        
+        <a href="games-4team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all bg-blue-600/20 text-sky-300 border-l-4 border-blue-500 font-black shadow-inner">
+          <i data-lucide="flame" class="w-4 h-4"></i>
+          <span>🐉 4組神獸爭霸 (遊戲)</span>
+        </a>
+        
+        <a href="games-2team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="swords" class="w-4 h-4"></i>
+          <span>⚔️ 2組雙塔攻防 (遊戲)</span>
+        </a>
+        
+        <a href="games-quiz.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+          <span>🎲 大螢幕出題機 (遊戲)</span>
+        </a>
+        
+        <a href="lesson-wizard.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="wand-2" class="w-4 h-4"></i>
+          <span>⚡ 1分鐘備課精靈</span>
+        </a>
+        
+        <a href="outdoor-sports.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="sun" class="w-4 h-4"></i>
+          <span>☀️ 戶外專項運動</span>
+        </a>
+        
+        <a href="indoor-activities.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="cloud-rain" class="w-4 h-4"></i>
+          <span>🌧️ 室內微型活動 (68項)</span>
+        </a>
+        
+        <a href="curriculum-40w.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="calendar-range" class="w-4 h-4"></i>
+          <span>📅 40週課程地圖</span>
+        </a>
+        
+        <a href="question-bank.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          <span>❓ 100題題庫</span>
+        </a>
+        
+        <a href="parent-notice.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>💌 親師通訊產生器</span>
+        </a>
+        
+        <a href="resources.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+          <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+          <span>📂 雲端資源直達</span>
+        </a>
+        
+      </nav>
+    </div>
+
+    <div class="p-3.5 border-t border-slate-800 bg-slate-950/70 space-y-2">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+        <span class="flex items-center gap-1.5"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-sky-400"></i> 電子哨音盤</span>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5">
+        <button onclick="playWhistle('short')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-slate-200 border border-slate-700 active:scale-95 transition-all">短哨嗶</button>
+        <button onclick="playWhistle('double')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-amber-300 border border-slate-700 active:scale-95 transition-all">雙哨嗶嗶</button>
+        <button onclick="playWhistle('long')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-rose-300 border border-slate-700 active:scale-95 transition-all">長哨嗶—</button>
+      </div>
+    </div>
+  </aside>
+    
+
+  <main class="flex-1 flex flex-col overflow-hidden bg-slate-950">
+    <header class="h-16 border-b border-slate-800 bg-slate-900/60 backdrop-blur px-8 flex items-center justify-between no-print z-20">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-black uppercase tracking-wider bg-rose-500/10 text-rose-400 px-3 py-1 rounded-full border border-rose-500/20">大螢幕競技</span>
+        <h2 class="text-lg font-black text-white">4 組神獸領地爭霸戰 (Beast Evolution Arena)</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <label class="flex items-center gap-1.5 text-slate-400 font-bold text-xs">
+          <span>目標點數：</span>
+          <select id="targetScoreSelect" onchange="resetBeastGame()" class="bg-slate-800 border border-slate-700 text-white rounded-lg px-2 py-1 outline-none">
+            <option value="20">20 點 (極速熱身)</option>
+            <option value="50" selected>50 點 (標準對抗)</option>
+            <option value="100">100 點 (耐力大賽)</option>
+          </select>
+        </label>
+        <button onclick="resetBeastGame()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-lg border border-slate-700 flex items-center gap-1">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i><span>重置</span>
+        </button>
+        <button onclick="toggleGlobalFullscreen()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-lg border border-slate-700 flex items-center gap-1">
+          <i data-lucide="maximize" class="w-3.5 h-3.5"></i><span>全螢幕</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="flex-1 p-6 flex flex-col justify-center">
+      <div class="grid grid-cols-4 gap-4 h-[580px]">
+        <!-- Team 1 -->
+        <div class="bg-gradient-to-b from-red-950/40 to-slate-900 border-2 border-red-500/50 rounded-3xl p-5 flex flex-col justify-between shadow-2xl">
+          <div class="flex items-center justify-between border-b border-red-500/20 pb-2">
+            <span class="font-black text-red-400 text-base">🔴 第 1 組 (朱雀)</span>
+          </div>
+          <div class="text-center space-y-3">
+            <div id="b4-icon-1" class="text-7xl animate-bounce">🥚</div>
+            <div id="b4-name-1" class="text-base font-black text-red-300">朱雀之卵 (Lv.1)</div>
+            <div class="text-5xl font-black text-white font-mono" id="b4-score-1">0</div>
+            <div class="w-full bg-slate-950 h-4 rounded-full overflow-hidden border border-red-500/30">
+              <div id="b4-prog-1" class="bg-red-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="addBeastScore(1, 1)" class="py-3 bg-red-600 hover:bg-red-500 active:scale-95 text-white font-black text-sm rounded-xl shadow-lg">+1 拍擊</button>
+            <button onclick="addBeastScore(1, 2)" class="py-3 bg-red-700 hover:bg-red-600 active:scale-95 text-white font-black text-sm rounded-xl shadow-lg">+2 雙人</button>
+            <button onclick="addBeastScore(1, 3)" class="py-3 bg-red-800 hover:bg-red-700 active:scale-95 text-amber-300 font-black text-sm rounded-xl col-span-2 shadow-lg">+3 暴擊</button>
+          </div>
+        </div>
+
+        <!-- Team 2 -->
+        <div class="bg-gradient-to-b from-blue-950/40 to-slate-900 border-2 border-blue-500/50 rounded-3xl p-5 flex flex-col justify-between shadow-2xl">
+          <div class="flex items-center justify-between border-b border-blue-500/20 pb-2">
+            <span class="font-black text-blue-400 text-base">🔵 第 2 組 (青龍)</span>
+          </div>
+          <div class="text-center space-y-3">
+            <div id="b4-icon-2" class="text-7xl animate-bounce">🥚</div>
+            <div id="b4-name-2" class="text-base font-black text-blue-300">青龍之卵 (Lv.1)</div>
+            <div class="text-5xl font-black text-white font-mono" id="b4-score-2">0</div>
+            <div class="w-full bg-slate-950 h-4 rounded-full overflow-hidden border border-blue-500/30">
+              <div id="b4-prog-2" class="bg-blue-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="addBeastScore(2, 1)" class="py-3 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-black text-sm rounded-xl shadow-lg">+1 拍擊</button>
+            <button onclick="addBeastScore(2, 2)" class="py-3 bg-blue-700 hover:bg-blue-600 active:scale-95 text-white font-black text-sm rounded-xl shadow-lg">+2 雙人</button>
+            <button onclick="addBeastScore(2, 3)" class="py-3 bg-blue-800 hover:bg-blue-700 active:scale-95 text-amber-300 font-black text-sm rounded-xl col-span-2 shadow-lg">+3 暴擊</button>
+          </div>
+        </div>
+
+        <!-- Team 3 -->
+        <div class="bg-gradient-to-b from-amber-950/40 to-slate-900 border-2 border-amber-500/50 rounded-3xl p-5 flex flex-col justify-between shadow-2xl">
+          <div class="flex items-center justify-between border-b border-amber-500/20 pb-2">
+            <span class="font-black text-amber-400 text-base">🟡 第 3 組 (白虎)</span>
+          </div>
+          <div class="text-center space-y-3">
+            <div id="b4-icon-3" class="text-7xl animate-bounce">🥚</div>
+            <div id="b4-name-3" class="text-base font-black text-amber-300">白虎之卵 (Lv.1)</div>
+            <div class="text-5xl font-black text-white font-mono" id="b4-score-3">0</div>
+            <div class="w-full bg-slate-950 h-4 rounded-full overflow-hidden border border-amber-500/30">
+              <div id="b4-prog-3" class="bg-amber-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="addBeastScore(3, 1)" class="py-3 bg-amber-600 hover:bg-amber-500 active:scale-95 text-slate-950 font-black text-sm rounded-xl shadow-lg">+1 拍擊</button>
+            <button onclick="addBeastScore(3, 2)" class="py-3 bg-amber-700 hover:bg-amber-600 active:scale-95 text-slate-950 font-black text-sm rounded-xl shadow-lg">+2 雙人</button>
+            <button onclick="addBeastScore(3, 3)" class="py-3 bg-amber-800 hover:bg-amber-700 active:scale-95 text-white font-black text-sm rounded-xl col-span-2 shadow-lg">+3 暴擊</button>
+          </div>
+        </div>
+
+        <!-- Team 4 -->
+        <div class="bg-gradient-to-b from-emerald-950/40 to-slate-900 border-2 border-emerald-500/50 rounded-3xl p-5 flex flex-col justify-between shadow-2xl">
+          <div class="flex items-center justify-between border-b border-emerald-500/20 pb-2">
+            <span class="font-black text-emerald-400 text-base">🟢 第 4 組 (玄武)</span>
+          </div>
+          <div class="text-center space-y-3">
+            <div id="b4-icon-4" class="text-7xl animate-bounce">🥚</div>
+            <div id="b4-name-4" class="text-base font-black text-emerald-300">玄武之卵 (Lv.1)</div>
+            <div class="text-5xl font-black text-white font-mono" id="b4-score-4">0</div>
+            <div class="w-full bg-slate-950 h-4 rounded-full overflow-hidden border border-emerald-500/30">
+              <div id="b4-prog-4" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="addBeastScore(4, 1)" class="py-3 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-black text-sm rounded-xl shadow-lg">+1 拍擊</button>
+            <button onclick="addBeastScore(4, 2)" class="py-3 bg-emerald-700 hover:bg-emerald-600 active:scale-95 text-white font-black text-sm rounded-xl shadow-lg">+2 雙人</button>
+            <button onclick="addBeastScore(4, 3)" class="py-3 bg-emerald-800 hover:bg-emerald-700 active:scale-95 text-amber-300 font-black text-sm rounded-xl col-span-2 shadow-lg">+3 暴擊</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let b4Scores = [0, 0, 0, 0];
+    const beasts = [
+      { name: '朱雀', stages: ['🥚 朱雀之卵', '🐣 幼年朱雀', '🦅 烈焰朱雀', '👑 終極神獸朱雀'] },
+      { name: '青龍', stages: ['🥚 青龍之卵', '🐲 幼年青龍', '🐉 風暴青龍', '👑 終極神獸青龍'] },
+      { name: '白虎', stages: ['🥚 白虎之卵', '🐯 幼年白虎', '⚡ 奔雷白虎', '👑 終極神獸白虎'] },
+      { name: '玄武', stages: ['🥚 玄武之卵', '🐢 幼年玄武', '🛡️ 撼地玄武', '👑 終極神獸玄武'] }
+    ];
+    const beastIcons = ['🥚', '🐣', '🦅', '👑'];
+
+    let audioCtx = null;
+    function playWhistle(type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.type = 'triangle';
+        if (type === 'short') {
+          osc.frequency.setValueAtTime(2600, now); gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15); osc.start(now); osc.stop(now + 0.15);
+        } else if (type === 'double') {
+          osc.frequency.setValueAtTime(2600, now); gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1); osc.start(now); osc.stop(now + 0.1);
+          const o2 = audioCtx.createOscillator(); const g2 = audioCtx.createGain();
+          o2.connect(g2); g2.connect(audioCtx.destination); o2.type = 'triangle';
+          o2.frequency.setValueAtTime(2600, now + 0.18); g2.gain.setValueAtTime(0.8, now + 0.18);
+          g2.gain.exponentialRampToValueAtTime(0.01, now + 0.28); o2.start(now + 0.18); o2.stop(now + 0.28);
+        } else if (type === 'long') {
+          osc.frequency.setValueAtTime(2600, now); gain.gain.setValueAtTime(0.8, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6); osc.start(now); osc.stop(now + 0.6);
+        }
+      } catch (e) {}
+    }
+
+    function playTone(freq, dur) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime; const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.frequency.setValueAtTime(freq, now); gain.gain.setValueAtTime(0.5, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + dur); osc.start(now); osc.stop(now + dur);
+      } catch (e) {}
+    }
+
+    function addBeastScore(teamIdx, pts) {
+      const target = parseInt(document.getElementById('targetScoreSelect').value, 10);
+      b4Scores[teamIdx - 1] += pts;
+      playTone(400 + teamIdx * 100 + pts * 50, 0.15);
+
+      const score = b4Scores[teamIdx - 1];
+      document.getElementById(`b4-score-${teamIdx}`).textContent = score;
+
+      const pct = Math.min(100, Math.round((score / target) * 100));
+      document.getElementById(`b4-prog-${teamIdx}`).style.width = `${pct}%`;
+
+      let stageIdx = 0;
+      if (pct >= 100) stageIdx = 3;
+      else if (pct >= 60) stageIdx = 2;
+      else if (pct >= 30) stageIdx = 1;
+
+      document.getElementById(`b4-name-${teamIdx}`).textContent = beasts[teamIdx - 1].stages[stageIdx] + ` (Lv.${stageIdx + 1})`;
+      document.getElementById(`b4-icon-${teamIdx}`).textContent = beastIcons[stageIdx];
+
+      if (score >= target) {
+        playTone(880, 0.4);
+        alert(`🏆 恭喜！第 ${teamIdx} 組 (${beasts[teamIdx - 1].name}隊) 率先達成 ${target} 點神獸覺醒！`);
+      }
+    }
+
+    function resetBeastGame() {
+      b4Scores = [0, 0, 0, 0];
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`b4-score-${i}`).textContent = '0';
+        document.getElementById(`b4-prog-${i}`).style.width = '0%';
+        document.getElementById(`b4-name-${i}`).textContent = beasts[i - 1].stages[0] + ' (Lv.1)';
+        document.getElementById(`b4-icon-${i}`).textContent = '🥚';
+      }
+    }
+
+    function toggleGlobalFullscreen() {
+      if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); }
+      else { document.exitFullscreen().catch(() => {}); }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
+  </script>
+</body>
+</html>
