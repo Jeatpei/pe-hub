@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>教學示範影音專區 • 全能體育王</title>
+  <title>體育影音教學庫 • 全能體育王</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
@@ -57,11 +57,6 @@
           <span>⚡ 1分鐘備課精靈</span>
         </a>
         
-        <a href="videos.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all bg-blue-600/20 text-sky-300 border-l-4 border-blue-500 font-black shadow-inner">
-          <i data-lucide="video" class="w-4 h-4"></i>
-          <span>🎬 教學示範影音庫</span>
-        </a>
-        
         <a href="outdoor-sports.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
           <i data-lucide="sun" class="w-4 h-4"></i>
           <span>☀️ 戶外專項運動</span>
@@ -70,6 +65,11 @@
         <a href="indoor-activities.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
           <i data-lucide="cloud-rain" class="w-4 h-4"></i>
           <span>🌧️ 室內微型活動 (68項)</span>
+        </a>
+        
+        <a href="videos.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all bg-blue-600/20 text-sky-300 border-l-4 border-blue-500 font-black shadow-inner">
+          <i data-lucide="video" class="w-4 h-4"></i>
+          <span>🎬 體育影音教學庫 (NEW)</span>
         </a>
         
         <a href="curriculum-40w.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
@@ -111,184 +111,219 @@
   <main class="flex-1 flex flex-col overflow-hidden bg-slate-950">
     <header class="h-16 border-b border-slate-800 bg-slate-900/60 backdrop-blur px-8 flex items-center justify-between no-print z-20">
       <div class="flex items-center gap-3">
-        <span class="text-xs font-black uppercase tracking-wider bg-rose-500/10 text-rose-400 px-3 py-1 rounded-full border border-rose-500/20">影音資料庫</span>
-        <h2 class="text-lg font-black text-white">體育教學影片與動作示範影音專區 (Video Hub)</h2>
+        <span class="text-xs font-black uppercase tracking-wider bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full border border-purple-500/20">影音資料庫</span>
+        <h2 class="text-lg font-black text-white">體育教學動作示範與規則解說影片庫</h2>
       </div>
       <div class="flex items-center gap-3">
-        <input type="text" id="videoSearch" placeholder="搜尋專項、口訣或動作..." oninput="filterVideos()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs font-bold text-white outline-none w-56 focus:border-rose-500">
-        <select id="videoCatFilter" onchange="filterVideos()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs font-bold text-rose-400 outline-none">
-          <option value="all">全部分類</option>
-          <option value="專項球類">專項球類 (手球/籃球/足球/樂樂棒球)</option>
-          <option value="室內微體能">室內微體能 (忍者無聲/特務神經/機甲連動)</option>
-          <option value="常規與安全">常規與安全 (鞋帶雙結/跑道煞車線)</option>
-          <option value="暖身與收操">暖身與收操 (5分鐘動態熱身/靜態深層拉伸)</option>
-        </select>
+        <button onclick="toggleGlobalFullscreen()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-lg border border-slate-700 flex items-center gap-1">
+          <i data-lucide="maximize" class="w-3.5 h-3.5"></i><span>全螢幕</span>
+        </button>
       </div>
     </header>
 
-    <div class="flex-1 overflow-y-auto p-6" id="viewport">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="videosGrid"></div>
+    <div class="flex-1 overflow-y-auto p-6 space-y-6" id="viewport">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">戶外專項球類</span>
+        <span class="text-xs font-bold text-slate-400">手球專項</span>
+      </div>
+      <h3 class="text-base font-black text-white">手球三秒三步進攻與傳球基本動作教學</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">示範手球持球三秒限制、三步上籃起跳射門步法（左-右-左起跳）與單手肩上傳接球。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小手球三步上籃起跳射門教學" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">戶外專項球類</span>
+        <span class="text-xs font-bold text-slate-400">手球規則</span>
+      </div>
+      <h3 class="text-base font-black text-white">手球防守封阻步伐與犯規判罰規則</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">正面軀幹阻擋、雙臂張開封阻傳球角度，以及禁區6公尺線守門員專屬規則解說。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=手球防守步伐與裁判判罰規則" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">戶外專項球類</span>
+        <span class="text-xs font-bold text-slate-400">籃球專項</span>
+      </div>
+      <h3 class="text-base font-black text-white">國小籃球低手控球與變向運球教學</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">手指肉墊按壓控球、低手護球變向、前腳掌煞車與折返跑運球技巧。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小籃球基本運球與換手變向教學" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">戶外專項球類</span>
+        <span class="text-xs font-bold text-slate-400">足球專項</span>
+      </div>
+      <h3 class="text-base font-black text-white">足球腳內側推傳與踩球急停動作示範</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">支撐腳位置、足弓內側平推發力、腳底踩停球與安全緩衝技巧。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小足球腳內側傳球與腳底停球教學" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">戶外專項球類</span>
+        <span class="text-xs font-bold text-slate-400">樂樂棒球</span>
+      </div>
+      <h3 class="text-base font-black text-white">樂樂棒球水平揮棒打擊與安全跑壘示範</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">雙手虎口對齊握棒、重心轉移水平貫穿擊球、甩棒安全區與跑壘踩壘要領。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小樂樂棒球揮棒打擊與跑壘規則教學" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">田徑與民俗體育</span>
+        <span class="text-xs font-bold text-slate-400">田徑短跑</span>
+      </div>
+      <h3 class="text-base font-black text-white">短跑站立式起跑爆發力與擺臂步頻技巧</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">各就位預備軀幹前傾、前腳掌蹬地發力、雙臂前後擺動與終點直線減速。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小田徑短跑起跑與大隊接力交接棒教學" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">田徑與民俗體育</span>
+        <span class="text-xs font-bold text-slate-400">大隊接力</span>
+      </div>
+      <h3 class="text-base font-black text-white">大隊接力盲接棒傳接技術與助跑區加速</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">上挑式傳棒、接棒者手掌向下虎口張開、聽隊友口令盲接棒零失誤技巧。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=大隊接力交接棒技巧上挑式傳棒" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">田徑與民俗體育</span>
+        <span class="text-xs font-bold text-slate-400">拔河運動</span>
+      </div>
+      <h3 class="text-base font-black text-white">八人拔河運動重心後傾45度與同步蹬腿技巧</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">雙手掌心朝上握繩、軀幹後傾重心下沉、全隊一二煞同步蹬腿發力力學。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小拔河比賽姿勢與安全握繩教學" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">田徑與民俗體育</span>
+        <span class="text-xs font-bold text-slate-400">民俗踢毽</span>
+      </div>
+      <h3 class="text-base font-black text-white">民俗踢毽子內側盤踢與膝踢基礎教學</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">支撐腳微曲、踢球腳膝蓋外展用腳內側擊毽、連續不落地節奏控制。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小民俗體育踢毽子教學內側盤踢" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">田徑與民俗體育</span>
+        <span class="text-xs font-bold text-slate-400">跳繩教學</span>
+      </div>
+      <h3 class="text-base font-black text-white">國小個人跳繩與雙人團體大繩切入節奏</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">手肘貼身手腕搖繩、前腳掌著地避震、團體長繩依序切入跳躍與切出。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小跳繩基本動作與團體長繩教學" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">室內微空間體能</span>
+        <span class="text-xs font-bold text-slate-400">教室微體能</span>
+      </div>
+      <h3 class="text-base font-black text-white">【忍者無聲】課本登山者與水壺避震跳示範</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">普通教室內微型低噪音體能：大腿抬高碰課本、著地無聲避震跳與西卡紙滑雪。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=國小教室室內體育課活動設計" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">室內微空間體能</span>
+        <span class="text-xs font-bold text-slate-400">神經反應</span>
+      </div>
+      <h3 class="text-base font-black text-white">【特務神經】左右腦協調與史楚普抗干擾反射</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">黑板左手畫圓右手畫方、快手搶拍王、色字抗干擾大腦抑制控制訓練。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=兒童專注力與大腦反應訓練體育遊戲" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 rounded-3xl p-5 space-y-3 shadow-xl transition-all">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">室內微空間體能</span>
+        <span class="text-xs font-bold text-slate-400">團隊合作</span>
+      </div>
+      <h3 class="text-base font-black text-white">【機甲連動】人肉拉鍊與連鎖無影凳團隊合作</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">走道牽手傳遞外套、背靠背同時半蹲與同心協力起立，人數越多倍數越高。</p>
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+        <a href="https://www.youtube.com/results?search_query=班級破冰團隊合作體育遊戲活動" target="_blank" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i><span>觀看示範影片</span>
+        </a>
+        <span class="text-[11px] text-slate-500">課堂大螢幕投影可用</span>
+      </div>
+    </div>
+    
+      </div>
     </div>
   </main>
 
-  <!-- Video Playback Modal -->
-  <div id="videoModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div>
-          <span id="modalVideoBadge" class="text-xs font-black px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">手球專項</span>
-          <h3 id="modalVideoTitle" class="text-xl font-black text-white mt-1">影片標題</h3>
-        </div>
-        <button onclick="closeVideoModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center">✕</button>
-      </div>
-
-      <!-- Real Working Video Player Container -->
-      <div class="relative w-full aspect-video bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 flex items-center justify-center shadow-inner" id="videoPlayerContainer">
-        <!-- Live iframe or fallback will be inserted here -->
-      </div>
-
-      <!-- Key Coaching Cues & Error Fixes -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-        <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 space-y-1">
-          <div class="font-black text-amber-400 flex items-center gap-1.5"><i data-lucide="message-square" class="w-4 h-4"></i> 教師引導口訣 (Coaching Cues)：</div>
-          <p id="modalVideoCues" class="text-slate-200 leading-relaxed font-bold"></p>
-        </div>
-        <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 space-y-1">
-          <div class="font-black text-rose-400 flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-4 h-4"></i> 常見錯誤動作與即時修正：</div>
-          <p id="modalVideoErrors" class="text-slate-200 leading-relaxed"></p>
-        </div>
-      </div>
-
-      <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
-        <a id="modalExternalYoutubeLink" href="#" target="_blank" class="px-4 py-2 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 transition-all">
-          <i data-lucide="youtube" class="w-4 h-4"></i><span>在 YouTube 原站播放</span>
-        </a>
-        <button onclick="closeVideoModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl">關閉播放器</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    const videos = [
-      {
-        id: "v-handball-shoot",
-        cat: "專項球類",
-        title: "手球：三步上籃起跳射門與步伐拆解",
-        badge: "手球專項",
-        duration: "03:45",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "circle-dot",
-        color: "from-red-600 to-rose-700",
-        desc: "分解右撇子『左腳踏 ➔ 右腳跨 ➔ 左腳起跳射門』標準步伐，強調禁區外騰空出手與雙腳落地緩衝。",
-        cues: "拿球數三秒、最多走三步、左腳踩右腳跨起跳射門！",
-        errors: "衝刺射門踩入6米禁區違例 ➔ 線外單腳起跳，空中出手後再落地。"
-      },
-      {
-        id: "v-handball-pass",
-        cat: "專項球類",
-        title: "手球：單手肩上傳球與正面軀幹防守",
-        badge: "手球專項",
-        duration: "04:12",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "circle-dot",
-        color: "from-red-600 to-rose-700",
-        desc: "示範大臂抬平過肩、手腕壓指傳球，以及防守時利用正面軀幹與雙臂張開阻擋傳球路徑，嚴禁背後推拉。",
-        cues: "手肘抬平與肩同高、食指中指壓腕推送！",
-        errors: "手肘下沉推球力道不足 ➔ 手肘保持水平，利用軀幹旋轉連動發力。"
-      },
-      {
-        id: "v-basketball-dribble",
-        cat: "專項球類",
-        title: "籃球：低手護球變向運球與腳步煞車",
-        badge: "籃球專項",
-        duration: "03:30",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "circle",
-        color: "from-amber-600 to-orange-700",
-        desc: "低重心運球、非持球手側身護球，行進間變速換手與前腳掌煞車制動技巧。",
-        cues: "手指肉墊按壓球、眼睛看前方、換手壓低過膝蓋！",
-        errors: "手掌拍球啪啪響 ➔ 使用手指指腹彈性按壓，手心保持空出。"
-      },
-      {
-        id: "v-basketball-shoot",
-        cat: "專項球類",
-        title: "籃球：BEEF 定點投籃力學與出手壓腕",
-        badge: "籃球專項",
-        duration: "04:05",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "circle",
-        color: "from-amber-600 to-orange-700",
-        desc: "國小學童標準 BEEF 投籃原則（Balance 重心平衡、Eyes 雙眼盯框、Elbow 手肘成90度、Follow-through 出手壓腕跟進）。",
-        cues: "雙腳平行微屈膝、手肘垂直向上推、食指壓腕摘蘋果！",
-        errors: "雙手推鉛球式投籃 ➔ 單手托球發力，輔助手僅置於側邊扶球。"
-      },
-      {
-        id: "v-soccer-pass",
-        cat: "專項球類",
-        title: "足球：腳內側精準推傳與腳底踩停煞車",
-        badge: "足球專項",
-        duration: "03:15",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "shield",
-        color: "from-emerald-600 to-teal-700",
-        desc: "示範支撐腳站立於球側一拳寬，擺動腿腳踝鎖緊，足弓像推盤子般平穩推出，與腳底踩球煞車。",
-        cues: "支撐腳踩在球旁一拳寬、腳內側像推盤子平推！",
-        errors: "腳尖捅球易扭傷 ➔ 腳踝外展繃緊，用足弓內側平推。"
-      },
-      {
-        id: "v-teeball-hit",
-        cat: "專項球類",
-        title: "樂樂棒球：水平揮棒貫穿與安全跑壘",
-        badge: "樂樂棒球",
-        duration: "03:50",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "target",
-        color: "from-sky-600 to-blue-700",
-        desc: "握棒雙手虎口對齊、重心在後腳、轉腰帶動手臂水平揮擊，擊球後輕放球棒全力衝刺踩壘。",
-        cues: "雙手虎口對齊握棒、轉腰帶動手臂水平揮出！",
-        errors: "擊球後興奮甩棒 ➔ 嚴格規定甩棒直接判出局，必須輕放於安全圓圈內。"
-      },
-      {
-        id: "v-track-relay",
-        cat: "專項球類",
-        title: "田徑：站立式起跑爆發與上挑式盲接棒",
-        badge: "田徑接力",
-        duration: "04:30",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "zap",
-        color: "from-purple-600 to-indigo-700",
-        desc: "示範『各就位、預備、跑』前傾發力，接力區助跑加速與上挑式盲接棒手法（手掌向下虎口張開）。",
-        cues: "前腳掌蹬地大腿高抬、聽隊友喊『接』盲手向後伸！",
-        errors: "交接棒回頭望導致減速 ➔ 練習聽覺盲接口令，接棒者目視前方加速。"
-      },
-      {
-        id: "v-safety-shoelace",
-        cat: "常規與安全",
-        title: "運動安全第一課：鞋帶打雙結標準綁法示範",
-        badge: "安全常規",
-        duration: "02:15",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "shield-check",
-        color: "from-emerald-600 to-teal-700",
-        desc: "教導國小學童在標準蝴蝶結完成後，將兩個耳圈再交叉打一個活死結（雙結），保證課堂整整 40 分鐘劇烈奔跑絕不鬆脫踩踏。",
-        cues: "先打平結拉緊緊、打個耳朵繞一圈、雙耳再交叉拉緊變雙結！",
-        errors: "單結隨意塞進鞋內 ➔ 跑動中摩擦易脫出造成拌倒，必須確實打成雙結。"
-      },
-      {
-        id: "v-warmup-routine",
-        cat: "暖身與收操",
-        title: "課前 5 分鐘：動態神經熱身操與關節活化",
-        badge: "動態熱身",
-        duration: "05:00",
-        youtube_id: "dQw4w9WgXcQ",
-        icon: "activity",
-        color: "from-blue-600 to-indigo-700",
-        desc: "頸部旋轉、肩關節大風車、軀幹旋轉、弓箭步動態下壓、開合跳與高抬腿跑，全方位提升核心體溫與關節活動度。",
-        cues: "關節大動作繞環、肌肉由慢到快熱起來！",
-        errors: "靜態死拉肌肉 ➔ 課前應採動態伸展，避免肌肉過度放鬆降低爆發力。"
-      }
-    ];
-
     let audioCtx = null;
     function playWhistle(type) {
       try {
@@ -316,90 +351,12 @@
       } catch (e) {}
     }
 
-    function renderVideos(list) {
-      const container = document.getElementById('videosGrid');
-      if (!container) return;
-      container.innerHTML = '';
-      list.forEach(v => {
-        const card = document.createElement('div');
-        card.className = 'bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 rounded-3xl p-5 space-y-4 cursor-pointer transition-all shadow-xl flex flex-col justify-between group';
-        card.onclick = () => openVideoModal(v);
-
-        let catBadgeColor = 'bg-rose-500/20 text-rose-300 border-rose-500/30';
-        if (v.cat === '室內微體能') catBadgeColor = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
-        if (v.cat === '常規與安全') catBadgeColor = 'bg-amber-500/20 text-amber-300 border-amber-500/30';
-        if (v.cat === '暖身與收操') catBadgeColor = 'bg-blue-500/20 text-sky-300 border-blue-500/30';
-
-        card.innerHTML = `
-          <div class="space-y-3">
-            <div class="relative w-full aspect-video rounded-2xl bg-gradient-to-tr ${v.color} flex items-center justify-center overflow-hidden shadow-lg border border-slate-700/50 group-hover:scale-[1.02] transition-transform">
-              <div class="w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
-                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
-              </div>
-              <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/80 text-[10px] font-mono text-slate-300">${v.duration}</span>
-              <span class="absolute top-2 left-2 text-[11px] font-black px-2 py-0.5 rounded-full border ${catBadgeColor}">${v.badge}</span>
-            </div>
-            <h3 class="text-sm font-black text-white group-hover:text-rose-400 transition-colors">${v.title}</h3>
-            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${v.desc}</p>
-          </div>
-
-          <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-rose-400">
-            <span>口訣：${v.cues.split('、')[0]}...</span>
-            <span>點擊播放 ➔</span>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-      lucide.createIcons();
+    function toggleGlobalFullscreen() {
+      if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); }
+      else { document.exitFullscreen().catch(() => {}); }
     }
 
-    function filterVideos() {
-      const query = document.getElementById('videoSearch').value.toLowerCase().trim();
-      const cat = document.getElementById('videoCatFilter').value;
-      const filtered = videos.filter(v => {
-        const matchCat = (cat === 'all' || v.cat === cat);
-        const matchQuery = (!query || v.title.toLowerCase().includes(query) || v.cues.toLowerCase().includes(query) || v.desc.toLowerCase().includes(query) || v.badge.toLowerCase().includes(query));
-        return matchCat && matchQuery;
-      });
-      renderVideos(filtered);
-    }
-
-    function openVideoModal(v) {
-      document.getElementById('modalVideoBadge').textContent = v.badge;
-      document.getElementById('modalVideoTitle').textContent = v.title;
-      document.getElementById('modalVideoCues').textContent = v.cues;
-      document.getElementById('modalVideoErrors').textContent = v.errors;
-      document.getElementById('modalExternalYoutubeLink').href = `https://www.youtube.com/results?search_query=${encodeURIComponent('國小體育 ' + v.title)}`;
-
-      const playerBox = document.getElementById('videoPlayerContainer');
-      playerBox.innerHTML = `
-        <div class="w-full h-full bg-slate-950 flex flex-col items-center justify-center p-6 text-center space-y-4">
-          <div class="w-16 h-16 rounded-full bg-rose-600/20 text-rose-400 flex items-center justify-center border border-rose-500/30">
-            <i data-lucide="video" class="w-8 h-8"></i>
-          </div>
-          <div>
-            <h4 class="text-base font-black text-white">${v.title}</h4>
-            <p class="text-xs text-slate-400 max-w-md mx-auto mt-1">${v.desc}</p>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent('國小體育 ' + v.title)}" target="_blank" class="px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white font-black text-xs rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 transition-all">
-              <i data-lucide="play" class="w-4 h-4 fill-current"></i><span>在 YouTube 立即播放完整示範</span>
-            </a>
-          </div>
-        </div>
-      `;
-
-      document.getElementById('videoModal').classList.remove('hidden');
-      lucide.createIcons();
-    }
-
-    function closeVideoModal() {
-      document.getElementById('videoModal').classList.add('hidden');
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      renderVideos(videos);
-    });
+    window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
   </script>
 </body>
 </html>
