@@ -3,318 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>今日排課中樞 (固定4大活動 • 分年級載入) • 全能體育王</title>
+  <title>今日排課中樞 • 全能體育王 (六段式實戰版)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
-    * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
-    body { font-family: 'Noto Sans TC', sans-serif; background-color: #080c14; color: #f8fafc; overflow: hidden; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; color: #0f172a; overflow: hidden; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
 <body class="flex h-screen overflow-hidden">
   
-  <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 no-print z-30">
+  <!-- Modern Crisp Light Sidebar -->
+  <aside class="w-68 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 no-print z-30 shadow-sm">
     <div>
-      <a href="index.html" class="p-5 border-b border-slate-800 flex items-center gap-3 block hover:bg-slate-800/50 transition-colors">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+      <a href="index.html" class="p-6 border-b border-slate-100 flex items-center gap-3.5 block hover:bg-slate-50 transition-colors">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
           <i data-lucide="trophy" class="w-6 h-6"></i>
         </div>
         <div>
-          <h1 class="font-black text-lg text-white tracking-wide">全能體育王</h1>
-          <p class="text-xs font-bold text-sky-400">模組化教學平台</p>
+          <h1 class="font-black text-slate-900 text-lg tracking-tight leading-tight">全能體育王</h1>
+          <p class="text-xs font-bold text-blue-600">智慧教學 ＆ 實戰備課</p>
         </div>
       </a>
 
-      <nav class="p-2.5 space-y-1 overflow-y-auto max-h-[calc(100vh-230px)]">
+      <nav class="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-230px)]">
     
-        <a href="index.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all bg-blue-600/20 text-sky-300 border-l-4 border-blue-500 font-black shadow-inner">
+        <a href="index.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all bg-blue-50 text-blue-700 font-black border-r-4 border-blue-600 shadow-sm">
           <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
           <span>📋 今日排課中樞</span>
         </a>
         
-        <a href="games-4team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="games-4team.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="flame" class="w-4 h-4"></i>
-          <span>🐉 4組神獸爭霸 (遊戲)</span>
+          <span>🐉 4組神獸爭霸 (大螢幕)</span>
         </a>
         
-        <a href="games-2team.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="games-2team.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="swords" class="w-4 h-4"></i>
-          <span>⚔️ 2組雙塔攻防 (遊戲)</span>
+          <span>⚔️ 2組雙塔拔河 (大螢幕)</span>
         </a>
         
-        <a href="games-quiz.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="games-quiz.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="help-circle" class="w-4 h-4"></i>
-          <span>🎲 大螢幕出題機 (遊戲)</span>
+          <span>🎲 大螢幕隨機出題機</span>
         </a>
         
-        <a href="lesson-wizard.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="lesson-wizard.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="wand-2" class="w-4 h-4"></i>
-          <span>⚡ 1分鐘備課精靈</span>
+          <span>⚡ 1分鐘六段式備課精靈</span>
         </a>
         
-        <a href="outdoor-sports.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="outdoor-sports.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="sun" class="w-4 h-4"></i>
-          <span>☀️ 戶外專項運動</span>
+          <span>☀️ 7大戶外專項與影片</span>
         </a>
         
-        <a href="indoor-activities.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="indoor-activities.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="cloud-rain" class="w-4 h-4"></i>
-          <span>🌧️ 室內微型活動 (68項)</span>
+          <span>🌧️ 68項室內微型活動</span>
         </a>
         
-        <a href="curriculum-40w.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="curriculum-40w.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="calendar-range" class="w-4 h-4"></i>
-          <span>📅 40週課程地圖</span>
+          <span>📅 40週全學年課程地圖</span>
         </a>
         
-        <a href="question-bank.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="question-bank.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="book-open" class="w-4 h-4"></i>
-          <span>❓ 100題題庫</span>
+          <span>❓ 100題跨領域題庫</span>
         </a>
         
-        <a href="parent-notice.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="parent-notice.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="mail" class="w-4 h-4"></i>
           <span>💌 親師通訊產生器</span>
         </a>
         
-        <a href="resources.html" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border-l-4 border-transparent font-bold">
+        <a href="resources.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-bold">
           <i data-lucide="folder-git-2" class="w-4 h-4"></i>
-          <span>📂 雲端資源直達</span>
+          <span>📂 雲端資源直達中心</span>
         </a>
         
       </nav>
     </div>
 
-    <div class="p-3.5 border-t border-slate-800 bg-slate-950/70 space-y-2">
-      <div class="flex items-center justify-between text-xs font-bold text-slate-400">
-        <span class="flex items-center gap-1.5"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-sky-400"></i> 電子哨音盤</span>
+    <!-- Quick Whistle Soundboard -->
+    <div class="p-4 border-t border-slate-100 bg-slate-50/80 space-y-2.5">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+        <span class="flex items-center gap-1.5"><i data-lucide="volume-2" class="w-4 h-4 text-blue-600"></i> 課堂電子哨音盤</span>
       </div>
-      <div class="grid grid-cols-3 gap-1.5">
-        <button onclick="playWhistle('short')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-slate-200 border border-slate-700 active:scale-95 transition-all">短哨嗶</button>
-        <button onclick="playWhistle('double')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-amber-300 border border-slate-700 active:scale-95 transition-all">雙哨嗶嗶</button>
-        <button onclick="playWhistle('long')" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-[11px] font-black rounded-lg text-rose-300 border border-slate-700 active:scale-95 transition-all">長哨嗶—</button>
+      <div class="grid grid-cols-3 gap-2">
+        <button onclick="playWhistle('short')" class="py-2 px-1 bg-white hover:bg-slate-100 text-xs font-black rounded-xl text-slate-800 border border-slate-200 shadow-sm active:scale-95 transition-all">短哨嗶</button>
+        <button onclick="playWhistle('double')" class="py-2 px-1 bg-white hover:bg-slate-100 text-xs font-black rounded-xl text-amber-600 border border-slate-200 shadow-sm active:scale-95 transition-all">雙哨嗶嗶</button>
+        <button onclick="playWhistle('long')" class="py-2 px-1 bg-white hover:bg-slate-100 text-xs font-black rounded-xl text-rose-600 border border-slate-200 shadow-sm active:scale-95 transition-all">長哨嗶—</button>
       </div>
     </div>
   </aside>
     
 
-  <!-- Main Content Area -->
-  <main class="flex-1 flex flex-col overflow-hidden bg-slate-950">
-    <header class="h-16 border-b border-slate-800 bg-slate-900/60 backdrop-blur px-8 flex items-center justify-between no-print z-20">
-      <div class="flex items-center gap-3">
-        <span class="text-xs font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20">LIVE 課程規劃檔案載入中樞</span>
-        <h2 class="text-lg font-black text-white" id="headerTitle">115 學年度 體育教學實戰日報</h2>
+  <main class="flex-1 flex flex-col overflow-hidden bg-slate-50">
+    <!-- Header -->
+    <header class="h-18 border-b border-slate-200 bg-white px-8 flex items-center justify-between no-print z-20 shadow-sm">
+      <div class="flex items-center gap-3.5">
+        <span class="text-xs font-black uppercase tracking-wider bg-blue-50 text-blue-700 px-3.5 py-1.5 rounded-full border border-blue-200">LIVE 實戰排課中樞</span>
+        <h2 class="text-xl font-black text-slate-900">115 學年度 第 1 週 • 今日分年級實戰教學日報</h2>
       </div>
       <div class="flex items-center gap-3">
-        <!-- Week Selector (Loads from weekly plan files) -->
-        <label class="flex items-center gap-1.5 text-xs font-bold text-slate-300">
-          <span>切換課程週次：</span>
-          <select id="weekSelector" onchange="onWeekChange()" class="bg-slate-800 border border-slate-700 text-sky-300 font-bold rounded-lg px-2.5 py-1 outline-none"></select>
-        </label>
-        <button onclick="toggleGlobalFullscreen()" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-300 rounded-lg border border-slate-700 transition-all">
-          <i data-lucide="maximize" class="w-3.5 h-3.5"></i><span>全螢幕</span>
+        <button onclick="toggleGlobalFullscreen()" class="flex items-center gap-1.5 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-sm font-bold text-slate-700 rounded-xl border border-slate-200 transition-all shadow-sm">
+          <i data-lucide="maximize" class="w-4 h-4"></i><span>全螢幕</span>
         </button>
-        <a href="https://drive.google.com/drive/folders/1FfG-KOSFRfwmlbuZkrzASv3rIK-5uZHx" target="_blank" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-xs font-bold text-sky-300 border border-blue-500/30 transition-all">
-          <i data-lucide="folder" class="w-3.5 h-3.5"></i><span>專案資料夾</span>
+        <a href="https://drive.google.com/drive/folders/1FfG-KOSFRfwmlbuZkrzASv3rIK-5uZHx" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-sm font-bold text-white shadow-md shadow-blue-500/20 transition-all">
+          <i data-lucide="folder" class="w-4 h-4"></i><span>Google Drive 資料夾</span>
         </a>
       </div>
     </header>
 
-    <div class="flex-1 overflow-y-auto p-6 space-y-6" id="viewport">
-      <!-- Top Weather & Environment Banner -->
-      <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 border border-slate-800 p-5 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
-        <div class="space-y-1">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-black text-xs">🌤️ 桃園市八德區氣象判定</span>
-            <span class="text-xs text-amber-300 font-bold" id="currentWeekBadge">當前載入：上學期 第 1 週 課程教學活動規劃</span>
+    <div class="flex-1 overflow-y-auto p-8 space-y-8" id="viewport">
+      <!-- Weather & Environment Card -->
+      <div class="bg-white border border-slate-200 p-6 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm">
+        <div class="space-y-1.5">
+          <div class="flex items-center gap-2.5">
+            <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-black text-xs border border-blue-200">🌤️ 桃園市八德區氣象判定</span>
+            <span class="text-sm text-slate-500 font-bold">2026-08-27 (星期四) • 全日 5 節課</span>
           </div>
-          <p class="text-xs text-slate-300">多雲時晴，氣溫 26°C ~ 33°C，降雨機率 10%，紫外線指數高。操場外圈跑道（若遇高溫頂光依備案移至風雨穿堂）。</p>
+          <p class="text-sm text-slate-700 font-medium">多雲時晴，氣溫 26°C ~ 33°C，降雨機率 10%，紫外線指數 8 (過量級)。上午操場外圈跑道；下午視地表熱度移至風雨穿堂或背光陰涼處實施。</p>
         </div>
-        <div class="flex items-center gap-2">
-          <a href="games-4team.html" class="px-4 py-2 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-black text-xs rounded-xl shadow-lg shadow-rose-500/20 flex items-center gap-1.5 active:scale-95 transition-all">
-            <i data-lucide="flame" class="w-4 h-4"></i><span>4組神獸對決</span>
+        <div class="flex items-center gap-3 shrink-0">
+          <a href="games-4team.html" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-black text-sm rounded-2xl shadow-md shadow-rose-500/20 flex items-center gap-2 active:scale-95 transition-all">
+            <i data-lucide="flame" class="w-4 h-4"></i><span>開啟 4組神獸爭霸</span>
           </a>
-          <a href="games-2team.html" class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5 active:scale-95 transition-all">
-            <i data-lucide="swords" class="w-4 h-4"></i><span>2組雙塔攻防</span>
+          <a href="games-2team.html" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm rounded-2xl shadow-md shadow-amber-500/20 flex items-center gap-2 active:scale-95 transition-all">
+            <i data-lucide="swords" class="w-4 h-4"></i><span>開啟 2組雙塔拔河</span>
           </a>
         </div>
       </div>
 
-      <!-- Main Section: Two Distinguished Grade-Level Plans (Fixed 4 Activities Each) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        <!-- GRADE 2 CONTAINER (4 FIXED ACTIVITIES) -->
-        <div class="bg-slate-900/90 border-2 border-sky-500/40 rounded-3xl p-6 space-y-4 shadow-2xl">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-2 font-black text-white text-base">
-              <span class="w-8 h-8 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-sm">2</span>
-              <span>🧒 【二年級（低年級）4 大固定教學活動】</span>
+      <!-- 2-Column Core Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left 7/12: Differentiated 6-Stage Lesson Plans -->
+        <div class="lg:col-span-7 space-y-8">
+          
+          <!-- Grade 2 Plan (Morning) -->
+          <div class="bg-white border-2 border-emerald-500/30 rounded-3xl p-7 space-y-6 shadow-md">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-black text-xs border border-emerald-200">上午 3 節 • 低年級專屬</span>
+                <h3 class="text-xl font-black text-slate-900 mt-1.5">🧒 二年級：【小飛機與小貓咪 • 身體空間感知與趣味走跑走停】</h3>
+              </div>
+              <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-xl">授課班級：209, 207, 201</span>
             </div>
-            <span class="text-xs text-sky-300 font-bold">班級：201, 207, 209</span>
+
+            <div class="p-4 bg-emerald-50/60 rounded-2xl border border-emerald-100 text-sm text-emerald-950 font-medium">
+              <strong>🗣️ 教學引導口訣：</strong>『跑時像小飛機張開翅膀，停下像小貓咪腳步輕輕，膝蓋彎彎不跌倒！』
+            </div>
+
+            <!-- 6 Stages for Grade 2 -->
+            <div class="space-y-3">
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-blue-700">
+                  <span>【階段 1 • 00~05分】常規安檢與特務集結</span>
+                  <span class="bg-blue-100 px-2 py-0.5 rounded text-blue-800">常規</span>
+                </div>
+                <p class="text-sm text-slate-700">四列橫隊，教導「前後一手臂、左右一拳頭」排面間距，同儕互檢鞋帶是否確實綁成「雙結」。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-emerald-700">
+                  <span>【階段 2 • 05~12分】小動物動態暖身與紅綠燈反應</span>
+                  <span class="bg-emerald-100 px-2 py-0.5 rounded text-emerald-800">熱身</span>
+                </div>
+                <p class="text-sm text-slate-700">長頸鹿抬頭、老鷹拍翅、袋鼠跳躍。紅綠燈遊戲：喊「綠燈」慢跑、「紅燈」立即定格單腳站立 3 秒。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-amber-700">
+                  <span>【階段 3 • 12~20分】小飛機走跑急停制動分解操練</span>
+                  <span class="bg-amber-100 px-2 py-0.5 rounded text-amber-800">技能操練</span>
+                </div>
+                <p class="text-sm text-slate-700">分成 4 排縱隊，慢跑至 8 公尺角標聽哨音「嗶！」急停下蹲，膝蓋微彎吸收衝力，單腳站立 2 秒。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-indigo-700">
+                  <span>【階段 4 • 20~28分】進階同儕雙人同步走停練習</span>
+                  <span class="bg-indigo-100 px-2 py-0.5 rounded text-indigo-800">同儕合作</span>
+                </div>
+                <p class="text-sm text-slate-700">兩人一組牽手慢跑，聽哨音同時煞車急停且保持不鬆手，訓練雙人節奏感知與空間避障。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-purple-700">
+                  <span>【階段 5 • 28~35分】大螢幕應用挑戰：小動物森林歸巢戰</span>
+                  <span class="bg-purple-100 px-2 py-0.5 rounded text-purple-800">大螢幕對決</span>
+                </div>
+                <p class="text-sm text-slate-700">中央自由模仿動物 ➔ 老師喊「天黑回家」衝回四色小窩全員蹲下閉嘴巴 ➔ 獲勝組拍擊大螢幕神獸進化！</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-rose-700">
+                  <span>【階段 6 • 35~40分】身心緩和、常規提問與下課禮儀</span>
+                  <span class="bg-rose-100 px-2 py-0.5 rounded text-rose-800">緩和收操</span>
+                </div>
+                <p class="text-sm text-slate-700">深呼吸手臂伸展、抽問「運動前鞋帶要打什麼結？」、公差清點歸還角標、向老師行禮下課。</p>
+              </div>
+            </div>
           </div>
 
-          <div class="text-xs font-bold text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20" id="g2ThemeTitle">
-            單元：第1週 • 始業準備與常規建立 (二年級趣味感知版)
+          <!-- Grade 3 Plan (Afternoon) -->
+          <div class="bg-white border-2 border-blue-500/30 rounded-3xl p-7 space-y-6 shadow-md">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-black text-xs border border-blue-200">下午 2 節 • 中年級專屬</span>
+                <h3 class="text-xl font-black text-slate-900 mt-1.5">👦 三年級：【敏捷制動與 15 米折返衝刺 • 四大陣地突擊戰】</h3>
+              </div>
+              <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-xl">授課班級：304, 306</span>
+            </div>
+
+            <div class="p-4 bg-blue-50/60 rounded-2xl border border-blue-100 text-sm text-blue-950 font-medium">
+              <strong>🗣️ 教學引導口訣：</strong>『快跑前傾、急停降重心、腳尖著地當彈簧！』
+            </div>
+
+            <!-- 6 Stages for Grade 3 -->
+            <div class="space-y-3">
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-blue-700">
+                  <span>【階段 1 • 00~05分】常規安檢與隊長集合</span>
+                  <span class="bg-blue-100 px-2 py-0.5 rounded text-blue-800">常規</span>
+                </div>
+                <p class="text-sm text-slate-700">四列橫隊快速對齊，落實「鞋帶雙結 ＆ 口袋掏空」安檢，確認身體健康狀態。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-emerald-700">
+                  <span>【階段 2 • 05~12分】哨音密碼動態神經熱身</span>
+                  <span class="bg-emerald-100 px-2 py-0.5 rounded text-emerald-800">熱身</span>
+                </div>
+                <p class="text-sm text-slate-700">慢跑聽哨音：短哨1聲(單腳站立閉鏈平衡3秒)、短哨2聲(3秒內4人抱團)、長哨1聲(高抬腿衝刺)。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-amber-700">
+                  <span>【階段 3 • 12~20分】15 米折返衝刺與前腳掌煞車操練</span>
+                  <span class="bg-amber-100 px-2 py-0.5 rounded text-amber-800">技能操練</span>
+                </div>
+                <p class="text-sm text-slate-700">4 排排頭全力衝刺 15 米折返角標，手觸角標頂部，練習低重心前腳掌側推變向，直線減速回隊擊掌。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-indigo-700">
+                  <span>【階段 4 • 20~28分】多向障礙穿梭與連動接力</span>
+                  <span class="bg-indigo-100 px-2 py-0.5 rounded text-indigo-800">進階演練</span>
+                </div>
+                <p class="text-sm text-slate-700">設置 S 型角標障礙，分組進行連續變向敏捷穿梭，回程直線衝刺並保持安全煞車線。</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-purple-700">
+                  <span>【階段 5 • 28~35分】大螢幕數位競技：四大陣地敏捷突擊戰</span>
+                  <span class="bg-purple-100 px-2 py-0.5 rounded text-purple-800">大螢幕對決</span>
+                </div>
+                <p class="text-sm text-slate-700">中央開合跳蓄能 ➔ 突發「交換陣地」指令 5 秒衝入陣地全員牽手蹲下 ➔ 拍擊大螢幕發射重砲或注入神獸能量！</p>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-1">
+                <div class="flex items-center justify-between text-xs font-black text-rose-700">
+                  <span>【階段 6 • 35~40分】下肢伸展放鬆、提問檢核與下課</span>
+                  <span class="bg-rose-100 px-2 py-0.5 rounded text-rose-800">緩和收操</span>
+                </div>
+                <p class="text-sm text-slate-700">大腿股四頭肌與小腿腓腸肌靜態伸展、抽問「衝刺過終點線如何安全減速？」、宣布表現優異組、下課禮儀。</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Fixed 4 Activities for Grade 2 -->
-          <div class="space-y-3" id="g2ActivitiesBox">
-            <!-- Act 1 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-sky-300" id="g2-act1-time">【00~08分】活動 1：準備活動（排面集合與動態暖身）</span>
-                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">準備 (8分)</span>
-              </div>
-              <p class="text-slate-300 leading-relaxed" id="g2-act1-desc">四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。</p>
-            </div>
-
-            <!-- Act 2 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-emerald-300" id="g2-act2-time">【08~20分】活動 2：主要活動一（基礎動作探索與口訣）</span>
-                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">主要一 (12分)</span>
-              </div>
-              <p class="text-slate-300 leading-relaxed" id="g2-act2-desc">教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。</p>
-            </div>
-
-            <!-- Act 3 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-amber-300" id="g2-act3-time">【20~32分】活動 3：主要活動二（趣味應用挑戰與分組競賽）</span>
-                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">主要二 (12分)</span>
-              </div>
-              <p class="text-slate-300 leading-relaxed" id="g2-act3-desc">以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。</p>
-            </div>
-
-            <!-- Act 4 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-rose-300" id="g2-act4-time">【32~40分】活動 4：綜合與緩和（伸展放鬆與常規檢核）</span>
-                <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold">綜合 (8分)</span>
-              </div>
-              <p class="text-slate-300 leading-relaxed" id="g2-act4-desc">深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。</p>
-            </div>
-          </div>
         </div>
 
-        <!-- GRADE 3 CONTAINER (4 FIXED ACTIVITIES) -->
-        <div class="bg-slate-900/90 border-2 border-indigo-500/40 rounded-3xl p-6 space-y-4 shadow-2xl">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-2 font-black text-white text-base">
-              <span class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-sm">3</span>
-              <span>👦 【三年級（中年級）4 大固定教學活動】</span>
-            </div>
-            <span class="text-xs text-indigo-300 font-bold">班級：302~308</span>
-          </div>
-
-          <div class="text-xs font-bold text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20" id="g3ThemeTitle">
-            單元：第1週 • 始業準備與常規建立 (三年級敏捷對抗版)
-          </div>
-
-          <!-- Fixed 4 Activities for Grade 3 -->
-          <div class="space-y-3" id="g3ActivitiesBox">
-            <!-- Act 1 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-sky-300" id="g3-act1-time">【00~08分】活動 1：準備活動（特務安檢與哨音神經熱身）</span>
-                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">準備 (8分)</span>
+        <!-- Right 5/12: Post-Class Reflection & Weekly Score Tracker -->
+        <div class="lg:col-span-5 space-y-8">
+          <!-- Post-Class Reflection Card -->
+          <div class="bg-white border-2 border-emerald-500/40 rounded-3xl p-7 space-y-5 shadow-md">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div class="flex items-center gap-2.5 font-black text-slate-900 text-lg">
+                <i data-lucide="edit-3" class="w-5 h-5 text-emerald-600"></i>
+                <span>課後教學反思 (自動本地存檔)</span>
               </div>
-              <p class="text-slate-300 leading-relaxed" id="g3-act1-desc">四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。</p>
+              <span class="text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">LocalStorage</span>
             </div>
 
-            <!-- Act 2 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-emerald-300" id="g3-act2-time">【08~20分】活動 2：主要活動一（專項技能分解與力學要領）</span>
-                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">主要一 (12分)</span>
+            <div class="space-y-4 text-sm">
+              <div>
+                <label class="font-black text-slate-700 block mb-1.5">🌟 今日課堂亮點 / 學生表現：</label>
+                <textarea id="refHighlight" rows="2" oninput="saveReflectionToStorage()" placeholder="例：201班鞋帶全員打雙結；304班15米折返煞車動作標準..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-sm text-slate-800 outline-none focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition-all"></textarea>
               </div>
-              <p class="text-slate-300 leading-relaxed" id="g3-act2-desc">教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。</p>
-            </div>
 
-            <!-- Act 3 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-amber-300" id="g3-act3-time">【20~32分】活動 3：主要活動二（戰術對抗競賽與大螢幕計分）</span>
-                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">主要二 (12分)</span>
+              <div>
+                <label class="font-black text-slate-700 block mb-1.5">⚠️ 發現之教學卡點 / 動作困難：</label>
+                <textarea id="refBottleneck" rows="2" oninput="saveReflectionToStorage()" placeholder="例：低年級少數學生急停時雙腳打直；午後氣溫偏高需增加補水..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-sm text-slate-800 outline-none focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition-all"></textarea>
               </div>
-              <p class="text-slate-300 leading-relaxed" id="g3-act3-desc">分組進行攻防對抗與團隊連動挑戰，結合大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。</p>
-            </div>
 
-            <!-- Act 4 -->
-            <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-rose-300" id="g3-act4-time">【32~40分】活動 4：綜合與緩和（靜態拉筋放鬆與學科提問）</span>
-                <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold">綜合 (8分)</span>
+              <div>
+                <label class="font-black text-slate-700 block mb-1.5">💡 教學者調整建議 / 下次改進：</label>
+                <textarea id="refSuggestion" rows="2" oninput="saveReflectionToStorage()" placeholder="例：下次在角標前 1 米劃設白色煞車線；增加雙人互助時間..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-sm text-slate-800 outline-none focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition-all"></textarea>
               </div>
-              <p class="text-slate-300 leading-relaxed" id="g3-act4-desc">大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Bottom: Post-Class Reflection & Weekly Score Checklist -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-7 bg-slate-900/90 border border-emerald-500/40 rounded-3xl p-6 space-y-4 shadow-xl">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-2 font-black text-white text-base">
-              <i data-lucide="edit-3" class="w-5 h-5 text-emerald-400"></i>
-              <span>課後教學反思與建議 (自動本地儲存)</span>
-            </div>
-            <span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">LocalStorage</span>
-          </div>
-
-          <div class="space-y-3 text-xs">
-            <div>
-              <label class="font-bold text-slate-300 block mb-1">🌟 今日課堂亮點 / 學生表現：</label>
-              <textarea id="refHighlight" rows="2" oninput="saveReflectionToStorage()" placeholder="例：201班集合安檢快速；306班折返跑減速確實..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500"></textarea>
-            </div>
-
-            <div>
-              <label class="font-bold text-slate-300 block mb-1">⚠️ 發現之教學卡點 / 動作困難：</label>
-              <textarea id="refBottleneck" rows="2" oninput="saveReflectionToStorage()" placeholder="例：部分低年級學生急停雙腳未屈膝緩衝..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500"></textarea>
-            </div>
-
-            <div>
-              <label class="font-bold text-slate-300 block mb-1">💡 教學者調整建議 / 下次改進：</label>
-              <textarea id="refSuggestion" rows="2" oninput="saveReflectionToStorage()" placeholder="例：增加地面煞車線標誌；下週增加慢速折返練習..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500"></textarea>
-            </div>
-
-            <div class="pt-2">
-              <button onclick="copyFullReflectionDoc()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all">
+              <button onclick="copyFullReflectionDoc()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm rounded-2xl flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 active:scale-95 transition-all">
                 <i data-lucide="copy" class="w-4 h-4"></i>
                 <span>📋 複製完整日報與反思文字</span>
               </button>
             </div>
           </div>
-        </div>
 
-        <div class="lg:col-span-5 bg-slate-900/90 border border-amber-500/40 rounded-3xl p-6 space-y-4 shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <span class="text-xs font-black text-amber-300 flex items-center gap-1.5"><i data-lucide="bell" class="w-4 h-4"></i> 本週 10 班成績登錄防呆檢核</span>
-              <a href="https://docs.google.com/spreadsheets/d/17VsLWuAJp8BybO5LNRGpXr8hjMPqJZUhgHCafxBl-gE/edit" target="_blank" class="text-[11px] text-amber-400 hover:underline">開啟試算表</a>
+          <!-- Weekly Score Tracker -->
+          <div class="bg-white border-2 border-amber-500/40 rounded-3xl p-7 space-y-4 shadow-md">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <span class="text-sm font-black text-amber-900 flex items-center gap-2"><i data-lucide="bell" class="w-5 h-5 text-amber-600"></i> 本週 10 班成績登錄防呆檢核</span>
+              <a href="https://docs.google.com/spreadsheets/d/17VsLWuAJp8BybO5LNRGpXr8hjMPqJZUhgHCafxBl-gE/edit" target="_blank" class="text-xs font-bold text-amber-700 hover:underline">開啟試算表</a>
             </div>
-            <p class="text-[11px] text-slate-400 mt-2 mb-3">課後點擊標記已登錄分數之班級，系統將於週五自動檢視遺漏：</p>
-            <div class="grid grid-cols-5 gap-2" id="scoreChecklist"></div>
+            <p class="text-xs text-slate-500 font-medium">點擊下方按鈕可標記當週各班成績填寫狀態（自動存於瀏覽器）：</p>
+            <div class="grid grid-cols-5 gap-2.5" id="scoreChecklist"></div>
           </div>
 
-          <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs text-slate-300">
-            <span class="font-bold text-sky-400">💡 雲端文件歸檔備查：</span>
-            <p class="mt-1">每日日報皆已同步存入 <a href="https://drive.google.com/drive/folders/1EYPCeqL4qURqKmn0z4xaSaysuqHQgeY0" target="_blank" class="text-emerald-400 underline">每日教學資源資料夾</a> 中。</p>
+          <!-- Today's 5 Questions -->
+          <div class="bg-white border border-slate-200 rounded-3xl p-7 space-y-4 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <span class="text-sm font-black text-slate-900 flex items-center gap-2"><i data-lucide="help-circle" class="w-5 h-5 text-purple-600"></i> 今日 5 題跨領域提問庫</span>
+              <a href="games-quiz.html" class="text-xs font-bold text-purple-600 hover:underline">🎲 進入大螢幕出題機</a>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center justify-between">
+                <span class="text-slate-800 font-medium">1. 體育課運動前，鞋帶應該怎麼綁最安全？</span>
+                <span class="text-emerald-700 font-bold ml-2 shrink-0">打雙結 ✅</span>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center justify-between">
+                <span class="text-slate-800 font-medium">2. 跑步衝刺過終點線時，正確的做法是什麼？</span>
+                <span class="text-emerald-700 font-bold ml-2 shrink-0">直線減速慢跑 ✅</span>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center justify-between">
+                <span class="text-slate-800 font-medium">3. 運動後身體會流汗，最主要的功用是什麼？</span>
+                <span class="text-emerald-700 font-bold ml-2 shrink-0">幫助身體散熱降溫 ✅</span>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center justify-between">
+                <span class="text-slate-800 font-medium">4. 全班分成4個小組，每組有7人，全班共幾人？</span>
+                <span class="text-emerald-700 font-bold ml-2 shrink-0">28人 ✅</span>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center justify-between">
+                <span class="text-slate-800 font-medium">5. 形容全班動作整齊、步伐一致的成語是？</span>
+                <span class="text-emerald-700 font-bold ml-2 shrink-0">整齊劃一 ✅</span>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
   </main>
 
   <script>
-    const weeklyPlans = [{"week": 1, "raw": {"w": "上學期 第1週", "theme": "始業準備與常規建立", "out": "隊形排列、基本走跑與安全教育", "in_act": "座位熱身(活動1)、手指體操(活動7)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-A1 身體覺察與課堂秩序", "eval": "常規自律與鞋帶雙結檢核"}, "g2": {"theme": "第1週 • 始業準備與常規建立 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】隊形排列", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】座位熱身 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第1週 • 始業準備與常規建立 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】隊形排列、基本走跑與安全教育", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】座位熱身(活動1)、手指體操(活動7)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (神獸進化模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 2, "raw": {"w": "上學期 第2週", "theme": "敏捷反應與抗干擾訓練", "out": "折返跑與聽覺口令變向", "in_act": "反向神經傳導(活動13)、座位反應(活動10)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-A2 神經反射與抑制控制", "eval": "小組反應速度與得分統計"}, "g2": {"theme": "第2週 • 敏捷反應與抗干擾訓練 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】折返跑與聽覺口令變向", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】反向神經傳導 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第2週 • 敏捷反應與抗干擾訓練 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】折返跑與聽覺口令變向", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】反向神經傳導(活動13)、座位反應(活動10)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (史楚普紅綠燈模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 3, "raw": {"w": "上學期 第3週", "theme": "下肢肌力與跳躍平衡", "out": "單腳跳套圈三關闖關(戶外01)", "in_act": "水壺避震器(活動12)、課本夾夾樂(活動15)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-B1 下肢爆發力與平衡感", "eval": "跳躍次數與動作穩定度"}, "g2": {"theme": "第3週 • 下肢肌力與跳躍平衡 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】單腳跳套圈三關闖關(戶外01)", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】水壺避震器 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第3週 • 下肢肌力與跳躍平衡 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】單腳跳套圈三關闖關(戶外01)", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】水壺避震器(活動12)、課本夾夾樂(活動15)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (火箭升空模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 4, "raw": {"w": "上學期 第4週", "theme": "手眼協調與精細瞄準", "out": "樂樂棒球定點投準(戶外03)", "in_act": "筆筒投籃賽(活動16)、紙球擊標(活動28)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-C1 非慣用手與拋物線力道", "eval": "投擲命中率積分"}, "g2": {"theme": "第4週 • 手眼協調與精細瞄準 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】樂樂棒球定點投準(戶外03)", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】筆筒投籃賽 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第4週 • 手眼協調與精細瞄準 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】樂樂棒球定點投準(戶外03)", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】筆筒投籃賽(活動16)、紙球擊標(活動28)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (碎石奪寶模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 5, "raw": {"w": "上學期 第5週", "theme": "肺活量強化與核心支撐", "out": "耐力慢跑與深長呼吸調節", "in_act": "紙球吹氣足球(活動9)、課本護城河(活動24)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A1 心肺功能與腹部核心肌耐力", "eval": "呼氣持續力與團隊對抗賽"}, "g2": {"theme": "第5週 • 肺活量強化與核心支撐 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】耐力慢跑與深長呼吸調節", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】紙球吹氣足球 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第5週 • 肺活量強化與核心支撐 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】耐力慢跑與深長呼吸調節", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】紙球吹氣足球(活動9)、課本護城河(活動24)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (動能極限拔河模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 6, "raw": {"w": "上學期 第6週", "theme": "滾動力量與慣性控制", "out": "滾球九宮格挑戰(戶外02)", "in_act": "鐵鋁罐冰壺(活動8)、橡皮擦漂移王(活動30)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B2 距離評估與微推力控制", "eval": "停靠精準度得分"}, "g2": {"theme": "第6週 • 滾動力量與慣性控制 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】滾球九宮格挑戰(戶外02)", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】鐵鋁罐冰壺 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第6週 • 滾動力量與慣性控制 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】滾球九宮格挑戰(戶外02)", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】鐵鋁罐冰壺(活動8)、橡皮擦漂移王(活動30)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (神獸進化模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 7, "raw": {"w": "上學期 第7週", "theme": "指力彈射與微力量調控", "out": "飛盤定點投擲進圈", "in_act": "橡皮擦狙擊手(活動5)、原子筆保齡球(活動33)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-A2 指尖精細動作與角度預判", "eval": "擊倒數量與加分區積分"}, "g2": {"theme": "第7週 • 指力彈射與微力量調控 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】飛盤定點投擲進圈", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】橡皮擦狙擊手 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第7週 • 指力彈射與微力量調控 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】飛盤定點投擲進圈", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】橡皮擦狙擊手(活動5)、原子筆保齡球(活動33)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (碎石奪寶模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 8, "raw": {"w": "上學期 第8週", "theme": "團隊默契與靜默合作", "out": "兩人三腳與小組同步行走", "in_act": "靜默傳遞鏈(活動6)、筷子運球接力(活動41)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-C2 團隊溝通、默契與集體自律", "eval": "團隊失誤率與完成時間"}, "g2": {"theme": "第8週 • 團隊默契與靜默合作 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】兩人三腳與小組同步行走", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】靜默傳遞鏈 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第8週 • 團隊默契與靜默合作 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】兩人三腳與小組同步行走", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】靜默傳遞鏈(活動6)、筷子運球接力(活動41)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (狂暴六角護盾模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 9, "raw": {"w": "上學期 第9週", "theme": "上肢肌耐力與動態追蹤", "out": "氣球雙人拍擊移動", "in_act": "氣球不落地扇子版(活動23)、氣球空戰(活動40)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-A1 肩臂肌耐力與空中軌跡追蹤", "eval": "滯空秒數與組別排名"}, "g2": {"theme": "第9週 • 上肢肌耐力與動態追蹤 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】氣球雙人拍擊移動", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】氣球不落地扇子版 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第9週 • 上肢肌耐力與動態追蹤 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】氣球雙人拍擊移動", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】氣球不落地扇子版(活動23)、氣球空戰(活動40)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (火箭升空模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 10, "raw": {"w": "上學期 第10週", "theme": "期中學習評量與闖關大賽", "out": "戶外手球與體能三關挑戰賽", "in_act": "雙城攻塔男女對抗賽", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C3 跨學科整合評量與體能實踐", "eval": "期中分組總積分評量"}, "g2": {"theme": "第10週 • 期中學習評量與闖關大賽 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】戶外手球與體能三關挑戰賽", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】雙城攻塔男女對抗賽 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第10週 • 期中學習評量與闖關大賽 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】戶外手球與體能三關挑戰賽", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】雙城攻塔男女對抗賽", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (雙塔火砲問答模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 11, "raw": {"w": "上學期 第11週", "theme": "高心肺衝刺與核心耐力", "out": "階梯折返快步跑", "in_act": "課本登山者(活動11)、無聲剪刀腳(活動14)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-A1 高強度無聲快步與下腹肌力", "eval": "30秒衝刺次數記錄"}, "g2": {"theme": "第11週 • 高心肺衝刺與核心耐力 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】階梯折返快步跑", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】課本登山者 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第11週 • 高心肺衝刺與核心耐力 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】階梯折返快步跑", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】課本登山者(活動11)、無聲剪刀腳(活動14)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (火箭升空模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 12, "raw": {"w": "上學期 第12週", "theme": "本體感覺與空間定向", "out": "盲視定向步態與聽音辨位(活動47)", "in_act": "核心平衡木(活動42)、橡皮擦天線(活動18)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 閉眼平衡感與身體姿態控制", "eval": "直線步態偏移度檢核"}, "g2": {"theme": "第12週 • 本體感覺與空間定向 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】盲視定向步態與聽音辨位(活動47)", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】核心平衡木 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第12週 • 本體感覺與空間定向 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】盲視定向步態與聽音辨位(活動47)", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】核心平衡木(活動42)、橡皮擦天線(活動18)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (神獸進化模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 13, "raw": {"w": "上學期 第13週", "theme": "阻力對抗與重心借力", "out": "拔河基礎步伐與重心下沉", "in_act": "慢動作推手(活動20)、水壺守護神(活動19)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A2 重心轉移力學與借力防守", "eval": "攻防對抗勝負記錄"}, "g2": {"theme": "第13週 • 阻力對抗與重心借力 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】拔河基礎步伐與重心下沉", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】慢動作推手 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第13週 • 阻力對抗與重心借力 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】拔河基礎步伐與重心下沉", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】慢動作推手(活動20)、水壺守護神(活動19)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (動能極限拔河模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 14, "raw": {"w": "上學期 第14週", "theme": "敏捷協調與肢體出拳", "out": "九宮格跳躍剪刀石頭布", "in_act": "肢體剪刀石頭布(活動43)、是非跳躍線(活動29)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-A2 雙腳前後開合敏捷與即時決策", "eval": "連勝局數統計"}, "g2": {"theme": "第14週 • 敏捷協調與肢體出拳 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】九宮格跳躍剪刀石頭布", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】肢體剪刀石頭布 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第14週 • 敏捷協調與肢體出拳 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】九宮格跳躍剪刀石頭布", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】肢體剪刀石頭布(活動43)、是非跳躍線(活動29)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (史楚普紅綠燈模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 15, "raw": {"w": "上學期 第15週", "theme": "旋轉發力與工具操作", "out": "呼拉圈搖晃與陀螺旋轉", "in_act": "硬幣旋轉戰(活動44)、原子筆直升機(活動36)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-C1 指尖搓旋力道與圓周發力", "eval": "旋轉持續時間記錄"}, "g2": {"theme": "第15週 • 旋轉發力與工具操作 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】呼拉圈搖晃與陀螺旋轉", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】硬幣旋轉戰 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第15週 • 旋轉發力與工具操作 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】呼拉圈搖晃與陀螺旋轉", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】硬幣旋轉戰(活動44)、原子筆直升機(活動36)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (碎石奪寶模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 16, "raw": {"w": "上學期 第16週", "theme": "單腳支撐與浮腿控制", "out": "踢毽子連續踢與圈內停球", "in_act": "腳尖空中繪圖(活動45)、踢毽子投圈(活動12)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 單腳閉鏈支撐與浮腿精細軌跡", "eval": "單腳支撐平衡秒數"}, "g2": {"theme": "第16週 • 單腳支撐與浮腿控制 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】踢毽子連續踢與圈內停球", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】腳尖空中繪圖 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第16週 • 單腳支撐與浮腿控制 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】踢毽子連續踢與圈內停球", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】腳尖空中繪圖(活動45)、踢毽子投圈(活動12)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (神獸進化模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 17, "raw": {"w": "上學期 第17週", "theme": "低摩擦滑行與全身穩定", "out": "滑板車接力或手撐滑行體驗", "in_act": "教室滑雪(活動3)、文具塔防賽(活動25)", "tool": "全能體育王-4組 (極速賽車模式)", "core": "健體-E-A1 大腿前側滑行與體幹支撐", "eval": "滑行競速完成時間"}, "g2": {"theme": "第17週 • 低摩擦滑行與全身穩定 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】滑板車接力或手撐滑行體驗", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】教室滑雪 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第17週 • 低摩擦滑行與全身穩定 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】滑板車接力或手撐滑行體驗", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】教室滑雪(活動3)、文具塔防賽(活動25)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (極速賽車模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 18, "raw": {"w": "上學期 第18週", "theme": "力道調控與角動量翻轉", "out": "手球射門準度與定點投擲", "in_act": "丟裝水寶特瓶立桌面(活動14)、桌緣掀紙杯(活動13)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-B2 旋轉拋擲力道與重力角動量", "eval": "立起成功次數累計"}, "g2": {"theme": "第18週 • 力道調控與角動量翻轉 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】手球射門準度與定點投擲", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】丟裝水寶特瓶立桌面 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第18週 • 力道調控與角動量翻轉 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】手球射門準度與定點投擲", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】丟裝水寶特瓶立桌面(活動14)、桌緣掀紙杯(活動13)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (狂暴六角護盾模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 19, "raw": {"w": "上學期 第19週", "theme": "綜合戰術演練與跨科複習", "out": "校園手球/籃球分站尋寶闖關", "in_act": "記憶快閃(活動34)、成語球類炸彈陣(活動4)", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C2 結合語文與數學之動態團隊戰術", "eval": "跨領域學科題庫得分"}, "g2": {"theme": "第19週 • 綜合戰術演練與跨科複習 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】校園手球/籃球分站尋寶闖關", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】記憶快閃 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第19週 • 綜合戰術演練與跨科複習 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】校園手球/籃球分站尋寶闖關", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】記憶快閃(活動34)、成語球類炸彈陣(活動4)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (雙塔火砲問答模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 20, "raw": {"w": "上學期 第20週", "theme": "期末體育遊戲運動嘉年華", "out": "全學年手球/全能體育王總決賽", "in_act": "四大神獸終極爭霸戰", "tool": "全能體育王-4組 + 智勇雙全-2組 輪播", "core": "健體-E-C3 全學期體能成果與團隊榮譽", "eval": "學期總冠軍頒獎與證書"}, "g2": {"theme": "第20週 • 期末體育遊戲運動嘉年華 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】全學年手球/全能體育王總決賽", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】四大神獸終極爭霸戰 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第20週 • 期末體育遊戲運動嘉年華 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】全學年手球/全能體育王總決賽", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】四大神獸終極爭霸戰", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 + 智勇雙全-2組 輪播】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 21, "raw": {"w": "下學期 第21週", "theme": "體能常模建立與目標設定", "out": "體適能檢測(立定跳遠/坐姿體前彎/仰臥起坐)", "in_act": "座位熱身(活動1)、無聲波比(活動63)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-A1 掌握自我體能數據與運動常模", "eval": "體適能檢測數據建檔"}, "g2": {"theme": "第21週 • 體能常模建立與目標設定 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】體適能檢測(立定跳遠/坐姿體前彎/仰臥起坐)", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】座位熱身 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第21週 • 體能常模建立與目標設定 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】體適能檢測(立定跳遠/坐姿體前彎/仰臥起坐)", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】座位熱身(活動1)、無聲波比(活動63)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (神獸進化模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 22, "raw": {"w": "下學期 第22週", "theme": "跳繩進階與雙人節奏", "out": "單人開合跳繩、雙人同跳大繩", "in_act": "同步空氣繩(活動4)、水壺避震器(活動12)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-B1 下肢節奏彈跳與手腕發力協調", "eval": "連續跳繩計次檢核"}, "g2": {"theme": "第22週 • 跳繩進階與雙人節奏 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】單人開合跳繩", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】同步空氣繩 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第22週 • 跳繩進階與雙人節奏 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】單人開合跳繩、雙人同跳大繩", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】同步空氣繩(活動4)、水壺避震器(活動12)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (火箭升空模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 23, "raw": {"w": "下學期 第23週", "theme": "民俗毽子進階腳法", "out": "毽子外側拐踢、膝踢、雙人對踢", "in_act": "腳尖繪圖(活動45)、毽子投圈(活動12)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 踝膝多角度控制與動態接球", "eval": "連續踢毽不落地次數"}, "g2": {"theme": "第23週 • 民俗毽子進階腳法 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】毽子外側拐踢", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】腳尖繪圖 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第23週 • 民俗毽子進階腳法 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】毽子外側拐踢、膝踢、雙人對踢", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】腳尖繪圖(活動45)、毽子投圈(活動12)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (神獸進化模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 24, "raw": {"w": "下學期 第24週", "theme": "墊上體操與核心滾翻", "out": "墊上前滾翻、後滾翻、側棒式支撐", "in_act": "核心平衡木(活動42)、課本夾夾樂(活動15)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-A1 軀幹核心抗旋轉與安全受身緩衝", "eval": "滾翻姿勢評定"}, "g2": {"theme": "第24週 • 墊上體操與核心滾翻 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】墊上前滾翻", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】核心平衡木 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第24週 • 墊上體操與核心滾翻 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】墊上前滾翻、後滾翻、側棒式支撐", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】核心平衡木(活動42)、課本夾夾樂(活動15)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (狂暴六角護盾模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 25, "raw": {"w": "下學期 第25週", "theme": "手球快攻反擊戰術", "out": "手球二傳一切、快攻三步上籃射門", "in_act": "原子筆長槍對決(活動55)、快手搶拍王(活動21)", "tool": "智勇雙全-2組 (雙塔火砲攻城模式)", "core": "健體-E-C2 團隊空間跑位與快速攻防轉換", "eval": "快攻傳射成功率"}, "g2": {"theme": "第25週 • 手球快攻反擊戰術 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】手球二傳一切", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】原子筆長槍對決 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第25週 • 手球快攻反擊戰術 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】手球二傳一切、快攻三步上籃射門", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】原子筆長槍對決(活動55)、快手搶拍王(活動21)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (雙塔火砲攻城模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 26, "raw": {"w": "下學期 第26週", "theme": "籃球運球過人與擋拆", "out": "換手運球突破、三人八字傳球跑位", "in_act": "水壺繞膝8字接力(活動58)、筆筒投籃(活動16)", "tool": "全能體育王-4組 (極速賽車模式)", "core": "健體-E-C1 變速運球掌控與非慣用手傳接", "eval": "半場三對三攻防評量"}, "g2": {"theme": "第26週 • 籃球運球過人與擋拆 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】換手運球突破", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】水壺繞膝8字接力 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第26週 • 籃球運球過人與擋拆 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】換手運球突破、三人八字傳球跑位", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】水壺繞膝8字接力(活動58)、筆筒投籃(活動16)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (極速賽車模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 27, "raw": {"w": "下學期 第27週", "theme": "足球弧線傳球與配合", "out": "腳背弧線傳球、二過一撞牆配合", "in_act": "紙球吹氣足球(活動9)、課本護城河(活動24)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A2 動態視野判讀與腳法精準度", "eval": "定點射門闖關積分"}, "g2": {"theme": "第27週 • 足球弧線傳球與配合 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】腳背弧線傳球", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】紙球吹氣足球 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第27週 • 足球弧線傳球與配合 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】腳背弧線傳球、二過一撞牆配合", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】紙球吹氣足球(活動9)、課本護城河(活動24)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (動能極限拔河模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 28, "raw": {"w": "下學期 第28週", "theme": "樂樂棒球壘上攻防戰術", "out": "擊球跑壘判斷、雙殺守備與轉傳", "in_act": "橡皮擦狙擊手(活動5)、原子筆保齡球(活動33)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-C2 守備轉傳默契與戰術決策執行", "eval": "實戰跑壘守備得分"}, "g2": {"theme": "第28週 • 樂樂棒球壘上攻防戰術 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】擊球跑壘判斷", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】橡皮擦狙擊手 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第28週 • 樂樂棒球壘上攻防戰術 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】擊球跑壘判斷、雙殺守備與轉傳", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】橡皮擦狙擊手(活動5)、原子筆保齡球(活動33)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (碎石奪寶模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 29, "raw": {"w": "下學期 第29週", "theme": "團隊陣地佔領與策略分工", "out": "小鎮爭奪戰20宮格、發電機與輸出機配合", "in_act": "【小鎮爭奪戰】(活動68)、【人肉拉鍊】(活動64)", "tool": "智勇雙全-2組 (狂暴六角護盾模式)", "core": "健體-E-C3 團隊資源分配與抗壓戰術實踐", "eval": "陣地佔領數量結算"}, "g2": {"theme": "第29週 • 團隊陣地佔領與策略分工 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】小鎮爭奪戰20宮格", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】【小鎮爭奪戰】 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第29週 • 團隊陣地佔領與策略分工 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】小鎮爭奪戰20宮格、發電機與輸出機配合", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】【小鎮爭奪戰】(活動68)、【人肉拉鍊】(活動64)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (狂暴六角護盾模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 30, "raw": {"w": "下學期 第30週", "theme": "期中運動技能檢定大會", "out": "專項手球/籃球/田徑技能綜合檢測", "in_act": "雙城攻塔男女對抗賽", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C3 跨學科期中動態會考與技能檢定", "eval": "期中總評量成績登錄"}, "g2": {"theme": "第30週 • 期中運動技能檢定大會 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】專項手球/籃球/田徑技能綜合檢測", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】雙城攻塔男女對抗賽 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第30週 • 期中運動技能檢定大會 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】專項手球/籃球/田徑技能綜合檢測", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】雙城攻塔男女對抗賽", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (雙塔火砲問答模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 31, "raw": {"w": "下學期 第31週", "theme": "防衛跌倒緩衝與安全受身", "out": "受身倒地緩衝、身體自我保護反射", "in_act": "慢動作推手(活動20)、水壺守護神(活動19)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-A2 跌倒防護機制與危機本能反應", "eval": "跌倒受身動作檢核"}, "g2": {"theme": "第31週 • 防衛跌倒緩衝與安全受身 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】受身倒地緩衝", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】慢動作推手 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第31週 • 防衛跌倒緩衝與安全受身 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】受身倒地緩衝、身體自我保護反射", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】慢動作推手(活動20)、水壺守護神(活動19)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (史楚普紅綠燈模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 32, "raw": {"w": "下學期 第32週", "theme": "高強度間歇與無聲體能", "out": "階梯折返衝刺跑、無聲開合跳", "in_act": "課本登山者(活動11)、無聲波比(活動63)", "tool": "全能體育王-4組 (火箭升空模式)", "core": "健體-E-A1 極限心肺耐力與無聲動作控制", "eval": "高強度間歇耐力記錄"}, "g2": {"theme": "第32週 • 高強度間歇與無聲體能 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】階梯折返衝刺跑", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】課本登山者 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第32週 • 高強度間歇與無聲體能 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】階梯折返衝刺跑、無聲開合跳", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】課本登山者(活動11)、無聲波比(活動63)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (火箭升空模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 33, "raw": {"w": "下學期 第33週", "theme": "非慣用側極限神經開發", "out": "非慣用手運球/投籃、非慣用腳盤球", "in_act": "手指體操(活動7)、橡皮擦指尖彈跳(活動37)", "tool": "全能體育王-4組 (碎石奪寶模式)", "core": "健體-E-A2 左右腦神經分工與非慣用側強化", "eval": "雙手協調測驗評量"}, "g2": {"theme": "第33週 • 非慣用側極限神經開發 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】非慣用手運球/投籃", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】手指體操 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第33週 • 非慣用側極限神經開發 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】非慣用手運球/投籃、非慣用腳盤球", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】手指體操(活動7)、橡皮擦指尖彈跳(活動37)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (碎石奪寶模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 34, "raw": {"w": "下學期 第34週", "theme": "盲視定向與特務引導", "out": "盲人引導跑、聽音辨位障礙走", "in_act": "特務學院密室逃脫、暗影傳球(活動51)", "tool": "全能體育王-4組 (神獸進化模式)", "core": "健體-E-B1 聽覺空間定位與同儕高度信任", "eval": "盲視定向完成時間"}, "g2": {"theme": "第34週 • 盲視定向與特務引導 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】盲人引導跑", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】特務學院密室逃脫、暗影傳球 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第34週 • 盲視定向與特務引導 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】盲人引導跑、聽音辨位障礙走", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】特務學院密室逃脫、暗影傳球(活動51)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (神獸進化模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 35, "raw": {"w": "下學期 第35週", "theme": "節奏律動與同步跳躍", "out": "全排同步空氣長跳繩、律動步伐", "in_act": "【同步空氣繩】(活動4)、【肢體打結】(活動8)", "tool": "智勇雙全-2組 (史楚普紅綠燈模式)", "core": "健體-E-B2 身體聽覺節奏感知與動作同步性", "eval": "同步落地音檢核"}, "g2": {"theme": "第35週 • 節奏律動與同步跳躍 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】全排同步空氣長跳繩", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】【同步空氣繩】 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第35週 • 節奏律動與同步跳躍 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】全排同步空氣長跳繩、律動步伐", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】【同步空氣繩】(活動4)、【肢體打結】(活動8)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (史楚普紅綠燈模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 36, "raw": {"w": "下學期 第36週", "theme": "大隊接力極限交接棒戰術", "out": "接力區助跑加速、盲接棒默契傳遞", "in_act": "兩人三腳接力、筷子運球(活動41)", "tool": "全能體育王-4組 (極速賽車模式)", "core": "健體-E-C2 團隊接力速度最大化與零失誤交接", "eval": "大隊接力計時賽"}, "g2": {"theme": "第36週 • 大隊接力極限交接棒戰術 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】接力區助跑加速", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】兩人三腳接力、筷子運球 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第36週 • 大隊接力極限交接棒戰術 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】接力區助跑加速、盲接棒默契傳遞", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】兩人三腳接力、筷子運球(活動41)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 (極速賽車模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 37, "raw": {"w": "下學期 第37週", "theme": "拔河運動重心拉力強化", "out": "拔河繩重心下沉、全排同步蹬腿反拉", "in_act": "水壺阻力推(活動56)、【連鎖無影凳】(活動65)", "tool": "智勇雙全-2組 (動能極限拔河模式)", "core": "健體-E-A2 團隊等長收縮拉力與蹬腿爆發力", "eval": "小組拔河對抗賽"}, "g2": {"theme": "第37週 • 拔河運動重心拉力強化 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】拔河繩重心下沉", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】水壺阻力推 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第37週 • 拔河運動重心拉力強化 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】拔河繩重心下沉、全排同步蹬腿反拉", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】水壺阻力推(活動56)、【連鎖無影凳】(活動65)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (動能極限拔河模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 38, "raw": {"w": "下學期 第38週", "theme": "全學年跨學科知識總決戰", "out": "校園定向尋寶闖關大賽", "in_act": "成語球類炸彈陣(活動4)、無聲是非題(活動17)", "tool": "智勇雙全-2組 (雙塔火砲問答模式)", "core": "健體-E-C3 跨學科100題庫總複習與體能結合", "eval": "學科體能會考得分"}, "g2": {"theme": "第38週 • 全學年跨學科知識總決戰 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】校園定向尋寶闖關大賽", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】成語球類炸彈陣 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第38週 • 全學年跨學科知識總決戰 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】校園定向尋寶闖關大賽", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】成語球類炸彈陣(活動4)、無聲是非題(活動17)", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【智勇雙全-2組 (雙塔火砲問答模式)】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 39, "raw": {"w": "下學期 第39週", "theme": "全能體育王學年聯賽前哨戰", "out": "四大神獸陣地大亂鬥分組循環賽", "in_act": "室內外微型活動自選綜合闖關", "tool": "全能體育王-4組 + 智勇雙全-2組", "core": "健體-E-C2 綜合戰術運用與團隊默契展現", "eval": "前哨戰天梯積分"}, "g2": {"theme": "第39週 • 全能體育王學年聯賽前哨戰 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】四大神獸陣地大亂鬥分組循環賽", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】室內外微型活動自選綜合闖關 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第39週 • 全能體育王學年聯賽前哨戰 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】四大神獸陣地大亂鬥分組循環賽", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】室內外微型活動自選綜合闖關", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 + 智勇雙全-2組】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}, {"week": 40, "raw": {"w": "下學期 第40週", "theme": "115學年度 體育嘉年華總決賽", "out": "全學年體育競技總決賽", "in_act": "四大神獸覺醒總冠軍終極頒獎", "tool": "全能體育王-4組 + 智勇雙全-2組 輪播", "core": "健體-E-C3 全學年體育學習成果展現與榮譽表揚", "eval": "學年總冠軍獎盃頒發"}, "g2": {"theme": "第40週 • 115學年度 體育嘉年華總決賽 (二年級趣味感知版)", "prep": {"time": "【00~08分】準備活動：排面集合與動態暖身", "desc": "四列橫隊集合點名，同儕兩兩互檢「鞋帶雙結」與水壺。進行小動物伸展操（大老鷹拍翅、袋鼠輕跳），熟悉慢跑走停反應。"}, "main1": {"time": "【08~20分】主要活動一：【基礎動作探索】全學年體育競技總決賽", "desc": "教師以童趣口訣示範基本動作，學生分 4 排進行 8~10 公尺基礎練習，注重身體平衡、膝蓋微彎緩衝與動作安全。"}, "main2": {"time": "【20~32分】主要活動二：【趣味應用遊戲】四大神獸覺醒總冠軍終極頒獎 小隊挑戰賽", "desc": "以四大神獸小組為單位進行分組闖關遊戲，規則單純明確，著重全組自律安靜與同儕互相鼓勵，達成目標為小隊累積能量。"}, "cool": {"time": "【32~40分】綜合與緩和：伸展放鬆與常規檢核", "desc": "深呼吸肢體放鬆、課堂常規提問（鞋帶雙結/安全防護）、各組公差清點歸還器材、列隊向老師敬禮下課。"}}, "g3": {"theme": "第40週 • 115學年度 體育嘉年華總決賽 (三年級敏捷對抗版)", "prep": {"time": "【00~08分】準備活動：特務安檢與哨音神經熱身", "desc": "四列橫隊快速對齊，實施口袋掏空與鞋帶雙結安檢。慢跑聽哨音做動作轉換（短哨1聲單腳閉鏈平衡、短哨2聲4人抱團、長哨高抬腿）。"}, "main1": {"time": "【08~20分】主要活動一：【專項技能分解】全學年體育競技總決賽", "desc": "教師講解力學要領與引導口訣，學生分組進行 15 公尺折返/傳接/射門技術分解練習，落實前腳掌蹬地與直線減速防錯。"}, "main2": {"time": "【20~32分】主要活動二：【戰術對抗競賽】四大神獸覺醒總冠軍終極頒獎", "desc": "分組進行攻防對抗與團隊連動挑戰，結合【全能體育王-4組 + 智勇雙全-2組 輪播】大螢幕即時注入能量與計分，培養運動家精神與勝負情緒復原力。"}, "cool": {"time": "【32~40分】綜合與緩和：靜態拉筋放鬆與學科提問", "desc": "大腿與小腿肌群靜態伸展、當週 5 題跨領域題庫抽問、宣布本週神獸冠軍組、器材清點歸位與下課禮儀。"}}}];
-
     let audioCtx = null;
     function playWhistle(type) {
       try {
@@ -345,54 +392,6 @@
     function toggleGlobalFullscreen() {
       if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); }
       else { document.exitFullscreen().catch(() => {}); }
-    }
-
-    // Populate Week Selector
-    function populateWeekSelector() {
-      const sel = document.getElementById('weekSelector');
-      if (!sel) return;
-      sel.innerHTML = '';
-      weeklyPlans.forEach(p => {
-        const opt = document.createElement('option');
-        opt.value = p.week;
-        opt.textContent = `${p.raw.w} • ${p.raw.theme}`;
-        sel.appendChild(opt);
-      });
-    }
-
-    // Load Specific Week Plan Data
-    function loadWeekPlan(weekNum) {
-      const plan = weeklyPlans.find(p => p.week === parseInt(weekNum, 10)) || weeklyPlans[0];
-      
-      document.getElementById('currentWeekBadge').textContent = `當前載入：${plan.raw.w} 課程教學活動規劃 (${plan.raw.theme})`;
-      document.getElementById('headerTitle').textContent = `115 學年度 ${plan.raw.w} 體育教學實戰日報`;
-
-      // Update Grade 2
-      document.getElementById('g2ThemeTitle').textContent = `單元：${plan.g2.theme}`;
-      document.getElementById('g2-act1-time').textContent = plan.g2.prep.time;
-      document.getElementById('g2-act1-desc').textContent = plan.g2.prep.desc;
-      document.getElementById('g2-act2-time').textContent = plan.g2.main1.time;
-      document.getElementById('g2-act2-desc').textContent = plan.g2.main1.desc;
-      document.getElementById('g2-act3-time').textContent = plan.g2.main2.time;
-      document.getElementById('g2-act3-desc').textContent = plan.g2.main2.desc;
-      document.getElementById('g2-act4-time').textContent = plan.g2.cool.time;
-      document.getElementById('g2-act4-desc').textContent = plan.g2.cool.desc;
-
-      // Update Grade 3
-      document.getElementById('g3ThemeTitle').textContent = `單元：${plan.g3.theme}`;
-      document.getElementById('g3-act1-time').textContent = plan.g3.prep.time;
-      document.getElementById('g3-act1-desc').textContent = plan.g3.prep.desc;
-      document.getElementById('g3-act2-time').textContent = plan.g3.main1.time;
-      document.getElementById('g3-act2-desc').textContent = plan.g3.main1.desc;
-      document.getElementById('g3-act3-time').textContent = plan.g3.main2.time;
-      document.getElementById('g3-act3-desc').textContent = plan.g3.main2.desc;
-      document.getElementById('g3-act4-time').textContent = plan.g3.cool.time;
-      document.getElementById('g3-act4-desc').textContent = plan.g3.cool.desc;
-    }
-
-    function onWeekChange() {
-      const selVal = document.getElementById('weekSelector').value;
-      loadWeekPlan(selVal);
     }
 
     const classes = ['201', '207', '209', '302', '303', '304', '305', '306', '307', '308'];
@@ -430,8 +429,8 @@
       classes.forEach(c => {
         const btn = document.createElement('button');
         const isDone = scoreStatus[c];
-        btn.className = `p-2 rounded-xl text-xs font-black border transition-all flex items-center justify-center gap-1 ${
-          isDone ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' : 'bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700'
+        btn.className = `py-2.5 rounded-2xl text-xs font-black border transition-all flex items-center justify-center gap-1 ${
+          isDone ? 'bg-emerald-50 text-emerald-700 border-emerald-300 font-black shadow-sm' : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
         }`;
         btn.innerHTML = `${isDone ? '✅' : '⚪'} ${c}`;
         btn.onclick = () => {
@@ -447,16 +446,11 @@
       const h = document.getElementById('refHighlight').value || '未填寫';
       const b = document.getElementById('refBottleneck').value || '未填寫';
       const s = document.getElementById('refSuggestion').value || '未填寫';
-      const selVal = document.getElementById('weekSelector').value;
-      const plan = weeklyPlans.find(p => p.week === parseInt(selVal, 10)) || weeklyPlans[0];
-
-      const text = `【體育教學日報與反思記錄】\n課程進度：${plan.raw.w} • ${plan.raw.theme}\n二年級單元：${plan.g2.theme}\n三年級單元：${plan.g3.theme}\n\n一、 課堂亮點與學生表現：\n${h}\n\n二、 教學卡點與動作困難：\n${b}\n\n三、 教學者建議與下週改進：\n${s}`;
-      navigator.clipboard.writeText(text).then(() => alert('📋 已複製完整日報反思文字！'));
+      const text = `【體育教學日報與反思記錄】\n日期：2026-08-27 (星期四) • 第1週\n授課班級：二年級 (209, 207, 201) ＆ 三年級 (304, 306)\n教學主題：身體空間感知 ＆ 敏捷制動折返對抗\n\n一、 課堂亮點與學生表現：\n${h}\n\n二、 教學卡點與動作困難：\n${b}\n\n三、 教學者建議與下週改進：\n${s}`;
+      navigator.clipboard.writeText(text).then(() => alert('📋 已成功複製完整日報反思文字！'));
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      populateWeekSelector();
-      loadWeekPlan(1);
       loadStorage();
       renderScoreChecklist();
       lucide.createIcons();
